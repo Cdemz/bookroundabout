@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;700&family=Dosis:wght@400;500;600;700&family=Luckiest+Guy&display=swap");
+
+:root {
+  --color-bg: #00010a;
+  --color-text: #2b2d42;
+  --color-primary: #010d6b;
+  --color-bg-variant: #9aa5fe;
+  --color-primary-v: #0119cb;
+  --color-primary-g: #f5f6f7;
+  --color-primary-b: #818a93;
+  --color-primary-a: #152542;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: white;
+  background: var(--color-primary-g);
+}
+
+.assistant {
+  font-family: "Assistant", sans-serif;
+}
+
+.dosis {
+  font-family: "Dosis", sans-serif;
+}
+
+.lucky {
+  font-family: "Luckiest Guy", cursive;
+}

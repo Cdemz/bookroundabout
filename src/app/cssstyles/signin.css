@@ -1,0 +1,33 @@
+.signt {
+  text-decoration: none;
+  border: 1.5px solid var(--color-primary-v);
+
+  background: transparent;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+}
+
+.signt:hover {
+  color: white;
+}
+.signtt:hover {
+  color: white;
+}
+
+.signt::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background-color: var(--color-primary-v);
+  z-index: -1;
+  transition: all 1s;
+}
+
+.signt:hover::before {
+  width: 160%;
+}
