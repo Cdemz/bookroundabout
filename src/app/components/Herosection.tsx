@@ -3,7 +3,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import SearchBar from "./SearchBar";
 const Herosection = () => {
   return (
-    <div className=" flex flex-col md:flex-row   bg-white w-[96%] mx-auto   px-4 py-4 md:px-8 md:justify-between">
+    <div className=" flex flex-col md:flex-row   bg-white w-[96%] mx-auto px-4 py-4 md:px-8 md:justify-between">
       <div className=" text-black montserrat md:w-[45%] order-2 md:order-1 md:mt-8">
         <div className="bg-[var(--color-primary-b)] rounded-lg px-2 py-1 font-semibold flex justify-center w-[70%] ">
           <p className="text-[10px] text-[var(--color-text)] md:text-[9px] lg:text-[10px]">

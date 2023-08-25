@@ -64,7 +64,7 @@ const NavBar: FC = () => {
   };
   return (
     <main>
-      <div className="flex justify-between py-4 text-[var(--color-primary-b)] px-2 md:px-8 ">
+      <div className="flex justify-between py-4 text-[var(--color-primary-b)] px-2 md:px-8 fixed z-20 bg-white w-full top-8">
         <div
           className="my-auto text-[var(--color-primary-v)] text-2xl"
           onClick={handleNav}

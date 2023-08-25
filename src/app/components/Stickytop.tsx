@@ -3,7 +3,7 @@ import React from "react";
 
 const Stickytop = () => {
   return (
-    <div className="flex gap-2 justify-center py-2 items-center bg-white">
+    <div className="flex gap-2 justify-center py-2 items-center bg-white fixed z-20 w-full">
       <Image
         src="/bookslogo.png"
         alt="hero-img"
@@ -11,7 +11,7 @@ const Stickytop = () => {
         height={300}
         className=" h-8 w-8 "
       />
-      <h1 className="text-[var(--color-primary-v)] assistant font-bold">
+      <h1 className="text-[var(--color-primary-v)] assistant font-bold ">
         Books Roundabout
       </h1>
     </div>

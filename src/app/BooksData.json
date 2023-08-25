@@ -11,7 +11,7 @@
     "agerange": "Young Adult"
   },
   {
-    "id": 1,
+    "id": 2,
     "img": "/Created to Dream.jpg",
     "title": "Created to Dream",
     "category": "Non-Fiction",
@@ -20,13 +20,114 @@
     "description": "it's a good book"
   },
   {
-    "id": 1,
+    "id": 3,
     "img": "/Geronimo Stilton Grammar Pawbook 1.png",
     "title": "Geronimo Stilton Grammar Pawbook 1",
     "category": "Education",
     "code": "WHL23",
     "price": "₦1,700.00",
     "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 4,
+    "img": "/H3 Leadership Be Humble. Stay Hungry. Always Hustle..jpg",
+    "title": "H3 Leadership Be Humble. Stay Hungry. Always Hustle.",
+    "category": "Non-Fiction",
+    "code": "WHL24",
+    "price": "₦9,000.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 5,
+    "img": "/Lulu and the Mangoes.png",
+    "title": "Lulu and the Mangoes",
+    "category": "Children Books",
+    "code": "WHL25",
+    "price": "₦700.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 6,
+    "img": "/Nearly all the men in lagos are mad.png",
+    "title": "Nearly all the men in lagos are mad",
+    "category": "Fiction",
+    "code": "WHL26",
+    "price": "₦4,500.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 7,
+    "img": "/Nene and the Butterflies.png",
+    "title": "Nene and the Butterflies",
+    "category": "Children Books",
+    "code": "WHL27",
+    "price": "₦700.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 8,
+    "img": "/Oliver Twist (AXORA).png",
+    "title": "Oliver Twist (AXORA)",
+    "category": "Children Books",
+    "code": "WHL28",
+    "price": "₦1,300.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 9,
+    "img": "/smart moves more money.png",
+    "title": "smart moves more money",
+    "category": "Non-Fiction",
+    "code": "WHL29",
+    "price": "₦6,000.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 10,
+    "img": "/Stay with Me.gif",
+    "title": "Stay with Me",
+    "category": "Fiction",
+    "code": "WHL30",
+    "price": "₦5,000.00",
+    "description": "Yejide is hoping for a miracle, for a child. It is all her husband wants, all her mother-in-law wants, and she has tried everything – arduous pilgrimages, medical consultations, appeals to God. But when her relatives insist upon a new wife, it is too much for Yejide to bear. It will lead to jealousy, betrayal and despair.",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 11,
+    "img": "/The Missing Cryptoqueen.png",
+    "title": "The Missing Cryptoqueen",
+    "category": "Non-Fiction",
+    "code": "WHL31",
+    "oldprice": "₦10,000.00",
+    "price": "₦9,000.00",
+    "description": "The inside story of the biggest business scam of the 21st century, and the hunt for the woman who got away with it. \n The Missing Cryptoqueen tells the unbelievable story of the rise, disappearance, and fall of Dr Ruja Ignatova. It is a modern tale of intrigue, techno-hype, and herd madness that reveals how OneCoin became the biggest scam of the 21st Century.",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 12,
+    "img": "/The Secret Lives of Baba Segi’s Wives.png",
+    "title": "The Secret Lives of Baba Segi’s Wives",
+    "category": "Fiction",
+    "code": "WHL32",
+    "price": "₦6,000.00",
+    "description": "For a polygamist like Baba Segi, his collection of wives and a gaggle of children are the symbols of prosperity, success and validation of his manhood. Everything runs reasonably smoothly in the patriarchal home until wife number four intrudes on this family romance. \n  Bolanle, a graduate amongst the semi-literate wives, is hated from the start. Baba Segi’s glee at bagging a graduate doesn’t help matters. Worse, Bolanle’s arrival threatens to do more than simply ruffle feathers. She’s unwittingly set to expose a secret that her co-wives intend to protect, at all costs.",
+    "tob": "Paper Back"
+  },
+  {
+    "id": 13,
+    "img": "/The Subtle Art of Not Giving a Fuck.jpg",
+    "title": "The Subtle Art of Not Giving a Fuck",
+    "category": "Non-Fiction",
+    "code": "WHL33",
+    "price": "₦13,000.00",
+    "description": "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be “positive” all the time so that we can truly become better, happier people.",
     "tob": "Paper Back"
   }
 ]

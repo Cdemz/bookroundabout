@@ -18,10 +18,11 @@ function SearchBar() {
   return (
     <>
       <div className="templateContainer">
-        <div className="searchInput_Container">
+        <div className="searchInput_Container bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto">
           <input
             id="searchInput"
             type="text"
+            className="bg-transparent focus:outline-none ml-4"
             placeholder="Search here..."
             onChange={(event) => {
               setSearchTerm(event.target.value);
@@ -29,17 +30,24 @@ function SearchBar() {
           />
         </div>
         {searchTerm !== "" && (
-          <div className="template_Container">
+          <div className="template_Container mt-4 flex flex-col gap-3">
             {filteredData.length > 0 ? (
               filteredData.map((val) => (
-                <div className="template" key={val.id}>
-                  <img src={val.img} alt="" />
-                  <h3>{val.title}</h3>
-                  <p className="price">${val.price}</p>
+                <div className="template flex" key={val.id}>
+                  <div className=" h-[120px] w-[100px]">
+                    <img src={val.img} alt="" className="object-contain" />
+                  </div>
+                  <div className="lato">
+                    <h2>{val.code}</h2>
+                    <h3>{val.title}</h3>
+                    <p className="price  font-bold">{val.price}</p>
+                  </div>
                 </div>
               ))
             ) : (
-              <div className="notAvailable">Not Available</div>
+              <div className="notAvailable lato font-semibold">
+                No product found
+              </div>
             )}
           </div>
         )}

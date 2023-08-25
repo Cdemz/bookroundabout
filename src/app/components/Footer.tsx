@@ -15,7 +15,7 @@ const Footer: FC = () => {
     AOS.refresh();
   }, []);
   return (
-    <div className="bg-[var(--color-second)] p-6 md:px-[4rem] text-[var(--color-bg)]">
+    <div className="bg-[var(--color-second)] p-6 md:px-[4rem] text-[var(--color-bg)] overflow-hidden">
       {/* first big div  */}
       <div className="flex gap-4 md:flex-row flex-col justify-between md:items-center mb-6  ">
         {/* image  */}

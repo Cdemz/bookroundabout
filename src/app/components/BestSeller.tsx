@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import Data from "../BooksData.json";
+import SearchBar from "./SearchBar";
 
 interface BookData {
   img: string;
@@ -54,24 +55,8 @@ const BestSeller = () => {
 
   return (
     <main className="bg-white px-4 py-6 mx-2">
-      <div className="">
-        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto">
-          <div className=" flex gap-2 items-center ml-2">
-            <BiSearchAlt2 />
-            <input
-              placeholder="Type here.."
-              id="input"
-              className="input bg-transparent focus:outline-none w-[100%] "
-              name="text"
-              type="text"
-            />
-          </div>
-          <div className="">
-            <button className="bg-[var(--color-primary-v)] text-white py-2 px-8 rounded-full">
-              Search
-            </button>
-          </div>
-        </div>
+      <div className="text-black">
+        <SearchBar />
       </div>
       {/* search bar */}
       <div className="flex justify-between items-center mt-4">
@@ -114,7 +99,7 @@ const BestSeller = () => {
                     </span>
                   </p>
 
-                  <button className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm">
+                  <button className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm">
                     ADD TO CART
                   </button>
                 </div>
