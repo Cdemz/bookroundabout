@@ -17,7 +17,7 @@ const itemData = [
     img: "/shecow.jpg",
     title: "Game Lill",
     rows: 2,
-    cols: 2,
+    // cols: 2,
     category: "Children Books",
     rating: <AiFillStar />,
     code: "WHL201",
@@ -25,26 +25,41 @@ const itemData = [
     price: "$25.33",
   },
   {
-    img: "/shecow.jpg",
+    img: "/book1.jpg",
     title: "Burger",
     category: "Non-Fiction",
+    rating: <AiFillStar />,
+    code: "WHL21",
+    agerange: "18 Above",
+    price: "$30.00",
   },
   {
     img: "/shecow.jpg",
     title: "Camera",
     category: "Fiction",
+    rating: <AiFillStar />,
+    code: "WHL213",
+    agerange: "18 Above",
+    price: "$5000.00",
   },
   {
-    img: "/shecow.jpg",
+    img: "/book2.jpeg",
     title: "Coffee",
     category: "Romance",
-    cols: 2,
+    // cols: 2,
+    rating: <AiFillStar />,
+    code: "WHL21",
+    agerange: "18 Above",
+    price: "$30.00",
   },
   {
-    img: "/shecow.jpg",
+    img: "/book1.jpg",
     title: "Hats",
     category: "Classic",
-    cols: 2,
+    rating: <AiFillStar />,
+    code: "WHL21",
+    agerange: "18 Above",
+    price: "$30.00",
   },
 ];
 
@@ -52,7 +67,7 @@ const BestSeller = () => {
   return (
     <main className="bg-white px-4 py-6 mx-2">
       <div className="">
-        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2">
+        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 md:max-w-xs md:mx-auto">
           <div className=" flex gap-2 items-center ml-2">
             <BiSearchAlt2 />
             <input
@@ -84,21 +99,21 @@ const BestSeller = () => {
       </div>
 
       <section>
-        <div className="mx-auto  px-2 h-[60%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 md:h-[60vh] gap-6">
+        <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 py-4">
           {itemData.map((item) => (
             <div
               key={item.img}
               //   cols={item.cols || 1}
               //   rows={item.rows || 1}
             >
-              <div className=" flex gap-2 justify-between">
+              <div className=" flex flex-col gap-2  ">
                 <Image
-                  {...srcset(item.img, 121, item.rows, item.cols)}
+                  {...srcset(item.img, 12, item.rows, item.cols)}
                   width={300}
                   height={300}
                   alt={item.title}
                   loading="lazy"
-                  className=" w-[72px] rounded-xl "
+                  className=" w-[120px] h-[170px] rounded-xl "
                 />
                 <div className="text-black">
                   <h1 className="text-amber-300">{item.rating}</h1>
@@ -106,6 +121,9 @@ const BestSeller = () => {
                   <p>{item.code}</p>
                   <p>{item.agerange}</p>
                   <p className="font-extrabold">{item.price}</p>
+                  <button className="bg-[var(--color-primary-v)] text-white px-2 py-1">
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             </div>
