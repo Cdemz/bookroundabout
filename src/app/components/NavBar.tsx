@@ -46,6 +46,18 @@ const NavBar: FC = () => {
     return <MenuItem linkText={linkText} />;
   });
 
+  const childrenLinks = [
+    "Comics",
+    "Fiction",
+    "Poetry & Short Stories",
+    "Family & Home",
+    "Chapter Books",
+    "Paper Covers",
+    "Hard Covers",
+  ].map((linkText) => {
+    return <MenuItem linkText={linkText} />;
+  });
+
   const [nav, setNav] = useState(false);
   const handleNav = () => {
     setNav(!nav);
@@ -96,7 +108,7 @@ const NavBar: FC = () => {
             : "fixed right-[-100%] "
         }
       >
-        <ul className=" p-4 text-center text-white lucky">
+        <ul className=" p-4 text-center text-white lucky flex flex-col gap-2">
           <a href="/">
             <li className="p-2">Home</li>
           </a>
@@ -176,9 +188,11 @@ const NavBar: FC = () => {
               <Menu.Items className=" mt-2  origin-top-right rounded-md bg-white shadow-lg  focus:outline-none">
                 <div className="py-1">{childLinks}</div>
                 <div className="py-1">
-                  <h1>Popular Categories</h1>
+                  <h1 className="text-[var(--color-text)] ml-2">
+                    Popular Categories
+                  </h1>
                   <hr />
-                  {childLinks}
+                  {childrenLinks}
                 </div>
               </Menu.Items>
             </Transition>

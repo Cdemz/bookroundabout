@@ -1,50 +1,51 @@
 import Image from "next/image";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 const Herosection = () => {
   return (
-    <div className="flex bg-white w-[96%] mx-auto h-[70vh] ">
-      <div className=" text-black assistant w-[45%]">
-        <div className="bg-[var(--color-primary-b)] rounded-lg px-2 font-semibold  ">
-          <p>Journey Through Pages, Discover New Worlds</p>
+    <div className=" flex flex-col md:flex-row   bg-white w-[96%] mx-auto   px-4 py-4 md:px-8 md:justify-between">
+      <div className=" text-black montserrat md:w-[45%] order-2 md:order-1 md:mt-8">
+        <div className="bg-[var(--color-primary-b)] rounded-lg px-2 py-1 font-semibold flex justify-center w-[70%] ">
+          <p className="text-[10px] text-[var(--color-text)]">
+            Journey Through Pages, Discover New Worlds
+          </p>
         </div>
-        <h1 className="text-[var(--color-primary-v)] font-extrabold text-4xl">
-          Reading Is{" "}
-          <span className="block text-[var(--color-primary-a)] text-white ">
-            Fascinating
-          </span>{" "}
+        <h1 className="text-[var(--color-primary-v)] font-extrabold lg:text-6xl mt-2 text-5xl">
+          Reading <span className="text-[var(--color-text)]   "> Is </span>{" "}
+          <span className="block text-[var(--color-text)]   ">Fascinating</span>{" "}
         </h1>
-        <h3>
-          Welcome to our literary haven, where pages come to life and stories
-          ignite your imagination. Dive into a world of endless possibilities as
-          you explore our carefully curated collection of books, spanning genres
+        <h3 className="text-sm mt-4">
+          Welcome to our Books Roundabout, where pages come to life and stories
+          Explore our carefully curated collection of books, spanning genres
           from classics to contemporary bestsellers.{" "}
         </h3>
 
-        <div className="bg-[var(--color-primary-b)] w-[30vw] border border-red-500 flex h-[30vh] ">
-          <div className="">
+        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2">
+          <div className=" flex gap-2 items-center ml-2">
+            <BiSearchAlt2 />
             <input
-              placeholder="Search.."
+              placeholder="Type here.."
               id="input"
-              className="input bg-transparent focus:outline-none"
+              className="input bg-transparent focus:outline-none "
               name="text"
               type="text"
             />
           </div>
           <div className="">
-            <button className="bg-[var(--color-primary-v)] text-white py-2 px-6 rounded-full">
+            <button className="bg-[var(--color-primary-v)] text-white py-2 px-8 rounded-full">
               Search
             </button>
           </div>
         </div>
       </div>
       {/* photo div */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center order-1 md:order-2 md:w-full     ">
         <Image
           src="/hero-img.png"
           alt="hero-img"
           width={300}
           height={300}
-          className="w-full h-[80%] object-cover"
+          className="w-full h-[80%] object-cover lg:h-[100%]   "
         />
       </div>
     </div>
