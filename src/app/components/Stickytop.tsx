@@ -11,7 +11,7 @@ const Stickytop = () => {
         height={300}
         className=" h-8 w-8 "
       />
-      <h1 className="text-[var(--color-primary-v)] lucky font-bold">
+      <h1 className="text-[var(--color-primary-v)] assistant font-bold">
         Books Roundabout
       </h1>
     </div>

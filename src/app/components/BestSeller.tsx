@@ -67,13 +67,13 @@ const BestSeller = () => {
   return (
     <main className="bg-white px-4 py-6 mx-2">
       <div className="">
-        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 md:max-w-xs md:mx-auto">
+        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw]mx-auto">
           <div className=" flex gap-2 items-center ml-2">
             <BiSearchAlt2 />
             <input
               placeholder="Type here.."
               id="input"
-              className="input bg-transparent focus:outline-none "
+              className="input bg-transparent focus:outline-none max-w-[60px] "
               name="text"
               type="text"
             />
