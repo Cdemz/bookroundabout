@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { BiSearchAlt2 } from "react-icons/bi";
-
+import SearchBar from "./SearchBar";
 const Herosection = () => {
   return (
     <div className=" flex flex-col md:flex-row   bg-white w-[96%] mx-auto   px-4 py-4 md:px-8 md:justify-between">
@@ -20,22 +20,8 @@ const Herosection = () => {
           from classics to contemporary bestsellers.{" "}
         </h3>
 
-        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw]">
-          <div className=" flex gap-2 items-center ml-2">
-            <BiSearchAlt2 />
-            <input
-              placeholder="Type here.."
-              id="input"
-              className="input bg-transparent focus:outline-none max-w-[60px] "
-              name="text"
-              type="text"
-            />
-          </div>
-          <div className="">
-            <button className="bg-[var(--color-primary-v)] text-white py-2 px-8 rounded-full">
-              Search
-            </button>
-          </div>
+        <div className=" ">
+          <SearchBar />
         </div>
       </div>
       {/* photo div */}

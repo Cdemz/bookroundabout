@@ -1,79 +1,67 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
+import Data from "../BooksData.json";
 
-function srcset(image: string, size: number, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${size * cols}&h=${
-      size * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
+interface BookData {
+  img: string;
+  title: string;
+  category: string;
+  rating?: React.ReactNode;
+  code: string;
+  agerange?: string;
+  price: string;
+  oldprice?: string;
 }
 
-const itemData = [
-  {
-    img: "/shecow.jpg",
-    title: "Game Lill",
-    rows: 2,
-    // cols: 2,
-    category: "Children Books",
-    rating: <AiFillStar />,
-    code: "WHL201",
-    agerange: "5-12",
-    price: "$25.33",
-  },
-  {
-    img: "/book1.jpg",
-    title: "Burger",
-    category: "Non-Fiction",
-    rating: <AiFillStar />,
-    code: "WHL21",
-    agerange: "18 Above",
-    price: "$30.00",
-  },
-  {
-    img: "/shecow.jpg",
-    title: "Camera",
-    category: "Fiction",
-    rating: <AiFillStar />,
-    code: "WHL213",
-    agerange: "18 Above",
-    price: "$5000.00",
-  },
-  {
-    img: "/book2.jpeg",
-    title: "Coffee",
-    category: "Romance",
-    // cols: 2,
-    rating: <AiFillStar />,
-    code: "WHL21",
-    agerange: "18 Above",
-    price: "$30.00",
-  },
-  {
-    img: "/book1.jpg",
-    title: "Hats",
-    category: "Classic",
-    rating: <AiFillStar />,
-    code: "WHL21",
-    agerange: "18 Above",
-    price: "$30.00",
-  },
-];
+function shuffleArray(array: BookData[]) {
+  // Fisher-Yates shuffle algorithm
+  let currentIndex = array.length,
+    randomIndex,
+    temporaryValue;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 const BestSeller = () => {
+  const [randomData, setRandomData] = useState<BookData[]>([]);
+
+  useEffect(() => {
+    const shuffledData = shuffleArray(Data as BookData[]);
+    const first8Items = shuffledData.slice(0, 8);
+    setRandomData(first8Items);
+  }, []);
+
+  function srcset(image: string, size: number, rows = 1, cols = 1) {
+    return {
+      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${image}?w=${size * cols}&h=${
+        size * rows
+      }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
+
   return (
     <main className="bg-white px-4 py-6 mx-2">
       <div className="">
-        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw]mx-auto">
+        <div className="bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto">
           <div className=" flex gap-2 items-center ml-2">
             <BiSearchAlt2 />
             <input
               placeholder="Type here.."
               id="input"
-              className="input bg-transparent focus:outline-none max-w-[60px] "
+              className="input bg-transparent focus:outline-none w-[100%] "
               name="text"
               type="text"
             />
@@ -91,38 +79,42 @@ const BestSeller = () => {
           Best Sellers
         </h1>
 
-        <hr className="   w-[60%]e text-black " />
+        <hr className="w-[60%]e text-black " />
 
         <button className="bg-[var(--color-primary)] text-white py-2 px-4 md:px-8 rounded-full">
-          Veiw by section
+          View by section
         </button>
       </div>
 
       <section>
         <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 py-4">
-          {itemData.map((item) => (
-            <div
-              key={item.img}
-              //   cols={item.cols || 1}
-              //   rows={item.rows || 1}
-            >
-              <div className=" flex flex-col gap-2  ">
+          {randomData.map((item) => (
+            <div key={item.img} className=" ">
+              <div className=" flex flex-col gap-4 h-[100%]">
                 <Image
-                  // culprit
                   {...srcset(item.img, 12)}
                   width={300}
                   height={300}
                   alt={item.title}
                   loading="lazy"
-                  className=" w-[120px] h-[170px] rounded-xl "
+                  className="w-[120px] h-[170px] object-cover  "
                 />
-                <div className="text-black">
-                  <h1 className="text-amber-300">{item.rating}</h1>
-                  <h1 className="font-extrabold">{item.title}</h1>
-                  <p>{item.code}</p>
+                <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1">
+                  <p className="text-gray-400">{item.category}</p>
+
                   <p>{item.agerange}</p>
-                  <p className="font-extrabold">{item.price}</p>
-                  <button className="bg-[var(--color-primary-v)] text-white px-2 py-1">
+                  <h1 className="font-extrabold break-words text-[var(--color-primary-v)]">
+                    {item.title}
+                  </h1>
+                  <p>{item.code}</p>
+                  <p className="lato">
+                    <span className="line-through italic">{item.oldprice}</span>{" "}
+                    <span className="text-black font-extrabold whitespace-nowrap">
+                      {item.price}
+                    </span>
+                  </p>
+
+                  <button className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm">
                     ADD TO CART
                   </button>
                 </div>

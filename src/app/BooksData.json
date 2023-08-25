@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "img": "/A Broken People’s Playlist.jpg",
+    "title": "A Broken People’s Playlist",
+    "category": "Fiction",
+    "code": "WHL21",
+    "price": "₦5,000.00",
+    "oldprice": "₦7,000.00",
+    "description": "it's a good book",
+    "agerange": "Young Adult"
+  },
+  {
+    "id": 1,
+    "img": "/Created to Dream.jpg",
+    "title": "Created to Dream",
+    "category": "Non-Fiction",
+    "code": "WHL22",
+    "price": "₦10,000.00",
+    "description": "it's a good book"
+  },
+  {
+    "id": 1,
+    "img": "/Geronimo Stilton Grammar Pawbook 1.png",
+    "title": "Geronimo Stilton Grammar Pawbook 1",
+    "category": "Education",
+    "code": "WHL23",
+    "price": "₦1,700.00",
+    "description": "it's a good book",
+    "tob": "Paper Back"
+  }
+]
