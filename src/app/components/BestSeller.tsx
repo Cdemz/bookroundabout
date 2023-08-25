@@ -108,7 +108,7 @@ const BestSeller = () => {
             >
               <div className=" flex flex-col gap-2  ">
                 <Image
-                  {...srcset(item.img, 12, item.rows, item.cols)}
+                  {...srcset(item.img, 12)}
                   width={300}
                   height={300}
                   alt={item.title}
