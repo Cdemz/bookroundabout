@@ -1,9 +1,12 @@
+"use client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavBar from "./components/NavBar";
 import Stickytop from "./components/Stickytop";
 import Footer from "./components/Footer";
+import { RecoilRoot } from "recoil";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,18 +22,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <section>
-          <Stickytop />
-        </section>
-        <section>
-          <NavBar />
-        </section>
-        {children}
-        <section>
-          <Footer />
-        </section>
-      </body>
+      <RecoilRoot>
+        <Toaster position="bottom-center" />
+        <body className={inter.className}>
+          <section>
+            <Stickytop />
+          </section>
+          <section>
+            <NavBar />
+          </section>
+          {children}
+          <section>
+            <Footer />
+          </section>
+        </body>
+      </RecoilRoot>
     </html>
   );
 }

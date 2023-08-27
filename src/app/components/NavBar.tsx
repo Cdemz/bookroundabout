@@ -1,5 +1,9 @@
 "use client";
 import Link from "next/link";
+import React from "react";
+import { FiShoppingCart } from "react-icons/fi";
+import { useRecoilState } from "recoil";
+import { cartState } from "../atoms/cartState";
 import "../cssstyles/signin.css";
 import { CiUser } from "react-icons/ci";
 import { HiMenuAlt1 } from "react-icons/hi";
@@ -9,10 +13,11 @@ import { RiCloseCircleFill } from "react-icons/ri";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-import { FC, useState } from "react";
+import { FC, useState, useContext } from "react";
 import MenuItem from "./MenuItem";
 
 const NavBar: FC = () => {
+  const [cartItem] = useRecoilState(cartState);
   const fictionLinks = [
     "All Fiction Books",
     "Classics",
@@ -62,6 +67,7 @@ const NavBar: FC = () => {
   const handleNav = () => {
     setNav(!nav);
   };
+
   return (
     <main>
       <div className="flex justify-between py-4 text-[var(--color-primary-b)] px-2 md:px-8 fixed z-20 bg-white w-full top-8">
@@ -92,12 +98,26 @@ const NavBar: FC = () => {
           </ul>
         </nav>
 
-        <div className="flex gap-2 assistant">
-          <button className="flex items-center justify-center gap-1 signt md:px-4 md:py-2 rounded-full  px-[6px] py-[2px]">
-            Sign Up <CiUser className="text-[var(--color-primary-v)] signtt" />
-          </button>
+        {/* <div className="flex gap-2 assistant">
+        <button className="flex items-center justify-center gap-1 signt md:px-4 md:py-2 rounded-full  px-[6px] py-[2px]">
+          Sign Up <CiUser className="text-[var(--color-primary-v)] signtt" />
+        </button>
 
-          <button className="font-bold"> Login </button>
+        <button className="font-bold"> Login </button>
+      </div>*/}
+
+        <div className="relative cursor-pointer right-4">
+          <Link href="/cart">
+            <div>
+              <span className="text-black">
+                <FiShoppingCart size={20} />
+              </span>
+
+              <span className="absolute -top-2 -right-2 text-[13px] bg-red-600 h-[18px] w-[18px] rounded-full grid place-items-center text-white lato font-bold">
+                {cartItem.length}
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -123,7 +143,6 @@ const NavBar: FC = () => {
                 <BsArrowDownRightCircle size={21} />
               </Menu.Button>
             </div>
-
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
