@@ -3,7 +3,7 @@ import React from "react";
 
 const Stickytop = () => {
   return (
-    <div className="flex gap-2 justify-center py-2 items-center bg-white fixed z-20 w-full">
+    <div className="flex gap-2 justify-center py-2 items-center bg-white fixed z-20 w-full mb-10">
       <Image
         src="/bookslogo.png"
         alt="hero-img"
