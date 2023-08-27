@@ -3,6 +3,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { cartState } from "../atoms/cartState";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 interface ProductProps {
   product: {
@@ -42,15 +43,17 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   };
 
   return (
-    <div className="bg-[#fff] pt-6 pb-4 shadow-2xl  flex flex-col gap-4 h-[100%]">
-      <img
-        className="w-[120px] h-[170px]  object-contain"
-        src={product.img}
-        alt=""
-      />
+    <div className="bg-[#fff] pt-6 pb-4    flex flex-col gap-2  ">
+      <Link href="/aboutbook">
+        <img
+          className="w-[150px] h-[170px]  object-cover mx-auto"
+          src={product.img}
+          alt=""
+        />
+      </Link>
 
-      <div className="mt-4 px-6">
-        <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1">
+      <div className=" px-6 h-[100%]">
+        <div className="  text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1 h-[100%] ">
           <p className="text-gray-400">{product.category}</p>
 
           <p>{product.agerange}</p>
@@ -58,14 +61,13 @@ const Product: React.FC<ProductProps> = ({ product }) => {
             {product.title}
           </h1>
           <p>{product.code}</p>
+          <button
+            className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto "
+            onClick={addItemsToCart}
+          >
+            Add To Cart
+          </button>
         </div>
-
-        <button
-          className="bg-red-600 text-white py-4 px-12 mt-4 block mx-auto hover:bg-red-800"
-          onClick={addItemsToCart}
-        >
-          Add To Cart
-        </button>
       </div>
     </div>
   );

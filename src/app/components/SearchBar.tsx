@@ -18,7 +18,7 @@ function SearchBar() {
   return (
     <>
       <div className="templateContainer">
-        <div className="searchInput_Container bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto">
+        <div className="searchInput_Container bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto h-8">
           <input
             id="searchInput"
             type="text"
@@ -35,12 +35,18 @@ function SearchBar() {
               filteredData.map((val) => (
                 <div className="template flex" key={val.id}>
                   <div className=" h-[120px] w-[100px]">
-                    <img src={val.img} alt="" className="object-contain" />
+                    <img src={val.img} alt="" className="   object-cover" />
                   </div>
                   <div className="lato">
                     <h2>{val.code}</h2>
                     <h3>{val.title}</h3>
-                    <p className="price  font-bold">{val.price}</p>
+                    <p className="text-black font-extrabold whitespace-nowrap">
+                      ₦
+                      {val.price.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </p>
                   </div>
                 </div>
               ))
