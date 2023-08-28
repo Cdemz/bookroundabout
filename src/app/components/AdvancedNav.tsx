@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 const AdvancedNav = () => {
   return (
     <RecoilRoot>
-      <Toaster position="bottom-center" />
       <NavBar />
     </RecoilRoot>
   );

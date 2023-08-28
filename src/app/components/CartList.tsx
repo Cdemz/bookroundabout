@@ -8,7 +8,6 @@ interface CartItemProps {
     img: string;
     quantity: number;
     price: number;
-    category: string;
 
     // Add other properties if necessary
   };
@@ -25,11 +24,17 @@ const CartList: React.FC<CartItemProps> = ({ data }) => {
         <img className="h-[100px]" src={img} alt="" />
 
         <div>
-          <div className="font-bold text-2xl">{title}</div>
+          <div className="font-bold lato">{title}</div>
           <div>Qty: {quantity}</div>
         </div>
 
-        <div className="text-3xl font-bold">${price * quantity}</div>
+        <div className="lato">
+          ₦
+          {Number(price * quantity).toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </div>
       </div>
     </div>
   );

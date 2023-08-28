@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useRecoilState } from "recoil";
+import { RecoilRoot, useRecoilState } from "recoil";
 import { cartState } from "../atoms/cartState";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -15,6 +15,7 @@ interface ProductProps {
     category?: string;
     agerange?: string;
     code?: string;
+    oldprice?: number;
     // Add other properties as needed
   };
 }
@@ -44,7 +45,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="bg-[#fff] pt-6 pb-4    flex flex-col gap-2  ">
-      <Link href={`/aboutbook?id=${product.id}`}>
+      <Link href={`/aboutbook/${product.id}`}>
         <img
           className="w-[150px] h-[170px]  object-cover mx-auto"
           src={product.img}
@@ -61,6 +62,19 @@ const Product: React.FC<ProductProps> = ({ product }) => {
             {product.title}
           </h1>
           <p>{product.code}</p>
+          <p className="lato ">
+            <span className="line-through italic mr-2  ">
+              {product.oldprice}
+            </span>
+            <span className="text-black font-extrabold whitespace-nowrap">
+              ₦
+              {product.price.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </span>
+          </p>
+
           <button
             className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto "
             onClick={addItemsToCart}

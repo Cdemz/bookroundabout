@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
-import { useRecoilState } from "recoil";
+import { RecoilRoot, useRecoilState } from "recoil";
 import { cartState } from "../atoms/cartState";
 import "../cssstyles/signin.css";
 import { CiUser } from "react-icons/ci";

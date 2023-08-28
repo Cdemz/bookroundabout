@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
-import Cart from "./cart";
 import { RecoilRoot } from "recoil";
 
-const page = () => {
+import AdvancedProduct from "./AdvancedProduct";
+
+const wrap = () => {
   return (
     <RecoilRoot>
-      <Cart />
+      <AdvancedProduct />
     </RecoilRoot>
   );
 };
 
-export default page;
+export default wrap;
