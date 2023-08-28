@@ -1,4 +1,3 @@
-"use client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -23,21 +22,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <RecoilRoot>
+      <body className={inter.className}>
         <Toaster position="bottom-center" />
-        <body className={inter.className}>
-          <section>
-            <Stickytop />
-          </section>
-          <section>
-            <NavBar />
-          </section>
-          {children}
-          <section>
-            <Footer />
-          </section>
-        </body>
-      </RecoilRoot>
+
+        <section>
+          <Stickytop />
+        </section>
+        <section>
+          <NavBar />
+        </section>
+        {children}
+        <section>
+          <Footer />
+        </section>
+      </body>
     </html>
   );
 }
