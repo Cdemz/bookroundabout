@@ -6,13 +6,14 @@ type YourItemType = {
   img: string;
   price: number;
   quantity: number;
+
   // Add other properties as needed
 };
 
-const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2020-08-27",
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "";
+const stripeClient = new stripe(stripeSecretKey, {
+  apiVersion: "2023-08-16", // Update the Stripe API version here
 });
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
