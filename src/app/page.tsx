@@ -1,3 +1,4 @@
+"use client";
 import Herosection from "./components/Herosection";
 import ShopCat from "./components/ShopCat";
 import BestSeller from "./components/BestSeller";
@@ -10,6 +11,7 @@ import { Fragment } from "react";
 import { RecoilRoot } from "recoil";
 import { Toaster } from "react-hot-toast";
 import AdvancedProduct from "./components/AdvancedProduct";
+import SubProduct from "./components/SubProduct";
 
 export default function Home() {
   // const fictionLinks = [

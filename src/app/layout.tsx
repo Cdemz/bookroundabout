@@ -4,11 +4,7 @@ import { Inter } from "next/font/google";
 import Stickytop from "./components/Stickytop";
 import Footer from "./components/Footer";
 import AdvancedNav from "./components/AdvancedNav";
-import NavBar from "./components/NavBar";
-import { RecoilRoot } from "recoil";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
-import store from "./store";
 
 const inter = Inter({ subsets: ["latin"] });
 

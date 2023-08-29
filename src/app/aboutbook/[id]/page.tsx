@@ -26,7 +26,7 @@ export default function Home({ params }: Props) {
   // Call the function to get book information by ID
   const book = bookId !== null ? getBookById(bookId) : null;
   return (
-    <div className="text-black">
+    <div className="text-black text-bold">
       {book ? (
         <>
           <h1 className="text-black">Book Details</h1>

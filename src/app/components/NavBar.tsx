@@ -2,8 +2,6 @@
 import Link from "next/link";
 import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
-import { RecoilRoot, useRecoilState } from "recoil";
-import { cartState } from "../atoms/cartState";
 import "../cssstyles/signin.css";
 import { CiUser } from "react-icons/ci";
 import { HiMenuAlt1 } from "react-icons/hi";
@@ -15,11 +13,17 @@ import { Menu, Transition } from "@headlessui/react";
 
 import { FC, useState, useContext } from "react";
 import MenuItem from "./MenuItem";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { useSelector, useDispatch } from "react-redux";
+import { StateProps, StoreProduct } from "../type";
+import RootState from "../store/store";
 
 const NavBar: FC = () => {
-  const cartCount = useSelector((state: RootState) => state.cart.cartCount);
+  // const cartCount = useSelector((state: RootState) => state.cart.cartCount);
+
+  const [allData, setAllData] = useState([]);
+  const { productData, favoriteData, userInfo, allProducts } = useSelector(
+    (state: StateProps) => state.next
+  );
 
   const fictionLinks = [
     "All Fiction Books",
@@ -73,7 +77,7 @@ const NavBar: FC = () => {
 
   return (
     <main>
-      <div className="flex justify-between py-4 text-[var(--color-primary-b)] px-2 md:px-8 fixed z-20 bg-white w-full top-8">
+      <div className="flex justify-between py-4 text-[var(--color-primary-b)] px-2 md:px-8 fixedz-20 bg-white w-full top-8">
         <div
           className="my-auto text-[var(--color-primary-v)] text-2xl"
           onClick={handleNav}
@@ -118,7 +122,7 @@ const NavBar: FC = () => {
 
               <span className="absolute -top-2 -right-2 text-[13px] bg-red-600 h-[18px] w-[18px] rounded-full grid place-items-center text-white lato font-bold">
                 {" "}
-                {cartCount}
+                {productData ? productData.length : 0}
               </span>
             </div>
           </Link>

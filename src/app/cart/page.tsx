@@ -1,29 +1,20 @@
 "use client";
 import React from "react";
-import { RecoilRoot } from "recoil";
 import Cart from "./cart";
 import { Provider } from "react-redux";
-import store from "../store";
+import store, { persistor } from "../store/store";
+import { SessionProvider } from "next-auth/react";
+import { PersistGate } from "redux-persist/integration/react";
 const page = () => {
   return (
     <Provider store={store}>
-      <Cart />
+      <PersistGate persistor={persistor} loading={null}>
+        <SessionProvider>
+          <Cart />
+        </SessionProvider>
+      </PersistGate>
     </Provider>
   );
 };
 
 export default page;
-
-// "use client";
-// import React from "react";
-// import { RecoilRoot } from "recoil";
-// import Cart from "./cart";
-// const page = () => {
-//   return (
-//     <RecoilRoot>
-//       <Cart />
-//     </RecoilRoot>
-//   );
-// };
-
-// export default page;

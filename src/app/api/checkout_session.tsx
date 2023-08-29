@@ -1,58 +1,39 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import stripe from "stripe";
+import { StoreProduct } from "../type";
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-type YourItemType = {
-  name: string;
-  img: string;
-  price: number;
-  quantity: number;
-
-  // Add other properties as needed
-};
-
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "";
-const stripeClient = new stripe(stripeSecretKey, {
-  apiVersion: "2023-08-16", // Update the Stripe API version here
-});
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
-    const items: YourItemType[] = req.body.cartItem;
-
-    const origin = req.headers.origin || ""; // Use an empty string if origin is undefined
-
-    const transformedItems = items.map((item) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: item.name,
-          images: [origin + item.img],
-        },
-        unit_amount: item.price * 100, // Amount in cents
+  const { items, email } = req.body;
+  const modifiedItems = items.map((item: StoreProduct) => ({
+    quantity: item.quantity,
+    price_data: {
+      currency: "usd",
+      unit_amount: item.price * 100,
+      product_data: {
+        name: item.title,
+        description: item.description,
+        images: [item.img],
       },
-      quantity: item.quantity,
-    }));
-
-    try {
-      // Create Checkout Sessions from body params.
-      const session = await stripeClient.checkout.sessions.create({
-        line_items: transformedItems,
-        mode: "payment",
-        success_url: `${origin}/success`,
-        cancel_url: `${origin}/`,
-      });
-
-      res.json({ sessionURL: session.url });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({
-        error: "An error occurred while creating the checkout session.",
-      });
-    }
-  } else {
-    res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
-  }
+    },
+  }));
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    shipping_address_collection: {
+      allowed_countries: ["BD", "US", "OM", "CA", "GB"],
+    },
+    line_items: modifiedItems,
+    mode: "payment",
+    success_url: `${process.env.NEXTAUTH_URL}/success`,
+    cancel_url: `${process.env.NEXTAUTH_URL}/checkout`,
+    metadata: {
+      email,
+      images: JSON.stringify(items.map((item: any) => item.img)),
+    },
+  });
+  res.status(200).json({
+    id: session.id,
+  });
 }

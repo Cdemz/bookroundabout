@@ -1,7 +1,7 @@
 import { CartItem } from "../reducers"; // Adjust the import path as needed
-import { ActionTypes } from "../actions/action";
+import { ADD_TO_CART } from "./action"; // Import the action type constant
 
-interface CartItem {
+interface CartItm {
   // Define the structure of a cart item here
   id: number;
   title: string;
@@ -16,11 +16,9 @@ interface CartItem {
 }
 
 interface AddToCartAction {
-  type: "ADD_TO_CART";
-  payload: CartItem; // Use the CartItem type for the payload
+  type: typeof ADD_TO_CART; // Use the action type constant
+  payload: CartItem;
 }
-
-export const ADD_TO_CART = "ADD_TO_CART";
 
 const initialState = {
   cart: [], // An array to hold the items in the shopping cart
@@ -28,13 +26,13 @@ const initialState = {
   // Other application-level state properties can go here
 };
 
-const rootReducer = (state = initialState, action: typeof ActionTypes) => {
+const rootReducer = (state = initialState, action: AddToCartAction) => {
   // ...
 };
 
 export const addToCart = (product: CartItem): AddToCartAction => {
   return {
-    type: "ADD_TO_CART",
+    type: ADD_TO_CART, // Use the action type constant
     payload: product,
   };
 };

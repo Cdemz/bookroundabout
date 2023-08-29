@@ -1,7 +1,12 @@
 import React from "react";
 import ShopCatalogue from "./ShopCatalogue";
+import { useParams } from "react-router-dom";
+interface RouteParams {
+  id: string;
+}
 
-const ShopCat = () => {
+const ShopCat: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
   return (
     <main className="p-4">
       <div className="text-[var(--color-text)] mx-auto flex flex-col items-center justify-center text-center">
@@ -10,12 +15,14 @@ const ShopCat = () => {
           Shop By Category
         </h3>
         <p>
-          Explore a plethora of shopping categories,a simplified book-buying
+          Explore a plethora of shopping categories, a simplified book-buying
           experience.
         </p>
       </div>
       <div className="mt-4">
-        <ShopCatalogue />
+        <ShopCatalogue
+          params={{ id: id || "", category: "yourCategoryValue" }}
+        />
       </div>
     </main>
   );

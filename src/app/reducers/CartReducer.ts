@@ -1,5 +1,4 @@
 // reducers/cartReducer.js
-import { CartItem } from "../reducers"; // Import your CartItem type
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define the initial state
@@ -9,16 +8,16 @@ interface CartState {
 }
 
 interface CartItem {
-  id: number; // Unique identifier for the item
-  title: string; // Title or name of the item
-  price: number; // Price of the item
-  description: string; // Description of the item
-  img: string; // URL or path to the item's image
-  category?: string; // Optional category for the item
-  agerange?: string; // Optional age range for the item
-  code?: string; // Optional product code or identifier
-  oldprice?: number; // Optional previous price (if on sale)
-  quantity: number; // Quantity of this item in the cart
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  img: string;
+  category?: string;
+  agerange?: string;
+  code?: string;
+  oldprice?: number;
+  quantity: number;
 }
 
 const initialState: CartState = {
@@ -39,4 +38,5 @@ const cartSlice = createSlice({
 });
 
 export const { addToCart } = cartSlice.actions;
+
 export default cartSlice.reducer;

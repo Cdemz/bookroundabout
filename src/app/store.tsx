@@ -1,10 +1,12 @@
-import { createStore, Reducer } from "redux";
-import rootReducer from "./reducers"; // Make sure this import is correct
+import { createStore, combineReducers } from "redux";
 
-// Define the RootState type
-interface RootState {
-  cart: CartItem[];
-  cartCount: number; // Add a cartCount property
+export type RootState = {
+  cart: CartState;
+};
+// Define the CartState type
+interface CartState {
+  items: CartItem[];
+  cartCount: number;
 }
 
 // Define the CartItem type
@@ -21,24 +23,26 @@ interface CartItem {
   quantity: number;
 }
 
-// Define the AddToCartAction type
-interface AddToCartAction {
-  type: "ADD_TO_CART";
-  payload: CartItem;
-}
-
 // Initial state
-const initialState: RootState = {
-  cart: [],
+const initialState: CartState = {
+  items: [],
   cartCount: 0, // Initialize cartCount to 0
 };
 
-const store = createStore<RootState, AddToCartAction, unknown, unknown>(
-  rootReducer as Reducer<RootState, AddToCartAction>, // Cast rootReducer as Reducer
-  initialState
-);
+// Define your cart reducer
+const cartReducer = (state: CartState = initialState, action: any) => {
+  // Your reducer logic here
+  return state;
+};
 
-// Export the RootState type
-export type { RootState };
+// Combine your reducers
+const rootReducer = combineReducers({
+  cart: cartReducer,
+  // Add other reducers here if needed
+});
 
+// Create the Redux store
+const store = createStore(rootReducer);
+
+// Export the store
 export default store;

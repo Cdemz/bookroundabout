@@ -1,17 +1,13 @@
 "use client";
 import React from "react";
-import { RecoilRoot } from "recoil";
 import data from "../BooksData.json";
 import { Menu, Transition } from "@headlessui/react";
-
 import { FaFilter } from "react-icons/fa";
 import MenuItem from "../components/MenuItem";
 import { Fragment } from "react";
-
-import { Toaster } from "react-hot-toast";
 import Product from "./Product";
 import { Provider } from "react-redux";
-import store from "../store";
+import store from "../store/store";
 
 interface product {
   // Define the structure of a cart item here
@@ -71,7 +67,21 @@ const AdvancedProduct = () => {
         </div>
         <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2">
           {data.map((product, index) => (
-            <Product key={index} product={product} />
+            <Product
+              key={index}
+              product={{
+                id: product.id,
+                img: product.img,
+                title: product.title,
+                category: product.category,
+                code: product.code,
+                price: product.price,
+                oldprice: product.oldprice,
+                description: product.description,
+                agerange: product.agerange,
+                quantity: 1, // Add the quantity property here
+              }}
+            />
           ))}
         </div>
       </section>
