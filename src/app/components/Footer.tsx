@@ -32,33 +32,12 @@ const Footer: FC = () => {
         <div className="">
           <h1 className="font-bold text-lg mb-2">QUICK LINKS</h1>
           <ul className="flex gap-1 flex-col">
-            <Link href="/">
-              {" "}
-              <li>
-                <a href="/">Home</a>
-              </li>
-            </Link>
-            <Link href="/shop">
-              <li>
-                <a href="">Shop</a>
-              </li>
-            </Link>
-            <Link href="/about">
-              <li>
-                <a href="">About Us</a>
-              </li>
-            </Link>
-            <Link href="/wholesale">
-              <li>
-                <a href="">Wholesale Purchase</a>
-              </li>
-            </Link>
+            <Link href="/">Home</Link>
+            <Link href="/shop">Shop</Link>
+            <Link href="/about">About Us</Link>
+            <Link href="/wholesale">Wholesale Purchase</Link>
 
-            <Link href="/contact">
-              <li>
-                <a>Contact</a>
-              </li>
-            </Link>
+            <Link href="/contact">Contact</Link>
           </ul>
         </div>
         <div className="flex flex-col gap-3 mt-5 ">

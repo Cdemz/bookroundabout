@@ -1,8 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;700&family=Dosis:wght@400;500;600;700&family=Lato:wght@400;700;900&family=Luckiest+Guy&family=Montserrat:wght@400;500;900&family=Poppins:ital,wght@0,400;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;700&family=Dosis:wght@400;500;600;700&family=Lato:wght@400;700;900&family=Luckiest+Guy&family=Montserrat:wght@400;500;900&family=Poppins:ital,wght@0,400;1,900&display=swap");
 
 :root {
   --color-bg: #00010a;

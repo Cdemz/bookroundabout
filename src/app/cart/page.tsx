@@ -1,14 +1,29 @@
 "use client";
 import React from "react";
-import Cart from "./cart";
 import { RecoilRoot } from "recoil";
-
+import Cart from "./cart";
+import { Provider } from "react-redux";
+import store from "../store";
 const page = () => {
   return (
-    <RecoilRoot>
+    <Provider store={store}>
       <Cart />
-    </RecoilRoot>
+    </Provider>
   );
 };
 
 export default page;
+
+// "use client";
+// import React from "react";
+// import { RecoilRoot } from "recoil";
+// import Cart from "./cart";
+// const page = () => {
+//   return (
+//     <RecoilRoot>
+//       <Cart />
+//     </RecoilRoot>
+//   );
+// };
+
+// export default page;
