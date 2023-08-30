@@ -26,7 +26,7 @@ const NavBar: FC = () => {
   );
 
   const fictionLinks = [
-    "All Fiction Books",
+    "Fiction",
     "Classics",
     "Romance",
     "Crime & Thriller",
@@ -37,7 +37,7 @@ const NavBar: FC = () => {
   });
 
   const nfictionLinks = [
-    "All Non-Fiction Books",
+    "Non-Fiction",
     "Art & Fashion",
     "Biography & Auto-Biography",
     "History",
@@ -197,10 +197,12 @@ const NavBar: FC = () => {
             className="relative inline-block text-left border-b border-gray-600"
           >
             <div>
-              <Menu.Button className="inline-flex w-full justify-center gap-x-3.5 rounded-md   px-3 py-2 text-sm font-semibold shadow-sm     hover:bg-{var(--color-primary-a)} ">
-                Children's Books
-                <BsArrowDownRightCircle size={21} />
-              </Menu.Button>
+              <Link href="/Category/children books">
+                <Menu.Button className="inline-flex w-full justify-center gap-x-3.5 rounded-md   px-3 py-2 text-sm font-semibold shadow-sm     hover:bg-{var(--color-primary-a)} ">
+                  Children's Books
+                  <BsArrowDownRightCircle size={21} />
+                </Menu.Button>
+              </Link>
             </div>
 
             <Transition
