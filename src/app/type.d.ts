@@ -28,10 +28,10 @@ export interface StoreProduct {
   price: number;
   isNew: boolean;
   // Add any missing properties here, e.g., brand, image, oldPrice, _id
-  brand: string;
+  code: string;
   img: string;
   oldPrice: number;
-  _id: number;
+  id: number;
   quantity: number;
 }
 

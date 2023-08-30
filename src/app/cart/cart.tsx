@@ -12,16 +12,13 @@ const CartPage = () => {
   const { productData } = useSelector((state: RootState) => state.next); // Update the selector
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-6  gap-10 py-4">
+    <div className="max-w-screen-2xl mx-auto px-6 md:flex gap-10 py-4">
       {productData.length > 0 ? (
         <>
-          <div className="bg-red-500 col-span-4 p-4 rounded-lg">
+          <div className="  col-span-4 p-4 rounded-lg">
             <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1">
-              <p className="text-2xl font-semibold text-amazon_blue">
-                Shopping Cart
-              </p>
-              <p className="text-lg font-semibold text[var(--color-primary)]">
-                Subtitle
+              <p className="text-2xl font-semibold text-[var(--color-primary)] lato">
+                My Cart
               </p>
             </div>
             <div className="pt-2 flex flex-col gap-2">
@@ -33,7 +30,7 @@ const CartPage = () => {
               <ResetCart />
             </div>
           </div>
-          <div className="bg-green-500 h-64 col-span-1 p-4 rounded-lg flex items-center justify-center">
+          <div className="bg-white shadow-lg h-64 md:h-[32rem] col-span-1 p-4 rounded-lg flex items-center justify-center">
             <CartPayment />
           </div>
         </>

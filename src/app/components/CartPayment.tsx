@@ -29,7 +29,7 @@ const CartPayment = () => {
   const handleCheckout = async () => {
     const stripe = await stripePromise;
 
-    const response = await fetch("/api/checkout", {
+    const response = await fetch("../api/checkout_session.tsx", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,12 +49,12 @@ const CartPayment = () => {
   return (
     <div className="flex flex-col gap-4 ">
       <div className="flex gap-2">
-        <p className="text-sm">
+        <p className="text-sm text-[var(--color-text)]">
           Your order qualifies for FREE Shipping by Choosing this option at
           checkout. See details....
         </p>
       </div>
-      <p className="flex items-center justify-between px-2 font-semibold">
+      <p className="flex items-center justify-between px-2 font-semibold text-[var(--color-text)]">
         Total:{" "}
         <span className="font-bold text-xl">
           <FormattedPrice amount={totalAmount} />
@@ -64,7 +64,7 @@ const CartPayment = () => {
       <div className="flex flex-col items-center">
         <button
           onClick={handleCheckout}
-          className="w-full h-10 text-sm font-semibold bg-amazon_blue text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
+          className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
         >
           Proceed to Buy
         </button>

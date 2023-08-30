@@ -50,7 +50,7 @@ export const nextSlice = createSlice({
     },
     increaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
-        (item: StoreProduct) => item.id === action.payload._d
+        (item: StoreProduct) => item.id === action.payload.id
       );
       existingProduct && existingProduct.quantity++;
     },
