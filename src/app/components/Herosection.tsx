@@ -28,7 +28,7 @@ const Herosection = () => {
           </div>
         </div>
         {/* photo div */}
-        <div className="flex items-center justify-center order-1 md:order-2 md:w-full     ">
+        {/* <div className="flex items-center justify-center order-1 md:order-2 md:w-full     ">
           <Image
             src="/hero-img.png"
             alt="hero-img"
@@ -36,7 +36,7 @@ const Herosection = () => {
             height={300}
             className="w-full h-[80%] object-cover lg:h-[100%]   "
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

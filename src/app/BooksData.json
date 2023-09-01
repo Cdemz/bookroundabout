@@ -9,7 +9,21 @@
     "oldprice": 7000.0,
     "description": "A Broken People’s Playlist is a collection of short stories with underlying themes so beautifully woven that each story flows into the other seamlessly. From its poignant beginning in “Lost Stars” a story about love and its fleeting, transient nature to the gritty, raw musical prose encapsulated in “In The City”, a tale of survival set in the alleyways of the waterside. A Broken People’s Playlist is a mosaic of stories about living, loving and hurting through very familiar sounds, in very familiar ways and finding healing in the most unlikely places. \n The stories are also part homage and part-love letters to Port Harcourt (the city in which most of them are set in). The prose is distinctive as it is concise and unapologetically Nigerian. And because the collection is infused with the magic of evocative storytelling, everyone is promised a story, a character, to move or haunt them.",
     "agerange": "Young Adult",
-    "rating": 3.5
+    "rating": 3.5,
+    "tag": ["Paper Back", "Ebook", "Hard Back", "Yoruba", "Igbo", "Hausa"],
+    "genre": [
+      "fantasy",
+      "Action",
+      "Romance",
+      "Thriller",
+      "Crime",
+      "Suspense",
+      "Young-Adult",
+      "Comedy",
+      "Tragedy"
+    ],
+    "isNew": true,
+    "sales": true
   },
   {
     "id": 2,
