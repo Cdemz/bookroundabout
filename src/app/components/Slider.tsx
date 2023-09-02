@@ -41,7 +41,7 @@ export default () => {
       >
         <SwiperSlide>
           <div className="relative ">
-            <div className="h-[20%]">
+            <div className="h-[20%] md:h-[40vh]">
               <Image
                 priority
                 src="/mainstore.jpg"
@@ -52,30 +52,20 @@ export default () => {
               />
             </div>
 
-            <div className="absolute top-0 bg-black  w-full bg-opacity-50 px-[4rem]  flex flex-col gap-4 items-center justify-center">
-              <h1 className="text-2xl font-bold md:text-4xl lato">
-                We Believe in the
-                <span className="text-[var(--color-primary-v)]">
-                  {" "}
-                  Magic{" "}
-                </span>{" "}
-                of Books
+            <div className=" absolute top-0 bg-black h-full w-full bg-opacity-50 px-[4rem] py-[5rem] flex flex-col gap-4 items-center justify-center">
+              <h1 className="text-4xl font-bold lucky">
+                We Believe in the Magic of Books
               </h1>
-              <p className="md:text-2xl">
-                Let the enchantment of literature capture your heart.
-              </p>
+              <p className="text-2xl">Let's capture your literature heart.</p>
               <Link href="" className="fancy">
-                <span className="top-key"></span>
-                <span className="text">Shop Now</span>
-                <span className="bottom-key-1"></span>
-                <span className="bottom-key-2"></span>
+                <button className="btn"> Shop Now !</button>
               </Link>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="relative ">
-            <div className="h-[20%] ">
+            <div className="h-[20%] md:h-[30vh] lg:h-[40vh] ">
               <Image
                 src="/bookstore.jpg"
                 alt="sliderImg"
@@ -86,15 +76,12 @@ export default () => {
             </div>
 
             <div className=" absolute top-0 bg-black h-full w-full bg-opacity-50 px-[4rem] py-[5rem] flex flex-col gap-4 items-center justify-center">
-              <h1 className="text-4xl font-bold lucky">
+              <h1 className="text-4xl font-bold lucky  ">
                 Empower Your Mind with Books
               </h1>
               <p className="text-2xl">Home of cheap books</p>
               <Link href="" className="fancy">
-                <span className="top-key"></span>
-                <span className="text">Shop Now</span>
-                <span className="bottom-key-1"></span>
-                <span className="bottom-key-2"></span>
+                <button className="btn"> Shop Now !</button>
               </Link>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 import { FC } from "react";
-import Image from "next/image";
+
 import Link from "next/link";
 import { MdLocationPin } from "react-icons/md";
 import { IoIosCall } from "react-icons/io";
@@ -19,24 +19,12 @@ const Footer: FC = () => {
     <div className="bg-[var(--color-primary)] p-6 md:px-[4rem] text-white overflow-hidden">
       {/* first big div  */}
       <div className="flex gap-4 md:flex-row flex-col justify-between md:items-center mb-6  ">
-        {/* image  */}
-        <div className="">
-          <Image
-            src="/bookslogo.png"
-            width={300}
-            height={300}
-            alt="logo"
-            data-aos="fade-left"
-          />
-        </div>
         {/* menu  */}
         <div className="">
           <h1 className="font-bold text-lg mb-2">QUICK LINKS</h1>
           <ul className="flex gap-1 flex-col">
             <Link href="/">Home</Link>
             <Link href="/shop">Shop</Link>
-            <Link href="/about">About Us</Link>
-            <Link href="/wholesale">Wholesale Purchase</Link>
             <Link href="/contact">Contact</Link>
           </ul>
           <div className=" text-white">

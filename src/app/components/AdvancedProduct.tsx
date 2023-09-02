@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import data from "../BooksData.json";
 import { Menu, Transition } from "@headlessui/react";
 import { FaFilter } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import Product from "./Product";
 import { Provider } from "react-redux";
 import store from "../store/store";
+import Filter from "./Filter";
 
 interface product {
   // Define the structure of a cart item here
@@ -17,6 +18,10 @@ interface product {
 }
 
 const AdvancedProduct = () => {
+  const [activeCategory, setActiveCategory] = useState(" ");
+  const [activeGenre, setActiveGenre] = useState(" ");
+  const [filteredData, setFilteredData] = useState(data);
+
   const fictionLinks = [
     "Ficition",
     "Children Books",
@@ -40,7 +45,7 @@ const AdvancedProduct = () => {
           <hr className="w-[60%]e text-black " />
           {/* start */}
 
-          <Menu as="div" className="relative inline-block text-left  ">
+          {/* <Menu as="div" className="relative inline-block text-left  ">
             <div>
               <Menu.Button className="bg-[var(--color-primary)] text-white py-2   px-8 rounded-full flex items-center gap-2">
                 <FaFilter />
@@ -61,12 +66,21 @@ const AdvancedProduct = () => {
                 <div className="py-1">{fictionLinks}</div>
               </Menu.Items>
             </Transition>
-          </Menu>
+          </Menu> */}
+
+          <Filter
+            setActiveCategory={setActiveCategory}
+            activeCategory={activeCategory}
+            setActiveGenre={setActiveGenre}
+            activeGenre={activeGenre}
+            setFiltered={setFilteredData}
+            data={data}
+          />
 
           {/* end */}
         </div>
         <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2">
-          {data.map((product, index) => (
+          {filteredData.map((product, index) => (
             <Product
               key={index}
               product={{

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/nextSlice";
+
 interface ProductProps {
   product: {
     id: number;
@@ -15,7 +16,8 @@ interface ProductProps {
     oldprice?: number;
     description: string;
     agerange?: string;
-    quantity: number; // Include the quantity property
+    quantity: number;
+    // Include the quantity property
   };
 }
 
@@ -60,6 +62,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           <h1 className="font-extrabold break-words text-[var(--color-primary-v)]">
             {product.title}
           </h1>
+
           <p>{product.code}</p>
           <p className="lato ">
             <span className="line-through italic mr-2  ">
