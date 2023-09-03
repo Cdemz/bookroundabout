@@ -1,6 +1,7 @@
 "use client";
-// import Swiper core and required modules
 import "../cssstyles/shop.css";
+// import Swiper core and required modules
+
 import {
   Autoplay,
   Navigation,
@@ -57,8 +58,8 @@ export default () => {
                 We Believe in the Magic of Books
               </h1>
               <p className="text-2xl">Let's capture your literature heart.</p>
-              <Link href="" className="fancy">
-                <button className="btn"> Shop Now !</button>
+              <Link href="">
+                <button className="button"> Shop Now !</button>
               </Link>
             </div>
           </div>
@@ -80,8 +81,8 @@ export default () => {
                 Empower Your Mind with Books
               </h1>
               <p className="text-2xl">Home of cheap books</p>
-              <Link href="" className="fancy">
-                <button className="btn"> Shop Now !</button>
+              <Link href="">
+                <button className="button">Shop Now !</button>
               </Link>
             </div>
           </div>

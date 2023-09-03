@@ -143,7 +143,7 @@ export default function BookDetailPage({ params }: Props) {
                   </span>
                   <span
                     onClick={handleAddToFavorites}
-                    className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300"
+                    className="w-full h-full border-b-[1px] border-b-[var(--color-primary)] flex items-center justify-center text-xl bg-transparent hover:bg-[var(--color-primary-v)] cursor-pointer duration-300 text-[var(--color-text)]"
                   >
                     <FaHeart />
                   </span>
