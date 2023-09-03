@@ -36,16 +36,17 @@ const AdvancedProduct = () => {
   });
   return (
     <Provider store={store}>
-      <section className="container mx-auto bg-white">
-        <div className="flex justify-between items-center mt-4 px-4 pt-4">
-          <h1 className="font-bold text-2xl  text-black lucky ">
-            Best Sellers
-          </h1>
+      <div className=" overflow-hidden ">
+        <main className="container mx-auto bg-white ">
+          <div className="flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
+            <h1 className="font-bold text-2xl  text-black lucky ">
+              Best Sellers
+            </h1>
 
-          <hr className="w-[60%]e text-black " />
-          {/* start */}
+            <hr className="w-[60%]e text-black " />
+            {/* start */}
 
-          {/* <Menu as="div" className="relative inline-block text-left  ">
+            {/* <Menu as="div" className="relative inline-block text-left  ">
             <div>
               <Menu.Button className="bg-[var(--color-primary)] text-white py-2   px-8 rounded-full flex items-center gap-2">
                 <FaFilter />
@@ -68,37 +69,38 @@ const AdvancedProduct = () => {
             </Transition>
           </Menu> */}
 
-          <Filter
-            setActiveCategory={setActiveCategory}
-            activeCategory={activeCategory}
-            setActiveGenre={setActiveGenre}
-            activeGenre={activeGenre}
-            setFiltered={setFilteredData}
-            data={data}
-          />
-
-          {/* end */}
-        </div>
-        <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2">
-          {filteredData.map((product, index) => (
-            <Product
-              key={index}
-              product={{
-                id: product.id,
-                img: product.img,
-                title: product.title,
-                category: product.category,
-                code: product.code,
-                price: product.price,
-                oldprice: product.oldprice,
-                description: product.description,
-                agerange: product.agerange,
-                quantity: 1, // Add the quantity property here
-              }}
+            <Filter
+              setActiveCategory={setActiveCategory}
+              activeCategory={activeCategory}
+              setActiveGenre={setActiveGenre}
+              activeGenre={activeGenre}
+              setFiltered={setFilteredData}
+              data={data}
             />
-          ))}
-        </div>
-      </section>
+
+            {/* end */}
+          </div>
+          <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2 overflow-hidden">
+            {filteredData.map((product, index) => (
+              <Product
+                key={index}
+                product={{
+                  id: product.id,
+                  img: product.img,
+                  title: product.title,
+                  category: product.category,
+                  code: product.code,
+                  price: product.price,
+                  oldprice: product.oldprice,
+                  description: product.description,
+                  agerange: product.agerange,
+                  quantity: 1, // Add the quantity property here
+                }}
+              />
+            ))}
+          </div>
+        </main>
+      </div>
     </Provider>
   );
 };
@@ -107,16 +109,21 @@ export default AdvancedProduct;
 
 // "use client";
 // import React from "react";
-// import { RecoilRoot } from "recoil";
 // import data from "../BooksData.json";
 // import { Menu, Transition } from "@headlessui/react";
-
 // import { FaFilter } from "react-icons/fa";
 // import MenuItem from "../components/MenuItem";
 // import { Fragment } from "react";
-
-// import { Toaster } from "react-hot-toast";
 // import Product from "./Product";
+// import { Provider } from "react-redux";
+// import store from "../store/store";
+
+// interface product {
+//   // Define the structure of a cart item here
+//   id: number;
+//   title: string;
+//   // ...other properties
+// }
 
 // const AdvancedProduct = () => {
 //   const fictionLinks = [
@@ -132,7 +139,7 @@ export default AdvancedProduct;
 //     return <MenuItem key={index} linkText={linkText} />;
 //   });
 //   return (
-//     <RecoilRoot>
+//     <Provider store={store}>
 //       <section className="container mx-auto bg-white">
 //         <div className="flex justify-between items-center mt-4 px-4 pt-4">
 //           <h1 className="font-bold text-2xl  text-black lucky ">
@@ -169,11 +176,25 @@ export default AdvancedProduct;
 //         </div>
 //         <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2">
 //           {data.map((product, index) => (
-//             <Product key={index} product={product} />
+//             <Product
+//               key={index}
+//               product={{
+//                 id: product.id,
+//                 img: product.img,
+//                 title: product.title,
+//                 category: product.category,
+//                 code: product.code,
+//                 price: product.price,
+//                 oldprice: product.oldprice,
+//                 description: product.description,
+//                 agerange: product.agerange,
+//                 quantity: 1, // Add the quantity property here
+//               }}
+//             />
 //           ))}
 //         </div>
 //       </section>
-//     </RecoilRoot>
+//     </Provider>
 //   );
 // };
 

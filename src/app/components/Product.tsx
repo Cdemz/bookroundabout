@@ -62,7 +62,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           <h1 className="font-extrabold break-words text-[var(--color-primary-v)]">
             {product.title}
           </h1>
-
           <p>{product.code}</p>
           <p className="lato ">
             <span className="line-through italic mr-2  ">

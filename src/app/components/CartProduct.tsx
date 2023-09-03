@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import FormattedPrice from "./FormattedPrice";
-import { LuMinus, LuPlus } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import {

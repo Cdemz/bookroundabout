@@ -40,7 +40,7 @@ export default () => {
         onSlideChange={() => console.log("slide change")}
       >
         <SwiperSlide>
-          <div className="relative ">
+          <div className="relative">
             <div className="h-[20%] md:h-[40vh]">
               <Image
                 priority

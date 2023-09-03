@@ -27,11 +27,7 @@ export interface StoreProduct {
   oldprice: number;
   price: number;
   isNew: boolean;
-  // Add any missing properties here, e.g., brand, image, oldPrice, _id
   code: string;
-  img: string;
-  oldPrice: number;
-  id: number;
   quantity: number;
 }
 
