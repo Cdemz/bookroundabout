@@ -22,9 +22,7 @@ const page = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <SessionProvider>
-          <Wishlist item={item} />
-        </SessionProvider>
+        <SessionProvider>{/* <Wishlist item={item} /> */}</SessionProvider>
       </PersistGate>
     </Provider>
   );
