@@ -114,14 +114,15 @@ export default function BookDetailPage({ params }: Props) {
             <div className="flex text-[var(--color-text)] item-center text-sm md:text-lg gap-1 mb-3 lato">
               <Link href="/">Home</Link>
               <Link href={`/Category/${encodeCategory(book.category)}`}>
-              <p className=" font-semibold -mb-3 text-[var(--color-bg)]">
-                {" "}
-                <span>> </span>
-                {book.category}
-              </p></Link>
+                <p className=" font-semibold -mb-3 text-[var(--color-bg)]">
+                  {" "}
+                  <span>{"> "} </span>
+                  {book.category}
+                </p>
+              </Link>
               <p className=" font-bold -mb-3 text-[var(--color-bg)]">
                 {" "}
-                <span>> </span>
+                <span>{"> "}</span>
                 {book.title}
               </p>
             </div>

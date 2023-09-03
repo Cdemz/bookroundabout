@@ -8,8 +8,13 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import "../../cssstyles/share.css";
+interface ShareIconsProps {
+  book: {
+    title: string; // Add other properties as needed
+  };
+}
 
-const ShareIcons = ({ book }) => {
+const ShareIcons: React.FC<ShareIconsProps> = ({ book }) => {
   const currentPageUrl = window.location.href; // Get the current page URL
 
   const shareOnWhatsApp = () => {
