@@ -16,7 +16,7 @@ const CartPage = () => {
       {productData.length > 0 ? (
         <>
           <div className="  col-span-4 p-4 rounded-lg">
-            <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1">
+            <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1 text-center">
               <p className="text-2xl font-semibold text-[var(--color-primary)] lato">
                 My Cart
               </p>

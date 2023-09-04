@@ -5,6 +5,7 @@ import Stickytop from "./components/Stickytop";
 import Footer from "./components/Footer";
 import AdvancedNav from "./components/AdvancedNav";
 import { Toaster } from "react-hot-toast";
+ 
 
 const inter = Inter({ subsets: ["latin"] });
 

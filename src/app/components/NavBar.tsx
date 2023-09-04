@@ -6,17 +6,19 @@ import "../cssstyles/signin.css";
 import { CiUser } from "react-icons/ci";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { BsArrowDownRightCircle } from "react-icons/bs";
-
 import { RiCloseCircleFill } from "react-icons/ri";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-
 import { FC, useState, useContext } from "react";
 import MenuItem from "./MenuItem";
 import { useSelector, useDispatch } from "react-redux";
 import { StateProps, StoreProduct } from "../type";
 import RootState from "../store/store";
-import { Box, Button, Modal } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
+import SideCart from "./sideCart";
+
+// import useMediaQuery from "@mui/material/useMediaQuery";
+// import { useTheme } from "@mui/material/styles";
 
 const style = {
   position: "absolute" as "absolute",
@@ -31,7 +33,6 @@ const style = {
 };
 
 const NavBar: FC = () => {
-  // const cartCount = useSelector((state: RootState) => state.cart.cartCount);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,6 +40,19 @@ const NavBar: FC = () => {
   const { productData, favoriteData, userInfo, allProducts } = useSelector(
     (state: StateProps) => state.next
   );
+
+  // const theme = useTheme();
+  // const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
+
+  const style = {
+    backgroundColor: "white",
+    // width: isMdScreen ? "25%" : "50%",
+    height: "100%",
+    right: "0%",
+    top: 0,
+    position: "absolute",
+    outline: "none",
+  };
 
   const fictionLinks = [
     "Fiction",
@@ -148,7 +162,7 @@ const NavBar: FC = () => {
       </div>*/}
 
         <div className="relative cursor-pointer right-4">
-          <Link href="/cart">
+          {/* <Link href="/cart">
             <div>
               <span className="text-black">
                 <FiShoppingCart size={20} />
@@ -159,7 +173,38 @@ const NavBar: FC = () => {
                 {productData ? productData.length : 0}
               </span>
             </div>
-          </Link>
+          </Link> */}
+          <div className="">
+            <div className="relative" onClick={handleOpen}>
+              <div className="">
+                <span className="text-black">
+                  <FiShoppingCart size={20} />
+                </span>
+
+                <span className="absolute -top-2 -right-2 text-[13px] bg-red-600 h-[18px] w-[18px] rounded-full grid place-items-center text-white lato font-bold">
+                  {" "}
+                  {productData ? productData.length : 0}
+                </span>
+              </div>
+            </div>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style} className="w-[75%] md:w-[40%]">
+                {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Text in a modal
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula.
+                </Typography> */}
+                <SideCart />
+              </Box>
+            </Modal>
+          </div>
         </div>
       </div>
 
