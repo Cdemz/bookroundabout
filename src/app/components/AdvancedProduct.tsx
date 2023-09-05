@@ -35,18 +35,17 @@ const AdvancedProduct = () => {
     return <MenuItem key={index} linkText={linkText} />;
   });
   return (
-    <Provider store={store}>
-      <div className=" overflow-hidden ">
-        <main className="container mx-auto bg-white ">
-          <div className="flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
-            <h1 className="font-bold text-2xl  text-black lucky ">
-              Best Sellers
-            </h1>
+    <div className=" overflow-hidden ">
+      <main className="container mx-auto bg-white ">
+        <div className="flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
+          <h1 className="font-bold text-2xl  text-black lucky ">
+            Best Sellers
+          </h1>
 
-            <hr className="w-[60%]e text-black " />
-            {/* start */}
+          <hr className="w-[60%]e text-black " />
+          {/* start */}
 
-            {/* <Menu as="div" className="relative inline-block text-left  ">
+          {/* <Menu as="div" className="relative inline-block text-left  ">
             <div>
               <Menu.Button className="bg-[var(--color-primary)] text-white py-2   px-8 rounded-full flex items-center gap-2">
                 <FaFilter />
@@ -69,39 +68,38 @@ const AdvancedProduct = () => {
             </Transition>
           </Menu> */}
 
-            <Filter
-              setActiveCategory={setActiveCategory}
-              activeCategory={activeCategory}
-              setActiveGenre={setActiveGenre}
-              activeGenre={activeGenre}
-              setFiltered={setFilteredData}
-              data={data}
-            />
+          <Filter
+            setActiveCategory={setActiveCategory}
+            activeCategory={activeCategory}
+            setActiveGenre={setActiveGenre}
+            activeGenre={activeGenre}
+            setFiltered={setFilteredData}
+            data={data}
+          />
 
-            {/* end */}
-          </div>
-          <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2 overflow-hidden">
-            {filteredData.map((product, index) => (
-              <Product
-                key={index}
-                product={{
-                  id: product.id,
-                  img: product.img,
-                  title: product.title,
-                  category: product.category,
-                  code: product.code,
-                  price: product.price,
-                  oldprice: product.oldprice,
-                  description: product.description,
-                  agerange: product.agerange,
-                  quantity: 1, // Add the quantity property here
-                }}
-              />
-            ))}
-          </div>
-        </main>
-      </div>
-    </Provider>
+          {/* end */}
+        </div>
+        <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2 overflow-hidden">
+          {filteredData.map((product, index) => (
+            <Product
+              key={index}
+              product={{
+                id: product.id,
+                img: product.img,
+                title: product.title,
+                category: product.category,
+                code: product.code,
+                price: product.price,
+                oldprice: product.oldprice,
+                description: product.description,
+                agerange: product.agerange,
+                quantity: 1, // Add the quantity property here
+              }}
+            />
+          ))}
+        </div>
+      </main>
+    </div>
   );
 };
 

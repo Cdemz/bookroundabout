@@ -5,7 +5,9 @@ import Stickytop from "./components/Stickytop";
 import Footer from "./components/Footer";
 import AdvancedNav from "./components/AdvancedNav";
 import { Toaster } from "react-hot-toast";
- 
+import AuthProvider from "./context/AuthProvider";
+import ReduxProvider from "./context/ReduxProvider";
+import NavBar from "./components/NavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,17 +25,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Toaster position="bottom-center" />
-
-        <section>
-          <Stickytop />
-        </section>
-        <section>
-          <AdvancedNav />
-        </section>
-        {children}
-        <section>
-          <Footer />
-        </section>
+        <AuthProvider>
+          <ReduxProvider>
+            <section>
+              <Stickytop />
+            </section>
+            <section>
+              <NavBar />
+            </section>
+            {children}
+            <section>
+              <Footer />
+            </section>
+          </ReduxProvider>
+        </AuthProvider>
       </body>
     </html>
   );

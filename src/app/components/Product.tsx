@@ -17,6 +17,8 @@ interface ProductProps {
     description: string;
     agerange?: string;
     quantity: number;
+    sales?: boolean;
+    isNew?: boolean;
     // Include the quantity property
   };
 }
@@ -47,17 +49,28 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   return (
     <div className="bg-[#fff] pt-6 pb-4    flex flex-col gap-2 ">
       <Link href={`/aboutbook/${product.id}`}>
-        <img
-          className="w-[150px] h-[170px]  object-cover mx-auto"
-          src={product.img}
-          alt=""
-        />
+        <div className="relative ">
+          <img
+            className="w-[150px] h-[170px] object-cover mx-auto"
+            src={product.img}
+            alt=""
+          />
+
+          <div className="absolute top-0 right-4">
+            <div className="bg-red-500 py-1 px-1  font-bold text-center flex items-center justify-center lato ml-[4rem]">
+              On Sale!
+            </div>
+
+            <div className="bg-red-500 h-12 w-12 rounded-full text-sm font-bold text-center flex items-center justify-center lato mt-[6rem] ml-[6rem]">
+              New
+            </div>
+          </div>
+        </div>
       </Link>
 
       <div className=" px-6 h-[100%]">
         <div className="  text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1 h-[100%] ">
           <p className="text-gray-400">{product.category}</p>
-
           <p>{product.agerange}</p>
           <h1 className="font-extrabold break-words text-[var(--color-primary-v)]">
             {product.title}

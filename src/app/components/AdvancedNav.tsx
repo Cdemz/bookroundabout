@@ -3,18 +3,12 @@ import { RecoilRoot } from "recoil";
 
 import NavBar from "./NavBar";
 import { Provider } from "react-redux";
-import store, { persistor } from "../store/store";
-import { PersistGate } from "redux-persist/integration/react";
-import { SessionProvider } from "next-auth/react";
+import store from "../store/store";
 
 const AdvancedNav = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor} loading={null}>
-        <SessionProvider>
-          <NavBar />
-        </SessionProvider>
-      </PersistGate>
+      <NavBar />
     </Provider>
   );
 };

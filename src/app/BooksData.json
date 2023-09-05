@@ -45,7 +45,9 @@
     "description": "The validity of dreams should never be taken for granted. We see how one encounter or mishap can trigger the imagination beyond expectation. This story encapsulates how dreams can grow wings and fly, although in this case, it sails on a boat. “When the Sky is Ready, the Stars Will Appear“ is a stellar achievement.",
     "tag": ["Paper Back"],
     "rating": 2.6,
-    "oldprice": 3000
+    "oldprice": 3000,
+    "isNew": true,
+    "sales": true
   },
   {
     "id": 4,
@@ -78,7 +80,9 @@
     "price": 4500.0,
     "description": "it's a good book",
     "tag": ["Paper Back"],
-    "rating": 3.1
+    "rating": 3.1,
+    "isNew": true,
+    "sales": true
   },
   {
     "id": 7,
@@ -153,6 +157,7 @@
     "code": "WHL33",
     "price": 13000.0,
     "description": "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be “positive” all the time so that we can truly become better, happier people.",
-    "tag": ["Paper Back"]
+    "tag": ["Paper Back"],
+    "sales": true
   }
 ]

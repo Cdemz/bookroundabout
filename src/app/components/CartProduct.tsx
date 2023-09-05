@@ -11,6 +11,7 @@ import {
 import { StoreProduct } from "../type";
 import { RiAddCircleLine } from "react-icons/ri";
 import { AiOutlineMinusCircle } from "react-icons/ai";
+import { BsFillTrash3Fill } from "react-icons/bs";
 
 interface Item {
   category: string;
@@ -60,6 +61,24 @@ const CartProduct = ({ item }: CartProductProps) => {
                 <button
                   onClick={() =>
                     dispatch(
+                      decreaseQuantity({
+                        id: item.id,
+
+                        quantity: 1,
+                        // ...other properties from item
+                      })
+                    )
+                  }
+                  className="w-6 h-6 flex items-center justify-center rounded-full text-base bg-transparent hover:bg-gray-300 cursor-pointer text-black"
+                >
+                  <AiOutlineMinusCircle />
+                </button>
+                <span className="text-[var(--color-text)]">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() =>
+                    dispatch(
                       increaseQuantity({
                         id: item.id,
                         category: item.category,
@@ -78,30 +97,12 @@ const CartProduct = ({ item }: CartProductProps) => {
                 >
                   <RiAddCircleLine />
                 </button>
-                <span className="text-[var(--color-text)]">
-                  {item.quantity}
-                </span>
-                <button
-                  onClick={() =>
-                    dispatch(
-                      decreaseQuantity({
-                        id: item.id,
-
-                        quantity: 1,
-                        // ...other properties from item
-                      })
-                    )
-                  }
-                  className="w-6 h-6 flex items-center justify-center rounded-full text-base bg-transparent hover:bg-gray-300 cursor-pointer text-black"
-                >
-                  <AiOutlineMinusCircle />
-                </button>
               </div>
               <div
                 onClick={() => dispatch(deleteProduct(item.id))}
                 className="flex items-center text-sm font-medium text-gray-400 hover:text-red-600 cursor-pointer duration-300"
               >
-                <IoMdClose className="mt-[2px]" size={20} /> <p>remove</p>
+                <BsFillTrash3Fill className="mt-[2px]" size={26} />
               </div>
             </div>
           </div>

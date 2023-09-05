@@ -49,7 +49,7 @@ const NavBar: FC = () => {
     // width: isMdScreen ? "25%" : "50%",
     height: "100%",
     right: "0%",
-    top: 0,
+    top: "0",
     position: "absolute",
     outline: "none",
   };
@@ -201,6 +201,9 @@ const NavBar: FC = () => {
                   Duis mollis, est non commodo luctus, nisi erat porttitor
                   ligula.
                 </Typography> */}
+                <Button onClick={handleClose} className="ml-2">
+                  <RiCloseCircleFill size={26} />
+                </Button>
                 <SideCart />
               </Box>
             </Modal>
@@ -315,6 +318,7 @@ const NavBar: FC = () => {
           <li className="p-2 border-b border-gray-600">
             <a href="">BookStores</a>
           </li>
+          
         </ul>
       </div>
     </main>

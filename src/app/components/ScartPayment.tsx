@@ -6,7 +6,13 @@ import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import React from "react";
+import { Button, Modal } from "@mui/material";
+// import { useHistory } from 'react-router-dom';
+
 const ScartPayment = () => {
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const { productData, userInfo } = useSelector(
     (state: StateProps) => state.next
   );
@@ -45,6 +51,16 @@ const ScartPayment = () => {
       alert(result?.error.message);
     }
   };
+  const [open, setOpen] = useState(false);
+  // const history = useHistory();
+
+  const handleGoToCart = () => {
+    // Close the modal before navigating to the cart page
+    handleClose();
+
+    // Navigate to the cart page using React Router
+    // history.push('/cart');
+  };
   return (
     <div className="flex flex-col gap-4 ">
       <p className="flex items-center justify-between px-2 font-semibold text-[var(--color-text)]">
@@ -56,9 +72,12 @@ const ScartPayment = () => {
 
       <div className="flex flex-col items-center">
         <Link href="/cart">
-          <button className="px-8 w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300">
+          <Button
+            onClick={handleGoToCart}
+            className="px-8 w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
+          >
             VIEW CART
-          </button>
+          </Button>
         </Link>
       </div>
 

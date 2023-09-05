@@ -3,13 +3,13 @@ import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
 import { StoreProduct } from "../type";
 import ScartProduct from "./ScartProduct";
-import ResetCart from "./ResetCart";
 import ScartPayment from "./ScartPayment";
 import Image from "next/image";
 import Link from "next/link";
 
 const sideCart = () => {
   const { productData } = useSelector((state: RootState) => state.next);
+
   return (
     <div className="max-w-screen-2xl mx-auto px-6 md:flex gap-10 py-4">
       {productData.length > 0 ? (
@@ -43,7 +43,7 @@ const sideCart = () => {
             width={300}
             height={300}
             priority={true}
-            className="h-[26vh] w-[70vw] lg:h-[55vh]"
+            className="h-[21vh] w-[70vw] lg:h-[55vh]"
           />
           <h1 className="text-lg text-[var(--color-text)] font-bold">
             Your cart is empty!
@@ -52,11 +52,6 @@ const sideCart = () => {
             Looks like you have not added anything to your cart. Go ahead &
             explore top categories.
           </p>
-          <Link href="/">
-            <button className="w-52 h-10 bg-[var(--color-primary)] rounded-lg text-sm font-semibold hover:bg-amazon_yellow hover:text-black text-white mt-4">
-              Shop our products
-            </button>
-          </Link>
         </div>
       )}
     </div>

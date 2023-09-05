@@ -1,5 +1,5 @@
 "use client";
-import store, { persistor } from "@/app/store/store";
+import store from "@/app/store/store";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
 import { Provider } from "react-redux";

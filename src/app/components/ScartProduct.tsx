@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import FormattedPrice from "./FormattedPrice";
-import { IoMdClose } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import {
   decreaseQuantity,
@@ -11,6 +10,7 @@ import {
 import { StoreProduct } from "../type";
 import { RiAddCircleLine } from "react-icons/ri";
 import { AiOutlineMinusCircle } from "react-icons/ai";
+import { BsFillTrash3Fill } from "react-icons/bs";
 
 interface Item {
   category: string;
@@ -42,7 +42,7 @@ const ScartProduct = ({ item }: CartProductProps) => {
           alt="productImage"
           priority={true}
         />
-        <div className=" flex  md:w-[100vw] flex-col  px-2 gap-4  ">
+        <div className=" flex  md:w-[80vw] flex-col  px-2 gap-4  ">
           <div className="flex flex-col gap-1 lato  ">
             <p className="text-lg font-bold text-[var(--color-text)]  ">
               {item.title}
@@ -57,6 +57,24 @@ const ScartProduct = ({ item }: CartProductProps) => {
             </p>
             <div className="flex items-center gap-2 md:gap-6">
               <div className="flex items-center mt-1 justify-between border border-gray-300 px-4 py-1 rounded-full w-28 shadow-lg shadow-gray-300">
+                <button
+                  onClick={() =>
+                    dispatch(
+                      decreaseQuantity({
+                        id: item.id,
+
+                        quantity: 1,
+                        // ...other properties from item
+                      })
+                    )
+                  }
+                  className="w-6 h-6 flex items-center justify-center rounded-full text-base bg-transparent hover:bg-gray-300 cursor-pointer text-black"
+                >
+                  <AiOutlineMinusCircle />
+                </button>
+                <span className="text-[var(--color-text)]">
+                  {item.quantity}
+                </span>
                 <button
                   onClick={() =>
                     dispatch(
@@ -78,36 +96,18 @@ const ScartProduct = ({ item }: CartProductProps) => {
                 >
                   <RiAddCircleLine />
                 </button>
-                <span className="text-[var(--color-text)]">
-                  {item.quantity}
-                </span>
-                <button
-                  onClick={() =>
-                    dispatch(
-                      decreaseQuantity({
-                        id: item.id,
-
-                        quantity: 1,
-                        // ...other properties from item
-                      })
-                    )
-                  }
-                  className="w-6 h-6 flex items-center justify-center rounded-full text-base bg-transparent hover:bg-gray-300 cursor-pointer text-black"
-                >
-                  <AiOutlineMinusCircle />
-                </button>
               </div>
               <div
                 onClick={() => dispatch(deleteProduct(item.id))}
                 className="flex items-center text-sm font-medium text-gray-400 hover:text-red-600 cursor-pointer duration-300"
               >
-                <IoMdClose className="mt-[2px]" size={20} /> <p>remove</p>
+                <BsFillTrash3Fill className="mt-[2px]" size={26} />
               </div>
             </div>
           </div>
-          <div className="text-lg font-semibold text-[var(--color-text)]">
+          <div className="text-sm font-semibold text-[var(--color-text)]">
             {" "}
-            <span className="text-sm">Total:</span>
+            <span className="">Total:</span>
             <FormattedPrice amount={item.price * item.quantity} />
           </div>
         </div>
