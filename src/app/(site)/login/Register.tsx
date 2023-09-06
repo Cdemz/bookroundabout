@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import { FiAtSign } from "react-icons/fi";
 import { BsLockFill } from "react-icons/bs";
-const Page = () => {
+const Register = () => {
   return (
     <div>
       <h1 className="text-[var(--color-text)] font-bold my-4">MY ACCOUNT</h1>
@@ -42,7 +42,7 @@ const Page = () => {
         </div>
         <button className="button-submit">Sign In</button>
         <p className="p">
-          Don't have an account? <span className="span">Sign Up</span>
+          Don't have an account? <span className="span">Register</span>
         </p>
         <p className="p line">Or With</p>
 
@@ -61,4 +61,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Register;

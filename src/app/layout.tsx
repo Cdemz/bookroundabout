@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import AuthProvider from "./context/AuthProvider";
 import ReduxProvider from "./context/ReduxProvider";
 import NavBar from "./components/NavBar";
+import Nnavbar from "./components/NnavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 

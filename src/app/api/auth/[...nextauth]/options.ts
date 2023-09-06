@@ -40,6 +40,10 @@ export const options: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: "/login", // Use the custom sign-in page
+    // signOut: "/signout",
+    // error: "/error",
+    // verifyRequest: "/verify-request",
+    // newUser: '/login', // Do not use a custom new user creation page
   },
 };
