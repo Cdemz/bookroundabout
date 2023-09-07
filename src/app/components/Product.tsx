@@ -46,6 +46,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     // Show a toast or perform other actions as needed
     toast(`${product.title} added to cart`);
   };
+
   return (
     <div className="bg-[#fff] pt-6 pb-4    flex flex-col gap-2 ">
       <Link href={`/aboutbook/${product.id}`}>
@@ -57,9 +58,11 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           />
 
           <div className="absolute top-0 right-4">
-            <div className="bg-red-500 py-1 px-1  font-bold text-center flex items-center justify-center lato ml-[4rem]">
-              On Sale!
-            </div>
+            {product.sales === true && (
+              <div className="bg-red-500 py-1 px-1 font-bold text-center flex items-center justify-center lato ml-[4rem]">
+                On Sale!
+              </div>
+            )}
 
             <div className="bg-red-500 h-12 w-12 rounded-full text-sm font-bold text-center flex items-center justify-center lato mt-[6rem] ml-[6rem]">
               New

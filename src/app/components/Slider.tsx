@@ -53,11 +53,11 @@ export default () => {
               />
             </div>
 
-            <div className=" absolute top-0 bg-black h-full w-full bg-opacity-50 px-[4rem] py-[5rem] flex flex-col gap-4 items-center justify-center">
+            <div className=" absolute top-0 bg-black h-full w-full bg-opacity-50 px-[4rem] py-[5rem] flex flex-col gap-3 items-center justify-center">
               <h1 className="text-4xl font-bold lucky">
                 We Believe in the Magic of Books
               </h1>
-              <p className="text-2xl">Let's capture your literature heart.</p>
+              <p className="text-2xl"> literature for all.</p>
               <Link href="">
                 <button className="button"> Shop Now !</button>
               </Link>

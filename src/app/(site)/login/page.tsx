@@ -28,7 +28,7 @@ export default function SignIn() {
     await signIn("credentials", {
       email: formData.email,
       password: formData.password,
-      callbackUrl: "/dashboard", // Redirect after successful sign-in
+      callbackUrl: "/account", // Redirect after successful sign-in
     });
   };
 
@@ -86,7 +86,7 @@ export default function SignIn() {
         <p className="p line">Or With</p>
 
         <div className="flex-row text-[var(--color-text)]">
-          <button className="btn google" onClick={() => signIn("google")}>
+          <button className="btn google" onClick={() => signIn("github")}>
             <FcGoogle />
             Google
           </button>

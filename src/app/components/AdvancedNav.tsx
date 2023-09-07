@@ -1,6 +1,4 @@
 "use client";
-import { RecoilRoot } from "recoil";
-
 import NavBar from "./NavBar";
 import { Provider } from "react-redux";
 import store from "../store/store";
@@ -14,21 +12,3 @@ const AdvancedNav = () => {
 };
 
 export default AdvancedNav;
-
-// "use client";
-// import { RecoilRoot } from "recoil";
-
-// import NavBar from "./NavBar";
-// import { Toaster } from "react-hot-toast";
-// import Cart from "./Cart";
-
-// const AdvancedNav = () => {
-//   return (
-//     <RecoilRoot>
-//       <NavBar />
-//       <Cart />
-//     </RecoilRoot>
-//   );
-// };
-
-// export default AdvancedNav;

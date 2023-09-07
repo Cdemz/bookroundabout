@@ -16,6 +16,8 @@ import { StateProps, StoreProduct } from "../type";
 import RootState from "../store/store";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import SideCart from "./sideCart";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 // import useMediaQuery from "@mui/material/useMediaQuery";
 // import { useTheme } from "@mui/material/styles";
@@ -33,6 +35,7 @@ const style = {
 };
 
 const NavBar: FC = () => {
+  const { data: session } = useSession();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -318,7 +321,25 @@ const NavBar: FC = () => {
           <li className="p-2 border-b border-gray-600">
             <a href="">BookStores</a>
           </li>
-          
+          <div>
+            {session ? (
+              <div className="flex flex-col gap-2">
+                {/* User is logged in */}
+                <Link href="/account">
+                  <button>My Account</button>{" "}
+                  {/* This button only appears when logged in */}
+                </Link>
+                <button onClick={() => signOut()}>Logout</button>
+              </div>
+            ) : (
+              <div>
+                {/* User is not logged in */}
+                <Link href="/login">
+                  <button>Login with Google</button>
+                </Link>
+              </div>
+            )}
+          </div>
         </ul>
       </div>
     </main>
