@@ -335,7 +335,7 @@ const NavBar: FC = () => {
               <div>
                 {/* User is not logged in */}
                 <Link href="/login">
-                  <button>Login with Google</button>
+                  <button>Login</button>
                 </Link>
               </div>
             )}

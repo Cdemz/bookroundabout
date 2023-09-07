@@ -44,7 +44,7 @@ export default function SignIn() {
 
           <input
             type="email"
-            className="input"
+            className="input text-[var(--color-text)]"
             name="email"
             value={formData.email}
             onChange={handleChange}
@@ -64,7 +64,7 @@ export default function SignIn() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="input"
+            className="input text-[var(--color-text)]"
             placeholder="Enter your Password"
           />
           <BsLockFill />
@@ -77,7 +77,7 @@ export default function SignIn() {
           </div>
           <span className="span">Forgot password?</span>
         </div>
-        <button className="button-submit" type="submit">
+        <button className="button-submit bg-black" type="submit">
           Sign In
         </button>
         <p className="p">
