@@ -9,6 +9,7 @@ import AuthProvider from "./context/AuthProvider";
 import ReduxProvider from "./context/ReduxProvider";
 import NavBar from "./components/NavBar";
 import Nnavbar from "./components/NnavBar";
+import DesktopNavbar from "./components/DesktopNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             </section>
             <section>
               <NavBar />
+              <DesktopNavbar />
             </section>
             {children}
             <section>

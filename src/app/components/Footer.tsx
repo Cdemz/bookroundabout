@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
+import { FaTiktok } from "react-icons/fa";
 
 const Footer: FC = () => {
   useEffect(() => {
@@ -30,17 +31,19 @@ const Footer: FC = () => {
           <div className=" text-white">
             <h1 className="font-bold text-lg mb-2 mt-4">FOLLOW US</h1>
             <div className=" flex gap-4">
-              <Link href="/">
+              <Link
+                href="https://instagram.com/booksroundabout?igshid=NTc4MTIwNjQ2YQ=="
+                target="_blank"
+              >
                 <BsInstagram size={30} />
               </Link>
-              <Link href="/">
-                <BsFacebook size={30} />
-              </Link>
               <Link
-                href="https://api.whatsapp.com/message/LJYXJEBYUCQRO1?autoload=1&app_absent=0"
+                href="https://www.tiktok.com/@booksroundabout"
                 target="_blank"
-                rel="noopener noreferrer"
               >
+                <FaTiktok size={30} />
+              </Link>
+              <Link href="https://wa.me/2349020704026" target="_blank">
                 <BsWhatsapp size={30} />
               </Link>
             </div>
