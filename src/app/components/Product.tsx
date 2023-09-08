@@ -19,6 +19,7 @@ interface ProductProps {
     quantity: number;
     sales?: boolean;
     isNew?: boolean;
+    stag: string;
     // Include the quantity property
   };
 }
@@ -58,7 +59,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           />
 
           <div className="absolute top-0 right-4">
-            {product.sales === true && (
+            {product.sales === !true && (
               <div className="bg-red-500 py-1 px-1 font-bold text-center flex items-center justify-center lato ml-[4rem]">
                 On Sale!
               </div>

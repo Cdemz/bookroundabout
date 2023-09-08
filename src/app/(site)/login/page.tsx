@@ -1,35 +1,44 @@
 "use client";
-import React from "react";
 import "./login.css";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import { FiAtSign } from "react-icons/fi";
 import { BsLockFill } from "react-icons/bs";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import axios from "axios";
 
-export default function SignIn() {
-  const [formData, setFormData] = useState({
+interface FormData {
+  email: string;
+  password: string;
+}
+
+const LoginForm: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Sign in using email and password with NextAuth.js
-    await signIn("credentials", {
-      email: formData.email,
-      password: formData.password,
-      callbackUrl: "/account", // Redirect after successful sign-in
-    });
+    try {
+      const response = await axios.post("/api/login", formData);
+
+      if (response.status === 200) {
+        // Redirect the user to a dashboard or home page upon successful login
+        window.location.href = "/account";
+      }
+    } catch (error) {
+      console.error("Login failed", error);
+    }
   };
 
   return (
@@ -101,4 +110,6 @@ export default function SignIn() {
       <p>Register</p>
     </div>
   );
-}
+};
+
+export default LoginForm;

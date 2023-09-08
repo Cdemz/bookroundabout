@@ -29,24 +29,28 @@ export default function Register() {
 
     // Submit the registration form data to your backend or use NextAuth.js
     // custom API route to handle registration with credentials
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      // Registration successful, sign in the user
-      await signIn("credentials", {
-        email: formData.email,
-        password: formData.password,
-        callbackUrl: "/dashboard", // Redirect after successful sign-in
+    try {
+      // Send the registration data to your server-side API endpoint
+      const response = await axios.post("/api/register", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-    } else {
-      // Handle registration error
-      console.error("Registration failed");
+
+      if (response.status === 200) {
+        // Registration successful, sign in the user
+        await signIn("credentials", {
+          email: formData.email,
+          password: formData.password,
+          callbackUrl: "/account", // Redirect after successful sign-in
+        });
+      } else {
+        // Handle registration error
+        console.error("Registration failed");
+      }
+    } catch (error) {
+      // Handle network or server errors
+      console.error("Registration error:", error);
     }
   };
   return (
