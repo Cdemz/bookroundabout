@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="">
       <Slider />
-      <ClientPage />
+      {/* <ClientPage /> */}
       {/* <Herosection /> */}
       <ShopCat />
 

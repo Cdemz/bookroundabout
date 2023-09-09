@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -34,7 +33,10 @@ interface ProductItem {
   agerange?: string;
   code?: string;
   oldprice?: number;
-  quantity: number; // Include the quantity property
+  quantity: number;
+  sales?: boolean;
+  isNew?: boolean;
+  stag: string; // Include the quantity property
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
@@ -48,10 +50,26 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     toast(`${product.title} added to cart`);
   };
 
+  const renderOnSale = () => {
+    if (product.sales) {
+      return (
+        <div className="bg-red-500 py-1 px-1 font-bold text-center flex items-center justify-center lato ml-[4rem]">
+          On Sale!
+        </div>
+      );
+    }
+    // return null; // Render nothing if not on sale
+    return (
+      <div className="bg-red-500 py-1 px-1 font-bold text-center flex items-center justify-center lato ml-[4rem]">
+        <h1>x '{product.isNew}' e</h1>
+      </div>
+    );
+  };
+
   return (
-    <div className="bg-[#fff] pt-6 pb-4    flex flex-col gap-2 ">
+    <div className="bg-[#fff] pt-6 pb-4 flex flex-col gap-2">
       <Link href={`/aboutbook/${product.id}`}>
-        <div className="relative ">
+        <div className="relative">
           <img
             className="w-[150px] h-[170px] object-cover mx-auto"
             src={product.img}
@@ -59,11 +77,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           />
 
           <div className="absolute top-0 right-4">
-            {product.sales === !true && (
-              <div className="bg-red-500 py-1 px-1 font-bold text-center flex items-center justify-center lato ml-[4rem]">
-                On Sale!
-              </div>
-            )}
+            {renderOnSale()}
 
             <div className="bg-red-500 h-12 w-12 rounded-full text-sm font-bold text-center flex items-center justify-center lato mt-[6rem] ml-[6rem]">
               New
@@ -72,16 +86,16 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         </div>
       </Link>
 
-      <div className=" px-6 h-[100%]">
-        <div className="  text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1 h-[100%] ">
+      <div className="px-6 h-[100%]">
+        <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1 h-[100%]">
           <p className="text-gray-400">{product.category}</p>
           <p>{product.agerange}</p>
           <h1 className="font-extrabold break-words text-[var(--color-primary-v)]">
             {product.title}
           </h1>
           <p>{product.code}</p>
-          <p className="lato ">
-            <span className="line-through italic mr-2  ">
+          <p className="lato">
+            <span className="line-through italic mr-2 ">
               {product.oldprice}
             </span>
             <span className="text-black font-extrabold whitespace-nowrap">
@@ -94,7 +108,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           </p>
 
           <button
-            className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto "
+            className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto"
             onClick={addItemsToCart}
           >
             Add To Cart

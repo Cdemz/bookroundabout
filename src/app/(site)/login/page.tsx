@@ -1,12 +1,11 @@
 "use client";
-import "./login.css";
-import { FcGoogle } from "react-icons/fc";
-import { AiFillApple } from "react-icons/ai";
-import { FiAtSign } from "react-icons/fi";
-import { BsLockFill } from "react-icons/bs";
-import { signIn } from "next-auth/react";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { signIn, useSession, getCsrfToken } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
+import "./login.css";
 
 interface FormData {
   email: string;
@@ -19,6 +18,14 @@ const LoginForm: React.FC = () => {
     password: "",
   });
 
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  if (session) {
+    router.push("/");
+    return null;
+  }
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -30,11 +37,20 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", formData);
+      const csrfToken = await getCsrfToken(); // Retrieve the CSRF token
+
+      const response = await axios.post(
+        "http://booksra.helioho.st/v1/user/login",
+        formData,
+        {
+          headers: {
+            "X-CSRF-Token": csrfToken || "", // Ensure it's a string
+          },
+        }
+      );
 
       if (response.status === 200) {
-        // Redirect the user to a dashboard or home page upon successful login
-        window.location.href = "/account";
+        router.push("/account");
       }
     } catch (error) {
       console.error("Login failed", error);
@@ -49,8 +65,6 @@ const LoginForm: React.FC = () => {
           <label>Email</label>
         </div>
         <div className="inputForm">
-          <FiAtSign />
-
           <input
             type="email"
             className="input text-[var(--color-text)]"
@@ -65,9 +79,6 @@ const LoginForm: React.FC = () => {
           <label>Password</label>
         </div>
         <div className="inputForm">
-          <BsLockFill />
-          {/* ... */}
-
           <input
             type="password"
             name="password"
@@ -76,21 +87,22 @@ const LoginForm: React.FC = () => {
             className="input text-[var(--color-text)]"
             placeholder="Enter your Password"
           />
-          <BsLockFill />
         </div>
 
         <div className="flex-row">
           <div>
-            <input type="checkbox" />
-            <label>Remember me</label>
+            <span className="span">Forgot password?</span>
           </div>
-          <span className="span">Forgot password?</span>
         </div>
         <button className="button-submit bg-black" type="submit">
           Sign In
         </button>
+        <div className=""></div>
         <p className="p">
-          Don't have an account? <span className="span">Sign Up</span>
+          Don't have an account?{" "}
+          <span className="span">
+            <Link href="/register">Sign Up</Link>
+          </span>
         </p>
         <p className="p line">Or With</p>
 
@@ -98,10 +110,6 @@ const LoginForm: React.FC = () => {
           <button className="btn google" onClick={() => signIn("github")}>
             <FcGoogle />
             Google
-          </button>
-          <button className="btn apple">
-            <AiFillApple />
-            Apple
           </button>
         </div>
       </form>

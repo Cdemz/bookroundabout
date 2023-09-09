@@ -30,7 +30,9 @@ export interface ProductProps {
   code: string;
   oldprice: number;
   quantity: number;
-  isNew: boolean;
+  sales?: boolean;
+  isNew?: boolean;
+  stag: string;
 }
 export interface StoreProduct {
   cart: {
@@ -46,7 +48,9 @@ export interface StoreProduct {
   img: string;
   oldprice: number;
   price: number;
-  isNew: boolean;
+  sales?: boolean;
+  isNew?: boolean;
+  stag: string;
   code: string;
   quantity: number;
 }

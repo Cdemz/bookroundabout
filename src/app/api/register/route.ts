@@ -30,7 +30,15 @@ export async function POST(request: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, email, hashedPassword }),
+  }).catch((err) => {
+    console.log("error on bakend req");
+    console.log(err);
+    console.log(Object.entries(err));
   });
+
+  if (!createUserResponse) {
+    return new NextResponse("Error creating user", { status: 400 });
+  }
 
   if (createUserResponse.status !== 200) {
     console.error(
