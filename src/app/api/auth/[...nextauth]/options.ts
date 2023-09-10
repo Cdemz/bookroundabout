@@ -3,7 +3,7 @@ import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { GithubProfile } from "next-auth/providers/github";
 import Cookies from "js-cookie";
-console.log("from option");
+
 export const options: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -26,7 +26,7 @@ export const options: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const res = await fetch("http://booksra.helioho.st/v1/user", {
+        const res = await fetch("http://booksra.helioho.st/v1/user/login", {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
@@ -45,6 +45,7 @@ export const options: NextAuthOptions = {
         token.accessToken = account.access_token;
         token.user = user;
       }
+      console.log(user);
       return token;
     },
     async session({ session, token, user }) {

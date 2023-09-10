@@ -16,7 +16,7 @@ const CustomSignIn = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const token = Cookies.get("token");
-  const isLogin = token && jwtDecode(token) ? true : false;
+  // const isLogin = token && jwtDecode(token) ? true : false;
   // console.log(isLogin);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,9 +40,9 @@ const CustomSignIn = () => {
       router.push("/account");
 
       // Show success toast
-      toast.success("Login successful", {
-        duration: 2000, // 2 seconds
-      });
+      // toast.success("Login successful", {
+      //   duration: 2000, // 2 seconds
+      // });
 
       // Handle login failure here
     } catch (error) {
@@ -55,7 +55,7 @@ const CustomSignIn = () => {
   return (
     <div className="">
       <Toaster />
-      {!isLogin ? (
+      {!session ? (
         <div>
           <h1 className="text-[var(--color-text)] font-bold my-4">
             MY ACCOUNT
