@@ -57,10 +57,12 @@ const CustomSignIn = () => {
     });
 
     if (result.error) {
+      toast.error("Something went wrong. Please check your credentials.");
       console.error("Authentication error:", result.error);
     } else {
       // Authentication was successful, redirect to the "/account" page
       // router.push('/account');
+      toast.success("Welcome");
     }
   };
 
@@ -123,10 +125,13 @@ const CustomSignIn = () => {
                 Google
               </button>
             </div>
+            <p className="p">
+              New user?{" "}
+              <span className="span">
+                <Link href="/register">Register</Link>
+              </span>
+            </p>
           </form>
-
-          <h1>New user?</h1>
-          <p>Register</p>
         </div>
       ) : (
         // User is already authenticated, display a message or redirect as needed
