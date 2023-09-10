@@ -41,19 +41,27 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Fetch user from your database using the email
   const user = await getUserByEmail(email);
 
-  if (!user) {
-    return res.status(401).json({ error: "User not found" });
+  try {
+    // Fetch user from your database using the email
+    const user = await getUserByEmail(email);
+
+    if (!user) {
+      return res.status(401).json({ error: "User not found" });
+    }
+
+    // Verify the password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "Incorrect password" });
+    }
+
+    // Authentication successful; create a user session or token and return it
+    // Implement createAuthToken or import it from another module
+    const token = createAuthToken(user); // Implement this function to generate a token
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
-
-  // Verify the password
-  const passwordMatch = await bcrypt.compare(password, user.password);
-
-  if (!passwordMatch) {
-    return res.status(401).json({ error: "Incorrect password" });
-  }
-
-  // Authentication successful; create a user session or token and return it
-  // Implement createAuthToken or import it from another module
-  const token = createAuthToken(user); // Implement this function to generate a token
-  res.status(200).json({ token });
 };

@@ -35,7 +35,7 @@ const style = {
 };
 
 const NavBar: FC = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   console.log(session);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
