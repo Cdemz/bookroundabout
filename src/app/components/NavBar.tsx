@@ -36,6 +36,7 @@ const style = {
 
 const NavBar: FC = () => {
   const { data: session } = useSession();
+  console.log(session);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -106,6 +107,17 @@ const NavBar: FC = () => {
   const handleNav = () => {
     setNav(!nav);
   };
+
+  if (session) {
+    // Render loading or a fallback UI when session data is not available
+    return (
+      <div className="flex justify-between py-4 text-[var(--color-primary)] px-2 md:px-8 fixedz-20 bg-white w-full top-8">
+        {/* Your loading ollback UI */}
+        <p>Loading...</p>
+        <p className="font-bold">small Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <main>

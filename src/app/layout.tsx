@@ -20,14 +20,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session, // Pass the session data as a prop
 }: {
   children: React.ReactNode;
+  session: any; // Adjust the type as needed
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <Toaster position="bottom-center" />
-        <AuthProvider>
+        <AuthProvider session={session}>
           <ReduxProvider>
             <section>
               <Stickytop />

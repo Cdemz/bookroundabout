@@ -2,7 +2,8 @@ import type { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { GithubProfile } from "next-auth/providers/github";
-
+import Cookies from "js-cookie";
+console.log("from option");
 export const options: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -21,50 +22,34 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "email:",
-          type: "text",
-          placeholder: "your-cool-username",
-        },
-        password: {
-          label: "Password:",
-          type: "password",
-          placeholder: "your-awesome-password",
-        },
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
-        try {
-          const response = await fetch("http://booksra.helioho.st/v1/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(credentials), // { email, password }
-          });
-
-          if (response.status === 200) {
-            const user = await response.json();
-            return user;
-          }
-        } catch (error) {
-          // Handle API request errors
-          console.error(error);
-          return null;
+      async authorize(credentials, req) {
+        const res = await fetch("http://booksra.helioho.st/v1/user", {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        if (data.status === "ok") {
+          return data.user;
         }
-
-        return null; // Return null if authentication fails
+        return null;
       },
     }),
   ],
   callbacks: {
-    // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
-    async jwt({ token, user }) {
-      if (user) token.role = user.role;
+    async jwt({ token, user, account }) {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.user = user;
+      }
       return token;
     },
-    // If you want to use the role in client components
-    async session({ session, token }) {
-      if (session?.user) session.user.role = token.role;
+    async session({ session, token, user }) {
+      session.accessToken = token.accessToken;
+      session.user = token.user;
       return session;
     },
   },
