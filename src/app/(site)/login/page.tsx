@@ -22,33 +22,45 @@ const CustomSignIn = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        "http://booksra.helioho.st/v1/user/login",
-        {
-          email,
-          password,
-        }
-      );
+    // try {
+    //   const response = await axios.post(
+    //     "http://booksra.helioho.st/v1/user/login",
+    //     {
+    //       email,
+    //       password,
+    //     }
+    //   );
 
-      const bearerToken = response.data.token;
-      // Save the bearer token as a JWT token (e.g., in a cookie)
-      Cookies.set("token", bearerToken);
+    //   const bearerToken = response.data.token;
+    //   // Save the bearer token as a JWT token (e.g., in a cookie)
+    //   Cookies.set("token", bearerToken);
 
-      // Redirect to /account on successful login
+    //   // Redirect to /account on successful login
 
-      router.push("/account");
+    //   router.push("/account");
 
-      // Show success toast
-      // toast.success("Login successful", {
-      //   duration: 2000, // 2 seconds
-      // });
+    //   // Show success toast
+    //   // toast.success("Login successful", {
+    //   //   duration: 2000, // 2 seconds
+    //   // });
 
-      // Handle login failure here
-    } catch (error) {
-      // Handle any network or other errors here
-      toast.error("Error occurred"); // Show error toast
-      console.error("Error:", error);
+    //   // Handle login failure here
+    // } catch (error) {
+    //   // Handle any network or other errors here
+    //   toast.error("Error occurred"); // Show error toast
+    //   console.error("Error:", error);
+    // }
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false, // Prevent automatic redirection
+    });
+
+    if (result.error) {
+      console.error("Authentication error:", result.error);
+    } else {
+      // Authentication was successful, redirect to the "/account" page
+      // router.push('/account');
     }
   };
 
