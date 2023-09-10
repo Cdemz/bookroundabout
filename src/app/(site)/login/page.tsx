@@ -51,7 +51,7 @@ const CustomSignIn = () => {
     //   console.error("Error:", error);
     // }
     try {
-      const result = await signIn("credentials", {
+      const result: { error?: string } = await signIn("credentials", {
         email,
         password,
         redirect: false, // Prevent automatic redirection
