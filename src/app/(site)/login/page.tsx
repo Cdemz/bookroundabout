@@ -50,19 +50,31 @@ const CustomSignIn = () => {
     //   toast.error("Error occurred"); // Show error toast
     //   console.error("Error:", error);
     // }
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false, // Prevent automatic redirection
-    });
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Prevent automatic redirection
+      });
 
-    if (result.error) {
-      toast.error("Something went wrong. Please check your credentials.");
-      console.error("Authentication error:", result.error);
-    } else {
-      // Authentication was successful, redirect to the "/account" page
-      // router.push('/account');
-      toast.success("Welcome");
+      if (result) {
+        // Check if result is defined
+        if (result.error) {
+          toast.error("Something went wrong. Please check your credentials.");
+          console.error("Authentication error:", result.error);
+        } else {
+          // Authentication was successful, redirect to the "/account" page
+          // router.push('/account');
+          toast.success("Welcome");
+        }
+      } else {
+        toast.error("Authentication result is undefined.");
+        console.error("Authentication result is undefined.");
+      }
+    } catch (error) {
+      // Handle any network or other errors here
+      toast.error("Error occurred"); // Show error toast
+      console.error("Error:", error);
     }
   };
 
