@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.1",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^3.1.2",
     "next": "13.4.19",
     "next-auth": "^4.23.1",

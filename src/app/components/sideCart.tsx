@@ -11,7 +11,7 @@ const sideCart = () => {
   const { productData } = useSelector((state: RootState) => state.next);
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-6 md:flex gap-10 py-4">
+    <div className="max-w-screen-2xl mx-auto px-6   gap-10 py-4">
       {productData.length > 0 ? (
         <>
           <div className="  col-span-4 p-4 rounded-lg">
@@ -30,7 +30,7 @@ const sideCart = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white shadow-lg h-64 md:h-[32rem] col-span-1 p-4 rounded-lg flex items-center justify-center">
+          <div className="bg-white shadow-lg h-64  col-span-1 p-4 rounded-lg flex items-center justify-center">
             <button></button>
             <ScartPayment />
           </div>

@@ -29,7 +29,7 @@ export default function QuiltedImageList({ params }: Props) {
       variant="quilted"
       //   cols={4}
       //   rowHeight={60}
-      className="mx-auto w-[80%] h-[60%] grid grid-cols-4 md:grid-cols-3 md:h-[60vh]"
+      className="mx-auto w-[80%] h-[60%] grid grid-cols-4 md:h-[60vh]"
     >
       {itemData.map((item) => (
         <ImageListItem

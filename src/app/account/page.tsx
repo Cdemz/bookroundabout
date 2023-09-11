@@ -17,6 +17,7 @@ function MyAccount() {
       <div className="">
         <h1 className="text-center font-bold text-lg mb-6">My Account</h1>
         <div className="text-center">
+          <User />
           <h2>Order history</h2>
           <p className="italic">You haven't placed any order yet.</p>
         </div>

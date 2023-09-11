@@ -1,7 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import jwt from "jsonwebtoken";
 export const options: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -28,14 +28,13 @@ export const options: NextAuthOptions = {
           }
 
           const data = await res.json();
-          console.log("API Response:", data);
+          // console.log("API Response:", data);
+          // console.log("APponse:", data.token);
 
-          if (data.token && data.user) {
+          if (data.token) {
             // Token successfully retrieved from the API
             return {
-              id: data.user.id.toString(),
-              email: data.user.email,
-              role: data.user.role || "user", // Provide a default role if not available
+              token: data.token, // Provide a default role if not available
               // Add other user properties if available in the API response
             };
           } else {
@@ -53,13 +52,24 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token }) {
-      // JWT callback: This is where you modify the token before it's saved
       if (token) {
-        // Modify the token if needed, e.g., decode and assign values
-        const { id, email, role } = token;
-        token.id = id;
-        token.email = email;
-        token.role = role;
+        try {
+          // Decode the token to get user information
+          const decodedToken = jwt.decode(token);
+
+          if (decodedToken) {
+            // Assign decoded values to the token
+            token.id = decodedToken.id;
+            token.email = decodedToken.email;
+            token.role = decodedToken.role;
+          } else {
+            // Handle the case when token decoding fails
+            console.error("Token decoding failed");
+          }
+        } catch (error) {
+          // Handle any errors that occur during decoding
+          console.error("JWT Decoding Error:", error);
+        }
       }
       return token;
     },
