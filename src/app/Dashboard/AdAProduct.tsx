@@ -5,10 +5,10 @@ import { Menu, Transition } from "@headlessui/react";
 import { FaFilter } from "react-icons/fa";
 import MenuItem from "../components/MenuItem";
 import { Fragment } from "react";
-import Product from "./Product";
+import Product from "./AProduct";
 import { Provider } from "react-redux";
 import store from "../store/store";
-import Filter from "./Filter";
+import Filter from "../components/Filter";
 
 interface product {
   // Define the structure of a cart item here
@@ -17,7 +17,7 @@ interface product {
   // ...other properties
 }
 
-const AdvancedProduct = () => {
+const AdAProduct = () => {
   const [activeCategory, setActiveCategory] = useState(" ");
   const [activeGenre, setActiveGenre] = useState(" ");
   const [filteredData, setFilteredData] = useState(data);
@@ -44,6 +44,29 @@ const AdvancedProduct = () => {
 
           <hr className="w-[60%]e text-black " />
           {/* start */}
+
+          {/* <Menu as="div" className="relative inline-block text-left  ">
+            <div>
+              <Menu.Button className="bg-[var(--color-primary)] text-white py-2   px-8 rounded-full flex items-center gap-2">
+                <FaFilter />
+                Fiter
+              </Menu.Button>
+            </div>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className=" mt-2  origin-top-right rounded-md bg-white shadow-lg  focus:outline-none absolute px-4 md:right-8 right-6 lato font-bold text-lg whitespace-nowrap">
+                <div className="py-1">{fictionLinks}</div>
+              </Menu.Items>
+            </Transition>
+          </Menu> */}
 
           <Filter
             setActiveCategory={setActiveCategory}
@@ -83,4 +106,4 @@ const AdvancedProduct = () => {
   );
 };
 
-export default AdvancedProduct;
+export default AdAProduct;

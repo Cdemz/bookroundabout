@@ -39,7 +39,7 @@ interface ProductItem {
   stag: string; // Include the quantity property
 }
 
-const Product: React.FC<ProductProps> = ({ product }) => {
+const AProduct: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
 
   const addItemsToCart = () => {
@@ -63,25 +63,23 @@ const Product: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="bg-[#fff] pt-6 pb-4 flex flex-col gap-2">
-      <Link href={`/aboutbook/${product.id}`}>
-        <div className="relative">
-          <img
-            className="w-[150px] h-[170px] object-cover mx-auto"
-            src={product.img}
-            alt=""
-          />
+      <div className="relative">
+        <img
+          className="w-[150px] h-[170px] object-cover mx-auto"
+          src={product.img}
+          alt=""
+        />
 
-          <div className="absolute top-0 right-4">
-            {renderOnSale()}
+        <div className="absolute top-0 right-4">
+          {renderOnSale()}
 
-            {product.isNew && (
-              <div className="bg-red-500 h-12 w-12 rounded-full text-sm font-bold text-center flex items-center justify-center lato mt-[6rem] ml-[6rem]">
-                New
-              </div>
-            )}
-          </div>
+          {product.isNew && (
+            <div className="bg-red-500 h-12 w-12 rounded-full text-sm font-bold text-center flex items-center justify-center lato mt-[6rem] ml-[6rem]">
+              New
+            </div>
+          )}
         </div>
-      </Link>
+      </div>
 
       <div className="px-6 h-[100%]">
         <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1 h-[100%]">
@@ -103,17 +101,18 @@ const Product: React.FC<ProductProps> = ({ product }) => {
               })}
             </span>
           </p>
-
-          <button
-            className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto"
-            onClick={addItemsToCart}
-          >
-            Add To Cart
-          </button>
+          <div className=" flex gap-4 flex-col">
+            <button className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto">
+              Delete Book
+            </button>
+            <button className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm mt-auto rounded-md">
+              Edit Book
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Product;
+export default AProduct;
