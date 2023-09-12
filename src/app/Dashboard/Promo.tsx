@@ -6,7 +6,7 @@ import { BiBookAdd } from "react-icons/bi";
 const Promo = () => {
   return (
     <div className="relative">
-      <div className="w-[100%]">
+      <div className="w-[100%] md:h-[70%]">
         <Image
           src="/group book.png"
           width={300}

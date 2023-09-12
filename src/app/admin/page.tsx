@@ -14,7 +14,7 @@ const Admin = () => {
 
       {/* Include your existing footer here */}
       <div className="footer">Footer Content</div>
-      <Link href="Dasboard" className="text-white">
+      <Link href="Dashboard" className="text-white">
         Dashboard
       </Link>
     </div>

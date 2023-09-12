@@ -9,6 +9,7 @@ import Product from "./AProduct";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import Filter from "../components/Filter";
+import SearchBar from "../components/SearchBar";
 
 interface product {
   // Define the structure of a cart item here
@@ -37,7 +38,8 @@ const AdAProduct = () => {
   return (
     <div className=" overflow-hidden ">
       <main className="container mx-auto bg-white ">
-        <div className="flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
+        <SearchBar />
+        <div className=" flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
           <h1 className="font-bold text-2xl  text-black lucky ">
             Best Sellers
           </h1>
@@ -79,7 +81,7 @@ const AdAProduct = () => {
 
           {/* end */}
         </div>
-        <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2 overflow-hidden">
+        <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 pb-4 pt-2 overflow-hidden">
           {filteredData.map((product, index) => (
             <Product
               key={index}

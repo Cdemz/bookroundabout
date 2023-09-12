@@ -17,12 +17,12 @@ function SearchBar() {
   });
   return (
     <>
-      <div className="templateContainer">
+      <div className="">
         <div className="searchInput_Container bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto h-8">
           <input
             id="searchInput"
             type="text"
-            className="bg-transparent focus:outline-none ml-4"
+            className="bg-transparent focus:outline-none ml-4 outline-none border-none"
             placeholder="Search here..."
             onChange={(event) => {
               setSearchTerm(event.target.value);
@@ -30,7 +30,7 @@ function SearchBar() {
           />
         </div>
         {searchTerm !== "" && (
-          <div className="template_Container mt-4 flex flex-col gap-3">
+          <div className="template_Container mt-4 flex flex-col gap-3 px-4">
             {filteredData.length > 0 ? (
               filteredData.map((val) => (
                 <div className="template flex" key={val.id}>

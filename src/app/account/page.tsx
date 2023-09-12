@@ -1,17 +1,72 @@
-"use client";
-import { signIn, signOut, useSession } from "next-auth/react";
+"use client"; // Import necessary modules and components
+import { useState } from "react";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import User from "../components/User";
-
 import { FaAddressCard, FaAsterisk } from "react-icons/fa";
 
+// Define a type for the user data
+interface UserData {
+  firstName: string;
+  lastName: string;
+  country: string;
+  companyName: string;
+  address: string;
+  zipCode: string;
+  state: string;
+  phoneNumber: string;
+}
+
+interface SessionData {
+  user: {
+    firstName?: string;
+    lastName?: string;
+    country?: string;
+    companyName?: string;
+    address?: string;
+    zipCode?: string;
+    state?: string;
+    phoneNumber?: string;
+  };
+}
+
 function MyAccount() {
-  // const { data: session } = useSession({
-  //   required: true,
-  //   onUnauthenticated() {
-  //     redirect("/api/auth/signin?callbackUrl=/client");
-  //   },
-  // });
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/api/auth/signin?callbackUrl=/account");
+    },
+  });
+
+  // Initialize user data with default values or data from the session
+  const initialUserData: UserData = {
+    firstName: session?.user?.firstName || "",
+    lastName: session?.user?.lastName || "",
+    country: session?.user?.country || "",
+    companyName: session?.user?.companyName || "",
+    address: session?.user?.address || "",
+    zipCode: session?.user?.zipCode || "",
+    state: session?.user?.state || "",
+    phoneNumber: session?.user?.phoneNumber || "",
+  };
+
+  const [userData, setUserData] = useState<UserData>(initialUserData);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const handleUpdate = async () => {
+    setIsUpdating(true);
+
+    try {
+      const response = await axios.put("/api/updateUser", userData);
+      // Handle the response as needed
+      setIsUpdating(false);
+    } catch (error) {
+      console.error("Error updating user data:", error);
+      setIsUpdating(false);
+    }
+  };
+
   return (
     <div className="text-[var(--color-text)] p-6">
       <div className="">
@@ -37,10 +92,10 @@ function MyAccount() {
                 </label>
 
                 <input
-                  type="ifirst-input"
+                  type="text"
                   className="border-2 border-gray-400 w-[85%] h-10 border-r-2"
                   name="first"
-                  placeholder=" Enter your first name"
+                  placeholder="Enter your first name"
                   required
                 />
               </div>
@@ -53,10 +108,10 @@ function MyAccount() {
                 </label>
 
                 <input
-                  type="ifirst-input"
+                  type="text"
                   className="border-2 border-gray-400 w-[85%] h-10 border-r-2 "
                   name="last-name"
-                  placeholder=" Enter your last name"
+                  placeholder="Enter your last name"
                   required
                 />
               </div>
@@ -66,10 +121,10 @@ function MyAccount() {
               <label>Company name</label>
 
               <input
-                type="ifirst-input"
+                type="text"
                 className="border-2 border-gray-400 w-[85%] h-10 border-r-2 "
                 name="last-name"
-                placeholder=" Your company name"
+                placeholder="Your company name"
               />
             </div>
             {/* country */}
@@ -82,10 +137,10 @@ function MyAccount() {
               </label>
 
               <input
-                type="ifirst-input"
+                type="text"
                 className="border-2 border-gray-400 w-[85%] h-10 border-r-2 "
                 name="Country"
-                placeholder=" eg- Nigeria"
+                placeholder="e.g. Nigeria"
                 required
               />
             </div>
@@ -100,7 +155,7 @@ function MyAccount() {
               <textarea
                 className="border-2 border-gray-400 w-[85%] h-20 border-r-2 "
                 name="street"
-                placeholder=" eg- 1234 Main St"
+                placeholder="e.g. 1234 Main St"
                 required
               />
             </div>
@@ -114,46 +169,13 @@ function MyAccount() {
               </label>
               <select
                 id=""
-                className=" rounded shadow appearance-none border py-2 px-3 text-grey-darker leading-tight
+                className="rounded shadow appearance-none border py-2 px-3 text-grey-darker leading-tight
             focus:outline-none focus:shadow-outline w-[85%]"
                 required
               >
                 <option value="Abia">Abia</option>
                 <option value="Adamawa">Adamawa</option>
-                <option value="Akwa Ibom">Akwa Ibom</option>
-                <option value="Anambra">Anambra</option>
-                <option value="Bauchi">Bauchi</option>
-                <option value="Bayelsa">Bayelsa</option>
-                <option value="Benue">Benue</option>
-                <option value="Borno">Borno</option>
-                <option value="Cross River">Cross River</option>
-                <option value="Delta">Delta</option>
-                <option value="Ebonyi">Ebonyi</option>
-                <option value="Edo">Edo</option>
-                <option value="Ekiti">Ekiti</option>
-                <option value="Enugu">Enugu</option>
-                <option value="Gombe">Gombe</option>
-                <option value="Imo">Imo</option>
-                <option value="Jigawa">Jigawa</option>
-                <option value="Kaduna">Kaduna</option>
-                <option value="Kano">Kano</option>
-                <option value="Katsina">Katsina</option>
-                <option value="Kebbi">Kebbi</option>
-                <option value="Kogi">Kogi</option>
-                <option value="Kwara">Kwara</option>
-                <option value="Lagos">Lagos</option>
-                <option value="Nasarawa">Nasarawa</option>
-                <option value="Niger">Niger</option>
-                <option value="Ogun">Ogun</option>
-                <option value="Ondo">Ondo</option>
-                <option value="Osun">Osun</option>
-                <option value="Oyo">Oyo</option>
-                <option value="Plateau">Plateau</option>
-                <option value="Rivers">Rivers</option>
-                <option value="Sokoto">Sokoto</option>
-                <option value="Taraba">Taraba</option>
-                <option value="Yobe">Yobe</option>
-                <option value="Zamfara">Zamfara</option>
+                {/* Add more state options here */}
               </select>
             </div>
             {/* city */}

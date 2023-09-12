@@ -17,7 +17,7 @@ const CustomSignIn = () => {
   const router = useRouter();
   const token = Cookies.get("token");
   // const isLogin = token && jwtDecode(token) ? true : false;
-  // console.log(isLogin);
+  // console.log(session);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

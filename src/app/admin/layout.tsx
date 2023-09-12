@@ -29,8 +29,8 @@ const Layout = ({ children }: LayoutProps) => {
   const handleClose = () => setOpen(false);
   return (
     <div className="flex">
-      <div className="hidden">
-        <Button onClick={handleOpen} className="md:hidden">
+      <div className="h-full ">
+        <Button onClick={handleOpen} className="hidden">
           Open modal
         </Button>
         <Modal
@@ -48,13 +48,13 @@ const Layout = ({ children }: LayoutProps) => {
             </Typography>
           </Box>
         </Modal>
-        <div className="">
-          <nav className="bg-[var(--color-primary)] pl-6 pr-2 py-6 hidden md:block">
+        <div className="h-full">
+          <nav className="bg-[var(--color-primary)] pl-6 pr-2 py-6 hidden lg:block h-[100%] ">
             <ul className="flex flex-col gap-4">
               <li>
                 <Link
                   href="/Dashboard"
-                  className="text-white    hover:bg-gray-200 active:bg-white active:text-[var(--color-primary)] hover:text-[var(--color-primary)] px-4 py-2 rounded-full"
+                  className="text-white    hover:bg-gray-200 active:bg-white active:text-[var(--color-primary)] hover:text-[var(--color-primary)] px-4 py-2 rounded-full font-bold"
                 >
                   Dashboard
                 </Link>

@@ -50,6 +50,7 @@
   "devDependencies": {
     "@types/aos": "^3.0.4",
     "@types/js-cookie": "^3.0.3",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/next": "^9.0.0",
     "autoprefixer": "^10.4.15"
   }
