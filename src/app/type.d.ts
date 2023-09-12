@@ -8,15 +8,30 @@ declare module "next-auth" {
     user: {
       id: string;
       role: string;
+      firstName: string;
+      lastName: string;
+      country: string;
+      companyName: string;
+      address: string;
+      zipCode: string;
+      state: string;
+      phoneNumber: string;
+      email: string;
+      password: string;
+      passwordConfirm: string;
+      city: string;
+      token: string;
     } & DefaultSession;
   }
   interface User extends DefaultUser {
     role: string;
+    token: string;
   }
 }
 declare module "next-auth/jwt" {
   interface JWT extends DefaultJWT {
     role: string;
+    token: string;
   }
 }
 export interface ProductProps {

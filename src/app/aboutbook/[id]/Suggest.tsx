@@ -46,6 +46,9 @@ const Suggest = () => {
                 oldprice: product.oldprice,
                 description: product.description,
                 agerange: product.agerange,
+                stag: product.stag,
+                isNew: product.isNew,
+                sales: product.sales,
                 quantity: 1, // Add the quantity property here
               }}
             />

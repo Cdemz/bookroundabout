@@ -224,7 +224,9 @@ const NavBar: FC = () => {
       >
         <ul className=" p-4 text-center text-white lucky flex flex-col gap-2">
           <a href="/">
-            <li className="p-2">Home</li>
+            <li className="p-2" onClick={handleNav}>
+              Home
+            </li>
           </a>
           {/* begining */}
           <Menu
@@ -232,7 +234,7 @@ const NavBar: FC = () => {
             className="relative inline-block text-left border-b border-gray-600"
           >
             <div>
-              <Menu.Button className="inline-flex w-full justify-center gap-x-3.5 rounded-md   px-3 py-2 text-sm font-semibold shadow-sm     hover:bg-{var(--color-primary-a)} ">
+              <Menu.Button className="inline-flex w-full justify-center gap-x-3.5 rounded-md   px-3 py-2 text-sm font-semibold shadow-sm     hover:bg-{var(--color-primary-a)}  ">
                 Fiction Books
                 <BsArrowDownRightCircle size={21} />
               </Menu.Button>
@@ -247,7 +249,9 @@ const NavBar: FC = () => {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items className=" mt-2  origin-top-right rounded-md bg-white shadow-lg  focus:outline-none">
-                <div className="py-1">{fictionLinks}</div>
+                <div className="py-1" onClick={handleNav}>
+                  {fictionLinks}
+                </div>
               </Menu.Items>
             </Transition>
           </Menu>
@@ -273,7 +277,9 @@ const NavBar: FC = () => {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items className=" mt-2  origin-top-right rounded-md bg-white shadow-lg  focus:outline-none ">
-                <div className="py-1">{nfictionLinks}</div>
+                <div className="py-1" onClick={handleNav}>
+                  {nfictionLinks}
+                </div>
               </Menu.Items>
             </Transition>
           </Menu>
@@ -300,33 +306,46 @@ const NavBar: FC = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className=" mt-2  origin-top-right rounded-md bg-white shadow-lg  focus:outline-none">
-                <div className="py-1">{childLinks}</div>
+              <Menu.Items
+                className=" mt-2  origin-top-right rounded-md bg-white shadow-lg  focus:outline-none"
+                onClick={handleNav}
+              >
+                <div className="py-1" onClick={handleNav}>
+                  {childLinks}
+                </div>
                 <div className="py-1">
                   <h1 className="text-[var(--color-text)] ml-2">
                     Popular Categories
                   </h1>
                   <hr />
-                  {childrenLinks}
+                  <div className="" onClick={handleNav}>
+                    {childrenLinks}
+                  </div>
                 </div>
               </Menu.Items>
             </Transition>
           </Menu>
           {/* endind */}
           <li className="p-2 border-b border-gray-600">
-            <a href="">About us</a>
+            <Link href="/" onClick={handleNav}>
+              About us
+            </Link>
           </li>
           <li className="p-2 border-b border-gray-600">
-            <a href="songs">Wholesale Purchase</a>
+            <Link href="/" onClick={handleNav}>
+              Wholesale Purchase{" "}
+            </Link>
           </li>
           <li className="p-2 border-b border-gray-600">
-            <a href="">BookStores</a>
+            <Link href="/" onClick={handleNav}>
+              BookStores
+            </Link>
           </li>
           <div>
             {session ? (
               <div className="flex flex-col gap-2">
                 {/* User is logged in */}
-                <Link href="/account">
+                <Link href="/account" onClick={handleNav}>
                   <button>My Account</button>{" "}
                   {/* This button only appears when logged in */}
                 </Link>
@@ -335,7 +354,7 @@ const NavBar: FC = () => {
             ) : (
               <div>
                 {/* User is not logged in */}
-                <Link href="/login">
+                <Link href="/login" onClick={handleNav}>
                   <button>Login</button>
                 </Link>
               </div>

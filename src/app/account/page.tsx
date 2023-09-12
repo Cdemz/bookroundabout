@@ -1,22 +1,11 @@
 "use client"; // Import necessary modules and components
+
 import { useState } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { redirect } from "next/navigation"; // Import 'next/router' for redirection
 import User from "../components/User";
 import { FaAddressCard, FaAsterisk } from "react-icons/fa";
-
-// Define a type for the user data
-interface UserData {
-  firstName: string;
-  lastName: string;
-  country: string;
-  companyName: string;
-  address: string;
-  zipCode: string;
-  state: string;
-  phoneNumber: string;
-}
 
 interface SessionData {
   user: {
@@ -31,15 +20,31 @@ interface SessionData {
   };
 }
 
-function MyAccount() {
+interface UserData {
+  firstName: string;
+  lastName: string;
+  country: string;
+  companyName: string;
+  address: string;
+  zipCode: string;
+  state: string;
+  phoneNumber: string;
+  email: string;
+  city: string;
+}
+
+const MyAccount = () => {
   const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/api/auth/signin?callbackUrl=/account");
+      // Use 'next/router' for redirection
+      if (typeof window !== "undefined") {
+        // Check if we're on the client side
+        redirect("/login?callbackUrl=/account");
+      }
     },
   });
 
-  // Initialize user data with default values or data from the session
   const initialUserData: UserData = {
     firstName: session?.user?.firstName || "",
     lastName: session?.user?.lastName || "",
@@ -49,16 +54,37 @@ function MyAccount() {
     zipCode: session?.user?.zipCode || "",
     state: session?.user?.state || "",
     phoneNumber: session?.user?.phoneNumber || "",
+    email: session?.user?.email || "",
+    city: session?.user?.city || "",
   };
 
+  // Declare and initialize 'firstName' and 'setFirstName'
+  const [firstName, setFirstName] = useState(initialUserData.firstName);
+  const [lastName, setLastName] = useState(initialUserData.lastName);
+  const [country, setCountry] = useState(initialUserData.country);
+  const [companyName, setCompanyName] = useState(initialUserData.companyName);
+  const [address, setAddress] = useState(initialUserData.address);
+  const [zipCode, setZipCode] = useState(initialUserData.zipCode);
+  const [state, setState] = useState(initialUserData.state);
+  const [city, setCity] = useState(initialUserData.city);
+  const [phoneNumber, setPhoneNumber] = useState(initialUserData.phoneNumber);
+  const [email, setEmailr] = useState(initialUserData.email);
+
+  // Declare and initialize 'userData' and 'setUserData'
   const [userData, setUserData] = useState<UserData>(initialUserData);
+
+  // Declare and initialize 'isUpdating' and 'setIsUpdating'
   const [isUpdating, setIsUpdating] = useState(false);
 
   const handleUpdate = async () => {
     setIsUpdating(true);
 
     try {
-      const response = await axios.put("/api/updateUser", userData);
+      const endpoint = "http://booksra.helioho.st/v1/user"; // Your API endpoint URL
+
+      // Make a PUT request to the specified endpoint with updated user data
+      const response = await axios.put(endpoint, userData);
+
       // Handle the response as needed
       setIsUpdating(false);
     } catch (error) {
@@ -97,6 +123,8 @@ function MyAccount() {
                   name="first"
                   placeholder="Enter your first name"
                   required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
               <div className="flex-col flex gap-2">
@@ -113,6 +141,8 @@ function MyAccount() {
                   name="last-name"
                   placeholder="Enter your last name"
                   required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             </div>
@@ -125,6 +155,8 @@ function MyAccount() {
                 className="border-2 border-gray-400 w-[85%] h-10 border-r-2 "
                 name="last-name"
                 placeholder="Your company name"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
               />
             </div>
             {/* country */}
@@ -142,6 +174,8 @@ function MyAccount() {
                 name="Country"
                 placeholder="e.g. Nigeria"
                 required
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
               />
             </div>
             {/* street address */}
@@ -157,6 +191,8 @@ function MyAccount() {
                 name="street"
                 placeholder="e.g. 1234 Main St"
                 required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
             {/* state */}
@@ -172,6 +208,8 @@ function MyAccount() {
                 className="rounded shadow appearance-none border py-2 px-3 text-grey-darker leading-tight
             focus:outline-none focus:shadow-outline w-[85%]"
                 required
+                value={state}
+                onChange={(e) => setState(e.target.value)}
               >
                 <option value="Abia">Abia</option>
                 <option value="Adamawa">Adamawa</option>
@@ -192,6 +230,8 @@ function MyAccount() {
                 placeholder="Enter your city..."
                 required
                 className="w-[85%]"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
             </div>
             {/* zip code */}
@@ -202,6 +242,8 @@ function MyAccount() {
                 name="zip"
                 placeholder="Enter your zip code..."
                 className="w-[85%]"
+                value={zipCode}
+                onChange={(e) => setZipCode(e.target.value)}
               />
             </div>
             {/* phone number */}
@@ -218,6 +260,8 @@ function MyAccount() {
                 placeholder="Enter your phone number..."
                 required
                 className="w-[85%]"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
             {/* email */}
@@ -234,6 +278,8 @@ function MyAccount() {
                 placeholder="Enter your email address..."
                 required
                 className="w-[85%]"
+                value={email}
+                onChange={(e) => setEmailr(e.target.value)}
               />
             </div>
             {/* Save Address */}
@@ -247,8 +293,12 @@ function MyAccount() {
             </div>
           </form>
           <div className="flex flex-col gap-4 w-20 mt-4">
-            <button className="px-4 py-1 bg-[var(--color-primary)] text-white">
-              Edit
+            <button
+              className="px-4 py-1 bg-[var(--color-primary)] text-white"
+              onClick={handleUpdate}
+              disabled={isUpdating}
+            >
+              {isUpdating ? "Updating..." : "Update Profile"}
             </button>
 
             <button className="px-4 py-1 bg-[var(--color-primary)] text-white">
@@ -259,6 +309,6 @@ function MyAccount() {
       </div>
     </div>
   );
-}
+};
 
 export default MyAccount;

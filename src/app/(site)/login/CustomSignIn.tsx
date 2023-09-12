@@ -1,22 +1,13 @@
 "use client";
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
-import axios from "axios";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
-import Cookies from "js-cookie"; // Import the Cookies type specifically
-import "./login.css";
-import jwtDecode from "jwt-decode";
+import Cookies from "js-cookie";
 
-interface SignInResponse {
-  error?: string | null; // Make sure error is either undefined or a string
-  token: string;
-  // other properties...
-}
-
-const CustomSignIn = () => {
+export const CustomSignIn = () => {
   const { data: session } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +15,6 @@ const CustomSignIn = () => {
   const token = Cookies.get("token");
   // const isLogin = token && jwtDecode(token) ? true : false;
   // console.log(session);
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -36,20 +26,15 @@ const CustomSignIn = () => {
     //       password,
     //     }
     //   );
-
     //   const bearerToken = response.data.token;
     //   // Save the bearer token as a JWT token (e.g., in a cookie)
     //   Cookies.set("token", bearerToken);
-
     //   // Redirect to /account on successful login
-
     //   router.push("/account");
-
     //   // Show success toast
     //   // toast.success("Login successful", {
     //   //   duration: 2000, // 2 seconds
     //   // });
-
     //   // Handle login failure here
     // } catch (error) {
     //   // Handle any network or other errors here
@@ -57,11 +42,14 @@ const CustomSignIn = () => {
     //   console.error("Error:", error);
     // }
     try {
-      const result: SignInResponse | undefined = await signIn("credentials", {
-        email,
-        password,
-        redirect: false, // Prevent automatic redirection
-      });
+      const result: { error?: string } | undefined = await signIn(
+        "credentials",
+        {
+          email,
+          password,
+          redirect: false, // Prevent automatic redirection
+        }
+      );
 
       if (result !== undefined) {
         // Check if result is defined
@@ -70,7 +58,7 @@ const CustomSignIn = () => {
           console.error("Authentication error:", result.error);
         } else {
           // Authentication was successful, redirect to the "/account" page
-          router.push("/account");
+          // router.push('/account');
           toast.success("Welcome");
         }
       } else {
@@ -158,5 +146,3 @@ const CustomSignIn = () => {
     </div>
   );
 };
-
-export default CustomSignIn;

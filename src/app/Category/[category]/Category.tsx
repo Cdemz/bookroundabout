@@ -78,16 +78,30 @@ export default function Home({ params }: Props) {
           <p className="text-xl">/{category}</p>
         </div>
       </div>
+      {/* best selling */}
+
+      <section className="container mx-auto bg-white ">
+        <div className="mx-auto my-4 text-center py-2 ">
+          <h1 className="text-[var(--color-text)] font-bold lucky text-xl">
+            Our Best Selling {category} Books
+          </h1>
+          <p className="text-[var(--color-text)]   lucky">
+            i suppose put sort or filter for here
+          </p>
+        </div>
+      </section>
+
+      {/* ending */}
       <div className="text-black">
         {books.length > 0 ? (
           <>
             <section>
-              <div className="mx-auto px-2 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 py-4">
+              <div className="mx-auto px-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 py-4">
                 {books.map((item) => (
                   <div key={item.img} className=" ">
-                    <div className="flex flex-col gap-4 h-[100%]">
+                    <div className="flex flex-col gap-4 h-[100%]  ">
                       <img
-                        className="w-[150px] h-[170px] object-cover mx-auto"
+                        className="w-[150px] h-[170px] object-cover "
                         src={item.img}
                         alt=""
                       />
