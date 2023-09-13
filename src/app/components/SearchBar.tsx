@@ -22,7 +22,7 @@ function SearchBar() {
           <input
             id="searchInput"
             type="text"
-            className="bg-transparent focus:outline-none ml-4 outline-none border-none"
+            className="bg-transparent focus:outline-none ml-4 outline-none border-none text-white"
             placeholder="Search here..."
             onChange={(event) => {
               setSearchTerm(event.target.value);

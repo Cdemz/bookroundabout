@@ -2,6 +2,18 @@ import type { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import jwt from "jsonwebtoken";
+
+interface User {
+  id: string;
+  email: string;
+  role: string;
+  // Add other user properties as needed
+}
+
+interface CustomSession {
+  user: User;
+}
+
 export const options: NextAuthOptions = {
   providers: [
     GitHubProvider({

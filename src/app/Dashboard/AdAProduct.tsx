@@ -38,7 +38,11 @@ const AdAProduct = () => {
   return (
     <div className=" overflow-hidden ">
       <main className="container mx-auto bg-white ">
-        <SearchBar />
+        <div className="mt-2">
+          {" "}
+          <SearchBar />
+        </div>
+
         <div className=" flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
           <h1 className="font-bold text-2xl  text-black lucky ">
             Best Sellers

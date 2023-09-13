@@ -11,8 +11,8 @@ import "./login.css";
 import jwtDecode from "jwt-decode";
 
 interface SignInResponse {
-  error?: string | null; // Make sure error is either undefined or a string
-  token: string;
+  error?: string | null;
+  token?: string;
   // other properties...
 }
 
