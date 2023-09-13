@@ -71,7 +71,7 @@ const CustomSignIn = () => {
         } else {
           // Authentication was successful, redirect to the "/account" page
           router.push("/account");
-          toast.success("Welcome");
+          toast("Welcome");
         }
       } else {
         toast.error("Authentication result is undefined.");
