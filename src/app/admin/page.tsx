@@ -4,7 +4,7 @@ import Dashboard from "../Dashboard/dDashboard";
 
 const Admin = () => {
   return (
-    <div className=" ">
+    <div className=" md:h-[70%] overflow-x-scroll">
       <Dashboard />
     </div>
   );

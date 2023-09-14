@@ -13,7 +13,7 @@ const page = () => {
   if (!session) {
     // User is not authenticated; display a message and a login link
     return (
-      <div>
+      <div className="">
         <p>Please log in to access this page.</p>
         <Link href="/login">Login</Link>
       </div>

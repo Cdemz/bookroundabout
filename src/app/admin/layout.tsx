@@ -28,7 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="flex bg-[var(--color-text)]">
+    <div className="flex bg-[var(--color-text)] h-[70%]">
       <div className="h-full ">
         <Button onClick={handleOpen} className="hidden">
           Open modal
@@ -49,7 +49,7 @@ const Layout = ({ children }: LayoutProps) => {
           </Box>
         </Modal>
         <div className="h-full">
-          <nav className="bg-white pl-2 pr-2 py-6 hidden md:block h-[100%] mt-8 ">
+          <nav className="bg-white pl-2 pr-2 py-6 hidden md:block mt-8 ">
             <ul className="flex flex-col gap-4">
               <li>
                 <Link
@@ -87,7 +87,7 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
       </div>
 
-      <main className="">{children}</main>
+      <main className="w-auto">{children}</main>
       {/* Rest of your component remains the same */}
     </div>
   );

@@ -15,13 +15,13 @@ const CartPage = () => {
     <div className="max-w-screen-2xl mx-auto px-6 md:flex gap-10 py-4">
       {productData.length > 0 ? (
         <>
-          <div className="  col-span-4 p-4 rounded-lg">
+          <div className="  col-span-4 p-4 rounded-lg md:w-[70%]">
             <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1 text-center">
               <p className="text-2xl font-semibold text-[var(--color-primary)] lato">
                 My Cart
               </p>
             </div>
-            <div className="pt-2 flex flex-col gap-2">
+            <div className="pt-2 flex flex-col gap-2 ">
               {productData.map((item: StoreProduct) => (
                 <div key={item.id}>
                   <CartProduct item={item} />
