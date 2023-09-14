@@ -41,15 +41,13 @@ export const CustomSignIn = () => {
     //   toast.error("Error occurred"); // Show error toast
     //   console.error("Error:", error);
     // }
+
     try {
-      const result: { error?: string } | undefined = await signIn(
-        "credentials",
-        {
-          email,
-          password,
-          redirect: false, // Prevent automatic redirection
-        }
-      );
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Prevent automatic redirection
+      });
 
       if (result !== undefined) {
         // Check if result is defined
@@ -81,62 +79,64 @@ export const CustomSignIn = () => {
             MY ACCOUNT
           </h1>
           <form className="form" method="POST" onSubmit={handleLogin}>
-            <div className="flex-column">
-              <label>Email</label>
-            </div>
-            <div className="inputForm">
-              <input
-                type="email"
-                className="input text-[var(--color-text)]"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your Email"
-              />
-            </div>
-
-            <div className="flex-column">
-              <label>Password</label>
-            </div>
-            <div className="inputForm">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="input text-[var(--color-text)]"
-                placeholder="Enter your Password"
-              />
-            </div>
-
-            <div className="flex-row">
-              <div>
-                <span className="span">Forgot password?</span>
+            <div className="md:w-[50%]">
+              <div className="flex-column">
+                <label>Email</label>
               </div>
-            </div>
-            <button className="button-submit bg-black" type="submit">
-              Sign In
-            </button>
-            <div className=""></div>
-            <p className="p">
-              Don't have an account?{" "}
-              <span className="span">
-                <Link href="/register">Sign Up</Link>
-              </span>
-            </p>
-            <p className="p line">Or With</p>
+              <div className="inputForm">
+                <input
+                  type="email"
+                  className="input text-[var(--color-text)]"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your Email"
+                />
+              </div>
 
-            <div className="flex-row text-[var(--color-text)]">
-              <button className="btn google" onClick={() => signIn("github")}>
-                <FcGoogle />
-                Google
+              <div className="flex-column">
+                <label>Password</label>
+              </div>
+              <div className="inputForm">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="input text-[var(--color-text)]"
+                  placeholder="Enter your Password"
+                />
+              </div>
+
+              <div className="flex-row">
+                <div>
+                  <span className="span">Forgot password?</span>
+                </div>
+              </div>
+              <button className="button-submit bg-black" type="submit">
+                Sign In
               </button>
+              <div className=""></div>
+              <p className="p">
+                Don't have an account?{" "}
+                <span className="span">
+                  <Link href="/register">Sign Up</Link>
+                </span>
+              </p>
+              <p className="p line">Or With</p>
+
+              <div className="flex-row text-[var(--color-text)]">
+                <button className="btn google" onClick={() => signIn("github")}>
+                  <FcGoogle />
+                  Google
+                </button>
+              </div>
+              <p className="p">
+                New user?{" "}
+                <span className="span">
+                  <Link href="/register">Register</Link>
+                </span>
+              </p>
             </div>
-            <p className="p">
-              New user?{" "}
-              <span className="span">
-                <Link href="/register">Register</Link>
-              </span>
-            </p>
           </form>
         </div>
       ) : (
