@@ -1,94 +1,90 @@
 import type { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import jwt from "jsonwebtoken";
+import axios from "axios";
 
 interface User {
   id: string;
   email: string;
-  role: string;
+  role: string; // Add the 'role' property
+  token: string; // Add the 'token' property
   // Add other user properties as needed
 }
 
-interface CustomSession {
-  user: User;
-}
-
 export const options: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
     CredentialsProvider({
+      name: "Sign in",
       credentials: {
-        email: { label: "Email", type: "email" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials) => {
+      async authorize(credentials, req) {
+        // Include req as a parameter if needed
+        if (!credentials?.email || !credentials.password) {
+          return null;
+        }
+
         try {
-          const res = await fetch("http://booksra.helioho.st/v1/user/login", {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: { "Content-Type": "application/json" },
-          });
+          const response = await axios.post(
+            "http://booksra.helioho.st/v1/user/login",
+            {
+              email: credentials.email,
+              password: credentials.password,
+            }
+          );
 
-          if (!res.ok) {
-            // Handle non-success HTTP status codes (e.g., 401 Unauthorized)
-            console.error("API Error: Status Code", res.status);
-            return null; // Return null for authentication failure
-          }
-
-          const data = await res.json();
-          // console.log("API Response:", data);
-          // console.log("APponse:", data.token);
-
-          if (data.token) {
-            // Token successfully retrieved from the API
+          if (response.status === 200 && response.data?.user) {
+            const user = response.data.user;
             return {
-              token: data.token, // Provide a default role if not available
-              // Add other user properties if available in the API response
-            };
-          } else {
-            // Token not found in the API response
-            console.error("Authentication failed: Token not found");
-            return null; // Return null for other API response statuses
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              randomKey: "Hey cool",
+              role: "user", // You can set the role as needed
+              token: "tokenValue", // You can set the token value as needed
+            } as User; // Adjust the return type here
           }
         } catch (error) {
-          // Handle other errors, such as network issues
-          console.error("API Error:", error);
-          return null; // Return null for errors
+          console.error("Error during API login:", error);
         }
+
+        return null;
       },
     }),
   ],
   callbacks: {
-    async jwt({ token }) {
-      if (token) {
-        try {
-          // Decode the token to get user information
-          const decodedToken = jwt.decode(token);
-
-          if (decodedToken) {
-            // Assign decoded values to the token
-            token.id = decodedToken.id;
-            token.email = decodedToken.email;
-            token.role = decodedToken.role;
-          } else {
-            // Handle the case when token decoding fails
-            console.error("Token decoding failed");
-          }
-        } catch (error) {
-          // Handle any errors that occur during decoding
-          console.error("JWT Decoding Error:", error);
-        }
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          randomKey: token.randomKey,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      if (user) {
+        const u = user as unknown as any;
+        return {
+          ...token,
+          id: u.id,
+          randomKey: u.randomKey,
+        };
       }
       return token;
-    },
-    async session({ session, token }) {
-      // Session callback: This is where you populate the session object
-      session.user = token;
-      return session;
     },
   },
   pages: {

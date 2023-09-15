@@ -152,7 +152,7 @@ const NavBar: FC = () => {
               <Link href="">Shop</Link>
             </li>
             <li>
-              <Link href="">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </nav>
@@ -339,6 +339,11 @@ const NavBar: FC = () => {
           <li className="p-2 border-b border-gray-600">
             <Link href="/" onClick={handleNav}>
               BookStores
+            </Link>
+          </li>
+          <li className="p-2 border-b border-gray-600">
+            <Link href="/contact" onClick={handleNav}>
+              Contact Us
             </Link>
           </li>
           <div>
