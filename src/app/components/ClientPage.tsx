@@ -22,7 +22,7 @@ export default function ClientPage() {
 
   return (
     <section className="flex flex-col gap-6 text-[var(--color-text)]">
-      <UserCard user={session?.user} pagetype={"Client"} />
+      {/* <UserCard user={session?.user} pagetype={"Client"} /> */}
     </section>
   );
 }

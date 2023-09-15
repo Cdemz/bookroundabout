@@ -8,12 +8,13 @@ function ProfilePage() {
     return <div>You are not authenticated.</div>;
   }
 
-  const userEmail = session.user.email;
+  const { user } = session;
+  console.log("user:", user.email);
 
   return (
     <div>
       <h1>Profile Page</h1>
-      <p>Email: {session.user.email}</p>
+      <p>Email: {user.email}</p>
 
       {/* Render other user details here */}
     </div>
