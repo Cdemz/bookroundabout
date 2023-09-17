@@ -13,11 +13,11 @@ import { FC, useState, useContext } from "react";
 import MenuItem from "./MenuItem";
 import { useSelector, useDispatch } from "react-redux";
 import { StateProps, StoreProduct } from "../type";
-import RootState from "../store/store";
+import { RootState } from "../redux/store";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import SideCart from "./sideCart";
-import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import LogOut from "./LogOut";
 
 // import useMediaQuery from "@mui/material/useMediaQuery";
 // import { useTheme } from "@mui/material/styles";
@@ -41,6 +41,7 @@ const NavBar: FC = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [allData, setAllData] = useState([]);
+  const userData = useSelector((state: RootState) => state.user?.userData);
   const { productData, favoriteData, userInfo, allProducts } = useSelector(
     (state: StateProps) => state.next
   );
@@ -347,14 +348,14 @@ const NavBar: FC = () => {
             </Link>
           </li>
           <div>
-            {session ? (
+            {userData ? (
               <div className="flex flex-col gap-2">
                 {/* User is logged in */}
                 <Link href="/account" onClick={handleNav}>
                   <button>My Account</button>{" "}
                   {/* This button only appears when logged in */}
                 </Link>
-                <button onClick={() => signOut()}>Logout</button>
+                <LogOut />
               </div>
             ) : (
               <div>

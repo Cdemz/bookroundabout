@@ -76,6 +76,7 @@ export interface StateProps {
   favoriteData: [];
   item: [];
   userInfo: null | string;
+  userData: [];
   next: any;
 }
 

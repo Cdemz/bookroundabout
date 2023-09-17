@@ -1,96 +1,210 @@
-import type { NextAuthOptions } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials";
-import axios from "axios";
+// import type { NextAuthOptions } from "next-auth";
+// import { JWT } from "next-auth/jwt";
+// import GitHubProvider from "next-auth/providers/github";
+// import CredentialsProvider from "next-auth/providers/credentials";
 
-interface User {
-  id: string;
-  email: string;
-  role: string; // Add the 'role' property
-  token: string; // Add the 'token' property
-  // Add other user properties as needed
-}
+// // Define a custom user type that matches your user data structure
+// interface User {
+//   id: string;
+//   role: string;
+//   email: string;
+//   // Add any other fields you need
+// }
 
-export const options: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
-  providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
-    CredentialsProvider({
-      name: "Sign in",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "example@example.com",
-        },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        // Include req as a parameter if needed
-        if (!credentials?.email || !credentials.password) {
-          return null;
-        }
+// interface Credentials {
+//   email: string;
+//   password: string;
+// }
 
-        try {
-          const response = await axios.post(
-            "http://booksra.helioho.st/v1/user/login",
-            {
-              email: credentials.email,
-              password: credentials.password,
-            }
-          );
+// export const options: NextAuthOptions = {
+//   session: {
+//     strategy: "jwt",
+//   },
+//   providers: [
+//     GitHubProvider({
+//       clientId: process.env.GITHUB_ID as string,
+//       clientSecret: process.env.GITHUB_SECRET as string,
+//     }),
+//     CredentialsProvider({
+//       name: "Sign in",
+//       credentials: {
+//         email: { label: "Email", type: "email" },
+//         password: { label: "Password", type: "password" },
+//       },
 
-          if (response.status === 200 && response.data?.user) {
-            const user = response.data.user;
-            return {
-              id: user.id,
-              email: user.email,
-              name: user.name,
-              randomKey: "Hey cool",
-              role: "user", // You can set the role as needed
-              token: "tokenValue", // You can set the token value as needed
-            } as User; // Adjust the return type here
-          }
-        } catch (error) {
-          console.error("Error during API login:", error);
-        }
+//       authorize: async (credentials) => {
+//         // You can implement your authentication logic here.
+//         // Send credentials to your API and get the token
+//         const response = await fetch('http://booksra.helioho.st/v1/user/login', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(credentials),
+//         });
 
-        return null;
-      },
-    }),
-  ],
-  callbacks: {
-    session: ({ session, token }) => {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-          randomKey: token.randomKey,
-        },
-      };
-    },
-    jwt: ({ token, user }) => {
-      if (user) {
-        const u = user as unknown as any;
-        return {
-          ...token,
-          id: u.id,
-          randomKey: u.randomKey,
-        };
-      }
-      return token;
-    },
-  },
-  pages: {
-    signIn: "/login", // Use the custom sign-in page
-    newUser: "/register", // Do not use a custom new user creation page
-  },
-};
+//         if (response.ok) {
+//           const data = await response.json();
+//           // Return an object with user data and token
+//           return Promise.resolve(data);
+//         } else {
+//           // Return null if authentication failed
+//           return Promise.resolve(null);
+//         }
+//       },
+//     }),
+//   ],
+//   callbacks: {
+//     async jwt(token: JWT, user: User | null) {
+//       // Add the user data to the token
+//       if (user) {
+//         token.id = user.id;
+//         token.role = user.role;
+//         token.email = user.email;
+//         // Add any other fields you need from the user data
+//       }
+//       return token; // Return the updated token
+//     },
+//   },
+//   pages: {
+//     signIn: "/login",
+//     newUser: "/register",
+//   },
+// };
 
-export default options;
+// export default options;
+
+// import type { NextAuthOptions } from "next-auth";
+// import { Session } from "next-auth"; // Import Session and JWT types
+// import { JWT } from "next-auth/jwt";
+// import GitHubProvider from "next-auth/providers/github";
+// import CredentialsProvider from "next-auth/providers/credentials";
+// import axios from "axios";
+// import { NextApiRequest } from 'next';// Import NextApiRequest and NextApiResponse
+// import { AdapterUser} from 'next-auth/adapters';
+
+// // Define a custom user type that matches your user data structure
+// interface User {
+//   id: string;
+//   role: string;
+//   firstName: string;
+//   lastName: string;
+//   country: string;
+//   companyName: string;
+//   address: string;
+//   zipCode: string;
+//   state: string;
+//   phoneNumber: string;
+//   email: string;
+//   password: string;
+//   passwordConfirm: string;
+//   city: string;
+//   token: string;
+//   accessToken: string;
+//   expires: string;
+//   jwt: string;
+
+// }
+
+// interface Credentials {
+//   email: string;
+//   password: string;
+// }
+
+// interface CustomSession extends Session {
+//   jwt: string;
+// }
+
+// const AUTHENTICATION = axios.create(); // Create Axios instance for authentication requests
+// const USERS = axios.create(); // Create Axios instance for user requests
+
+// // Configure Axios instances as needed (base URL, headers, etc.)
+
+// type CustomNextApiRequest = NextApiRequest & {
+
+//   // Add any additional properties you need here
+// };
+
+// export const options: NextAuthOptions = {
+//   session: {
+//     strategy: "jwt",
+//   },
+//   providers: [
+//     GitHubProvider({
+//       clientId: process.env.GITHUB_ID as string,
+//       clientSecret: process.env.GITHUB_SECRET as string,
+//     }),
+//     CredentialsProvider({
+//       name: "Sign in",
+//       credentials: {
+//         email: { label: "Email", type: "email" },
+//         password: { label: "Password", type: "password" },
+//       },
+
+//       authorize: async (credentials) => {
+//         // Your authorization logic here
+//         if (!credentials) {
+//           return null;
+//         }
+
+//         const { email, password } = credentials;
+
+//         // Request to sign in using the AUTHENTICATION Axios instance
+//         const signInRequest = await AUTHENTICATION.post(
+//           'http://booksra.helioho.st/v1/user/login',
+//           { email, password },
+//           { headers: { 'Content-Type': 'application/json' } }
+//         );
+
+//         const { data } = signInRequest;
+//         const { accessToken } = data;
+
+//         // After sign-in, request user data to create a session with a complete profile
+//         const userRequest = await USERS.get(
+//           'http://booksra.helioho.st/v1/user',
+//           {
+//             headers: {
+//               Authorization: `Bearer ${accessToken}`,
+//               'Content-Type': 'application/json',
+//             },
+//           }
+//         );
+
+//         const { data: userData } = userRequest;
+
+//         if ((userRequest.status as number) === 200) {
+//           const user: User = { ...userData, accessToken };
+//           return user;
+//         }
+
+//         throw new Error(data);
+//       }
+//     }),
+//   ],
+//   callbacks: {
+//     jwt: async ({ token, user }) => {
+//       // user is only available the first time a user signs in authorized
+//       if (user && typeof user === 'object' && 'jwt' in user && typeof user.jwt === 'string') {
+//         return {
+//           ...token,
+//           jwt: user.jwt,
+//         };
+//       }
+//       return token;
+//      },
+//      session: async ({ session, token }) => {
+//       if (token) {
+//         const customSession = session as CustomSession;
+//         customSession.jwt = token.jwt;
+//         return customSession;
+//       }
+//       return session;
+//     },
+//  },
+//   pages: {
+//     signIn: "/login",
+//     newUser: "/register",
+//   },
+// };
+
+// export default options;
