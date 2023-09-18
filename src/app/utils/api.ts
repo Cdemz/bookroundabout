@@ -47,12 +47,7 @@ export const fetchUserData = async () => {
   console.log("it ran");
   const token = localStorage.getItem("token");
   console.log("here:", { token });
-  // const response = await fetch("http://booksra.helioho.st/v1/user", {
-  //   method: "GET",
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // });
+
   try {
     const response = await axios.get(
       `${API_BASE_URL}
@@ -68,6 +63,37 @@ export const fetchUserData = async () => {
   } catch (error) {
     console.log(error);
     console.log("omo it failed");
+    throw error;
+  }
+};
+
+export const updateUser = async (userData: UserData) => {
+  const token = localStorage.getItem("token");
+  console.log("from update:", { token });
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}`, // Your API endpoint here
+      userData, // Send the user data you want to update
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    console.log("update 2", userData, "res:", response);
+
+    // Check if the response contains a new token
+    if (response.headers && response.headers.authorization) {
+      const newToken = response.headers.authorization.replace("Bearer ", "");
+      localStorage.setItem("token", newToken); // Save the new token in local storage
+      console.log("from update new:", { token });
+      localStorage.setItem("userData", JSON.stringify(userData));
+      console.log("Updated userData:", userData);
+    }
+
+    // localStorage.removeItem("userData");
+    console.log("update", response.data);
+    return response.data;
+  } catch (error) {
+    console.log("fela:", error);
     throw error;
   }
 };

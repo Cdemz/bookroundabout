@@ -9,10 +9,10 @@ export function useAuthMiddleware() {
     // Check if the user is authenticated by verifying the presence of a token
     const token = localStorage.getItem("token");
 
-    if (!token) {
-      // If not authenticated, redirect to the login page
-      router.push("/login");
-    }
+    // if (!token) {
+    //   // If not authenticated, redirect to the login page
+    //   router.push("/login");
+    // }
 
     // Fetch user data and store it in localStorage
     const fetchUserData = async () => {

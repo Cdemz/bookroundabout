@@ -40,12 +40,25 @@ interface UserData {
   address: string;
   zipCode: string;
   state: string;
-  phoneNumber: string;
+  phone: string;
   city: string;
   // Add other properties as needed
 }
 
 export interface UserState {
+  name: string;
+  email: string;
+  gender: string;
+  firstName: string;
+  lastName: string;
+  country: string;
+  companyName: string;
+  address: string;
+  zipCode: string;
+  state: string;
+  phone: string;
+  town: string;
+  isAuthenticated: boolean;
   loading: boolean;
   userData: UserData | null; // Define UserData type according to your data structure
   error: string | null;

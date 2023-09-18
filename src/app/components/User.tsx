@@ -18,7 +18,7 @@ const UserProfile = () => {
       {userData ? (
         <div className="text-red-500">
           <h1>User Profile</h1>
-          <p>Name: {userData.firstName}</p>
+          <p>First Name: {userData.firstName}</p>
           <p>Email: {userData.email}</p>
         </div>
       ) : (

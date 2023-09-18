@@ -4,7 +4,8 @@ import { registerUser } from "../utils/api"; // Import your API function for reg
 import axios from "axios";
 import { loginUser } from "../utils/api";
 import { fetchUserData } from "../utils/api";
-import { AnyAction } from "redux";
+import { updateUser } from "../utils/api";
+
 // Action Types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -161,6 +162,42 @@ export const CLEAR_USER_DATA = "CLEAR_USER_DATA"; // Define the action type
 export const clearUserData = () => ({
   type: CLEAR_USER_DATA,
 });
+
+export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
+
+// Action Creators
+export const updateUserRequest = () => ({
+  type: UPDATE_USER_REQUEST,
+});
+
+export const updateUserSuccess = (updatedUserData: any) => ({
+  type: UPDATE_USER_SUCCESS,
+  payload: updatedUserData,
+});
+
+export const updateUserFailure = (error: string) => ({
+  type: UPDATE_USER_FAILURE,
+  payload: error,
+});
+
+// Async Action Creator
+export const updateUserAction = (userData: any) => {
+  return async (dispatch: Dispatch) => {
+    dispatch(updateUserRequest());
+
+    try {
+      const updatedUserData = await updateUser(userData); // Call the API to update user data
+
+      // Dispatch a success action with the updated user data
+      dispatch(updateUserSuccess(updatedUserData));
+    } catch (error: any) {
+      // Dispatch a failure action with the error message
+      dispatch(updateUserFailure(error.message));
+    }
+  };
+};
 
 // Reducer for the user state
 // const userReducer = (
