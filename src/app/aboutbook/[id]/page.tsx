@@ -1,6 +1,6 @@
 "use client";
 import store from "@/app/store/store";
-import { SessionProvider } from "next-auth/react";
+
 import React from "react";
 import { Provider } from "react-redux";
 import About from "./about";
@@ -22,9 +22,7 @@ export default function Home({ params }: Props) {
 
   return (
     <Provider store={store}>
-      <SessionProvider>
-        <About params={{ id: bookId }} />
-      </SessionProvider>
+      <About params={{ id: bookId }} />
     </Provider>
   );
 }
