@@ -38,7 +38,7 @@ const AdAProduct = () => {
   return (
     <div className=" overflow-hidden ">
       <main className="container mx-auto bg-white ">
-        <div className="mt-2">
+        <div className="mt-4">
           {" "}
           <SearchBar />
         </div>

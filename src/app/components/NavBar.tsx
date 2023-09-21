@@ -328,17 +328,13 @@ const NavBar: FC = () => {
           </Menu>
           {/* endind */}
           <li className="p-2 border-b border-gray-600">
-            <Link href="/" onClick={handleNav}>
+            <Link href="/aboutUs" onClick={handleNav}>
               About us
             </Link>
           </li>
+
           <li className="p-2 border-b border-gray-600">
-            <Link href="/" onClick={handleNav}>
-              Wholesale Purchase{" "}
-            </Link>
-          </li>
-          <li className="p-2 border-b border-gray-600">
-            <Link href="/" onClick={handleNav}>
+            <Link href="/ourStores" onClick={handleNav}>
               BookStores
             </Link>
           </li>

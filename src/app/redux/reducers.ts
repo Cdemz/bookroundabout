@@ -12,6 +12,12 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
   CLEAR_USER_DATA,
+  REQUEST_PASSWORD_RESET_REQUEST,
+  REQUEST_PASSWORD_RESET_SUCCESS,
+  REQUEST_PASSWORD_RESET_FAILURE,
+  CONFIRM_PASSWORD_RESET_REQUEST,
+  CONFIRM_PASSWORD_RESET_SUCCESS,
+  CONFIRM_PASSWORD_RESET_FAILURE,
 } from "./actions";
 
 export interface LoginState {
@@ -23,13 +29,6 @@ export interface LoginState {
 }
 
 // Adjust the 'initialState' to match 'LoginState'
-const initialState: LoginState = {
-  userData: null,
-  loading: false,
-  success: false,
-  message: "",
-  error: null,
-};
 
 export interface RegistrationState {
   loading: boolean;
@@ -50,6 +49,20 @@ const initialLoginState: LoginState = {
   userData: null, // Initialize 'userData' here
   error: null, // Initialize 'error' here
   // Initialize other login state properties here
+};
+
+export interface PasswordResetState {
+  loading: boolean;
+  success: boolean;
+  message: string;
+  error: string | null;
+}
+
+const initialState: PasswordResetState = {
+  loading: false,
+  success: false,
+  message: "",
+  error: null,
 };
 
 const registration = (
@@ -105,7 +118,10 @@ const login = (state = initialLoginState, action: any): LoginState => {
   }
 };
 
-export const userReducer = (state = initialState, action: any): LoginState => {
+export const userReducer = (
+  state = initialState,
+  action: any
+): PasswordResetState => {
   switch (action.type) {
     case FETCH_USER_REQUEST:
       return {
@@ -116,28 +132,60 @@ export const userReducer = (state = initialState, action: any): LoginState => {
     case FETCH_USER_SUCCESS:
       return {
         ...state,
-        userData: action.payload,
         loading: false,
         error: null,
       };
-
     case FETCH_USER_FAILURE:
       return {
         ...state,
-        userData: null,
         loading: false,
         error: action.payload,
       };
-
     case CLEAR_USER_DATA:
       // Clear user data from the store
       return {
         ...state,
-        userData: null,
         loading: false,
         error: null,
       };
+    default:
+      return state;
+  }
+};
 
+// redux/passwordResetReducer.ts
+
+const passwordResetReducer = (
+  state: PasswordResetState = initialState, // Use PasswordResetState here
+  action: any
+): PasswordResetState => {
+  switch (action.type) {
+    case REQUEST_PASSWORD_RESET_REQUEST:
+    case CONFIRM_PASSWORD_RESET_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+      };
+    case REQUEST_PASSWORD_RESET_SUCCESS:
+    case CONFIRM_PASSWORD_RESET_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        message: action.payload,
+        error: null,
+      };
+    case REQUEST_PASSWORD_RESET_FAILURE:
+    case CONFIRM_PASSWORD_RESET_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        message: action.payload,
+        error: action.error,
+      };
     default:
       return state;
   }
@@ -149,6 +197,7 @@ const rootReducer = combineReducers({
   login,
   user: userReducer,
   next: nextReducer,
+  passwordReset: passwordResetReducer,
 });
 
 export default rootReducer;

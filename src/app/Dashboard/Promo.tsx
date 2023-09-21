@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import "../cssstyles/Abook.css";
 import { BiBookAdd } from "react-icons/bi";
+import Link from "next/link";
 
 const Promo = () => {
   return (
@@ -21,10 +22,12 @@ const Promo = () => {
           {" "}
           Handpick the books that define your bookstore
         </h2>
-        <div className="Abook flex gap-4 px-4 py-2 items-center w-[14rem] mt-2">
-          <BiBookAdd />
-          <b>Add new book</b>
-        </div>
+        <Link href="/addBook">
+          <div className="Abook flex gap-4 px-4 py-2 items-center w-[14rem] mt-2">
+            <BiBookAdd />
+            <b>Add new book</b>
+          </div>
+        </Link>
       </div>
     </div>
   );

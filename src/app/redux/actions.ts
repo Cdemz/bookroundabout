@@ -5,6 +5,7 @@ import axios from "axios";
 import { loginUser } from "../utils/api";
 import { fetchUserData } from "../utils/api";
 import { updateUser } from "../utils/api";
+import { requestPasswordReset, confirmPasswordReset } from "../utils/api";
 
 // Action Types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
@@ -74,7 +75,7 @@ export const loginUserAction = (userData: any) => {
     try {
       // Make the API call to log in the user
       const response = await loginUser(userData);
-      console.log("Response:", response);
+      // console.log("Response:", response);
 
       if (response.success) {
         dispatch(loginSuccess(response.message));
@@ -198,6 +199,74 @@ export const updateUserAction = (userData: any) => {
     }
   };
 };
+
+// forgotPasswordActions.ts
+
+// redux/actions.ts
+
+// Action types
+export const REQUEST_PASSWORD_RESET_REQUEST = "REQUEST_PASSWORD_RESET_REQUEST";
+export const REQUEST_PASSWORD_RESET_SUCCESS = "REQUEST_PASSWORD_RESET_SUCCESS";
+export const REQUEST_PASSWORD_RESET_FAILURE = "REQUEST_PASSWORD_RESET_FAILURE";
+
+export const CONFIRM_PASSWORD_RESET_REQUEST = "CONFIRM_PASSWORD_RESET_REQUEST";
+export const CONFIRM_PASSWORD_RESET_SUCCESS = "CONFIRM_PASSWORD_RESET_SUCCESS";
+export const CONFIRM_PASSWORD_RESET_FAILURE = "CONFIRM_PASSWORD_RESET_FAILURE";
+
+// Action creators for requesting password reset
+export const requestPasswordResetRequest = () => ({
+  type: REQUEST_PASSWORD_RESET_REQUEST,
+});
+
+export const requestPasswordResetSuccess = (message: string) => ({
+  type: REQUEST_PASSWORD_RESET_SUCCESS,
+  payload: message,
+});
+
+export const requestPasswordResetFailure = (error: string) => ({
+  type: REQUEST_PASSWORD_RESET_FAILURE,
+  payload: error,
+});
+
+// Action creator for confirming password reset
+export const confirmPasswordResetRequest = () => ({
+  type: CONFIRM_PASSWORD_RESET_REQUEST,
+});
+
+export const confirmPasswordResetSuccess = (message: string) => ({
+  type: CONFIRM_PASSWORD_RESET_SUCCESS,
+  payload: message,
+});
+
+export const confirmPasswordResetFailure = (error: string) => ({
+  type: CONFIRM_PASSWORD_RESET_FAILURE,
+  payload: error,
+});
+
+// Action to request password reset
+export const requestPasswordResetAction =
+  (email: string) => async (dispatch: Dispatch) => {
+    try {
+      dispatch(requestPasswordResetRequest());
+      const response = await requestPasswordReset(email);
+      dispatch(requestPasswordResetSuccess(response.message));
+    } catch (error: any) {
+      dispatch(requestPasswordResetFailure(error.message));
+    }
+  };
+
+// Action to confirm password reset
+export const confirmPasswordResetAction =
+  (email: string, token: string, newPassword: string) =>
+  async (dispatch: Dispatch) => {
+    try {
+      dispatch(confirmPasswordResetRequest());
+      const response = await confirmPasswordReset(email, token, newPassword);
+      dispatch(confirmPasswordResetSuccess(response.message));
+    } catch (error: any) {
+      dispatch(confirmPasswordResetFailure(error.message));
+    }
+  };
 
 // Reducer for the user state
 // const userReducer = (

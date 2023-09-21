@@ -183,13 +183,13 @@ export default function BookDetailPage({ params }: Props) {
 
                 <p className="text-sm text-gray-600">{book.description}</p>
                 <div className=" ">
-                  <button
+                  {/* <button
                     onClick={handleAddToFavorites}
                     className="px-3 py-2 md:w-96  border-2 border-[var(--color-primary)] text-[var(--color-primary)]  hover:bg-[var(--color-primary)] hover:text-white duration-300 rounded-full text-base font-semibold flex   gap-2"
                   >
                     <FaRegHeart size={20} />
                     Add to Wishlist
-                  </button>
+                  </button> */}
                 </div>
                 <div>
                   <button

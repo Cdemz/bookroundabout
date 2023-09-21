@@ -71,9 +71,13 @@ const CustomSignIn = () => {
               />
             </div>
 
-            <div className="flex-row">
+            <div className="flex-row mt-2">
               <div>
-                <span className="span">Forgot password?</span>
+                <Link href="/forgotPassword">
+                  <button>
+                    <span className="span">Forgot password?</span>
+                  </button>
+                </Link>
               </div>
             </div>
             <button className="button-submit bg-black" type="submit">

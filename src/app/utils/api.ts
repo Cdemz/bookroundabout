@@ -16,7 +16,7 @@ interface UserData {
 export const registerUser = async (userData: UserData) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/register`, userData);
-    console.log(response.data);
+    // console.log(response.data);
     const token = response?.data?.token || "";
     localStorage.setItem("token", token);
     fetchUserAction();
@@ -31,7 +31,7 @@ export const loginUser = async (userData: UserData) => {
     const response = await axios.post(`${API_BASE_URL}/login`, userData);
 
     // Save the token to local storage
-    console.log(response.data);
+    // console.log(response.data);
     const token = response?.data?.token || "";
     localStorage.setItem("token", token);
     fetchUserAction();
@@ -44,9 +44,9 @@ export const loginUser = async (userData: UserData) => {
 // Define other API functions with specific parameter types
 
 export const fetchUserData = async () => {
-  console.log("it ran");
+  // console.log("it ran");
   const token = localStorage.getItem("token");
-  console.log("here:", { token });
+  // console.log("here:", { token });
 
   try {
     const response = await axios.get(
@@ -57,19 +57,19 @@ export const fetchUserData = async () => {
       }
     );
 
-    console.log(response.data);
-    console.log("omo");
+    // console.log(response.data);
+    // console.log("omo");
     return response.data;
   } catch (error) {
-    console.log(error);
-    console.log("omo it failed");
+    // console.log(error);
+    // console.log("omo it failed");
     throw error;
   }
 };
 
 export const updateUser = async (userData: UserData) => {
   const token = localStorage.getItem("token");
-  console.log("from update:", { token });
+  // console.log("from update:", { token });
   try {
     const response = await axios.put(
       `${API_BASE_URL}`, // Your API endpoint here
@@ -78,22 +78,49 @@ export const updateUser = async (userData: UserData) => {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    console.log("update 2", userData, "res:", response);
+    // console.log("update 2", userData, "res:", response);
 
     // Check if the response contains a new token
     if (response.headers && response.headers.authorization) {
       const newToken = response.headers.authorization.replace("Bearer ", "");
       localStorage.setItem("token", newToken); // Save the new token in local storage
-      console.log("from update new:", { token });
+      // console.log("from update new:", { token });
       localStorage.setItem("userData", JSON.stringify(userData));
-      console.log("Updated userData:", userData);
+      // console.log("Updated userData:", userData);
     }
 
     // localStorage.removeItem("userData");
-    console.log("update", response.data);
+    // console.log("update", response.data);
     return response.data;
   } catch (error) {
-    console.log("fela:", error);
+    // console.log("fela:", error);
+    throw error;
+  }
+};
+
+export const requestPasswordReset = async (email: string) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}`, { email });
+    return response.data; // You can return any relevant data from the API response
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Function to confirm the password reset with a token and set a new password
+export const confirmPasswordReset = async (
+  email: string,
+  token: string,
+  newPassword: string
+) => {
+  try {
+    const response = await axios.put(`${API_BASE_URL}`, {
+      email,
+      token,
+      newPassword,
+    });
+    return response.data; // You can return any relevant data from the API response
+  } catch (error) {
     throw error;
   }
 };
