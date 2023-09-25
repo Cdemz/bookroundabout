@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { StateProps, StoreProduct } from "../type";
 import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSession } from "next-auth/react";
 
 const CartPayment = () => {
   const { productData, userInfo } = useSelector(
@@ -24,27 +23,27 @@ const CartPayment = () => {
   const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
   );
-  const { data: session } = useSession();
 
   const handleCheckout = async () => {
     const stripe = await stripePromise;
 
-    const response = await fetch("../api/checkout_session.tsx", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items: productData, email: session?.user?.email }),
-    });
-    const checkoutSession = await response.json();
+    // const response = await fetch("../api/checkout_session.tsx", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ items: productData, email: session?.user?.email }),
+    // });
+    // when payment is ready
+    // const checkoutSession = await response.json();
 
     // Redirecting user/customer to Stripe Checkout
-    const result: any = await stripe?.redirectToCheckout({
-      sessionId: checkoutSession.id,
-    });
-    if (result.error) {
-      alert(result?.error.message);
-    }
+    //   const result: any = await stripe?.redirectToCheckout({
+    //     sessionId: checkoutSession.id,
+    //   });
+    //   if (result.error) {
+    //     alert(result?.error.message);
+    //   }
   };
   return (
     <div className="flex flex-col gap-4 ">

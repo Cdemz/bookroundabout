@@ -16,7 +16,6 @@ import { StateProps, StoreProduct } from "../type";
 import { RootState } from "../redux/store";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import SideCart from "./sideCart";
-import { useSession } from "next-auth/react";
 import LogOut from "./LogOut";
 
 // import useMediaQuery from "@mui/material/useMediaQuery";
@@ -35,8 +34,6 @@ const style = {
 };
 
 const NavBar: FC = () => {
-  const { data: session, status } = useSession();
-  // console.log(session);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

@@ -29,7 +29,7 @@ export interface RegistrationState {
   // Add any other properties you need for login state
 }
 
-interface UserData {
+export interface UserData {
   name: string;
   email: string;
   gender: string;

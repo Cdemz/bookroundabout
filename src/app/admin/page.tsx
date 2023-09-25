@@ -4,7 +4,7 @@ import Dashboard from "../Dashboard/dDashboard";
 
 const Admin = () => {
   return (
-    <div className="  h-[30%] ">
+    <div className="  h-[30%]rr ">
       <Dashboard />
     </div>
   );

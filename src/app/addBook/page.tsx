@@ -7,8 +7,8 @@ const page = () => {
     <div className="text-black ">
       <Layout>
         <section className="bg-white">
-          <div className="">
-            <div className="flex flex-col gap-2 border-gray-300 border-4 p-6">
+          <div className="w-[100vw]">
+            <form className="flex flex-col gap-2 border-gray-300 border-4 p-6 w-full">
               {/* book title  */}
               <div className="flex-col flex gap-2">
                 <label className="flex gap-1">
@@ -20,7 +20,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]w-full"
                   name="bookTitle"
                   placeholder="eg. Billy goes to school"
                   required
@@ -37,7 +37,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="category"
                   placeholder="What category is it?"
                   required
@@ -52,7 +52,7 @@ const page = () => {
                   </span>{" "}
                 </label>
                 <textarea
-                  className="border-2 border-gray-400 w-[85%] h-20 border-r-2 "
+                  className="border-2 border-gray-400  h-20 border-r-2 "
                   name="description"
                   placeholder="e.g. a very great book"
                   required
@@ -71,7 +71,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="price"
                   placeholder="how much?"
                   required
@@ -88,7 +88,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="bookCode"
                   placeholder="17000"
                   required
@@ -106,7 +106,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="genre"
                   placeholder="eg.action"
                   required
@@ -124,7 +124,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="tag"
                   placeholder="eg, hard back, paper back, very new etc. "
                   required
@@ -137,7 +137,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="agerange"
                   placeholder="eg,13-18 "
                 />
@@ -149,7 +149,7 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="isNew"
                   placeholder="true or false, or leave empty "
                 />
@@ -161,12 +161,17 @@ const page = () => {
 
                 <input
                   type="text"
-                  className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+                  className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="sales"
                   placeholder="true or false, or leave empty "
                 />
               </div>
-            </div>
+              <div className=" ml-auto">
+                <button className="bg-[var(--color-primary)] text-white px-3 py-2 lato text-sm mt-4">
+                  Publish Book
+                </button>
+              </div>
+            </form>
           </div>
         </section>
       </Layout>

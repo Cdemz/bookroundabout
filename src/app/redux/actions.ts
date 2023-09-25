@@ -6,6 +6,7 @@ import { loginUser } from "../utils/api";
 import { fetchUserData } from "../utils/api";
 import { updateUser } from "../utils/api";
 import { requestPasswordReset, confirmPasswordReset } from "../utils/api";
+import toast from "react-hot-toast";
 
 // Action Types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
@@ -77,11 +78,28 @@ export const loginUserAction = (userData: any) => {
       const response = await loginUser(userData);
       // console.log("Response:", response);
 
-      if (response.success) {
-        dispatch(loginSuccess(response.message));
+      if (response.token) {
         dispatch(fetchUserAction() as any);
+        dispatch(loginSuccess("Login successful"));
+        toast.success(`Welcome, ${userData.firstName}!`);
+        console.log("Response:");
       } else {
-        dispatch(loginFailure(response.message));
+        if (
+          response.statusCode === 400 &&
+          response.message === "Invalid credentials"
+        ) {
+          // Handle invalid credentials error
+          dispatch(
+            loginFailure("Invalid username or password. Please try again.")
+          );
+        } else {
+          // Handle other error cases
+          dispatch(loginFailure(response.message));
+          toast.error("paso");
+        }
+
+        // Display an error toast message
+        toast.error(response.message);
       }
     } catch (error) {
       dispatch(loginFailure("Login failed. Please try again."));
@@ -146,10 +164,10 @@ export const fetchUserAction = () => {
       // Store user data in local storage:
       localStorage.setItem("userData", JSON.stringify(userData));
 
-      console.log("succeful ", userData);
+      // console.log("succeful ", userData);
       // Dispatch the user data to the Redux store
       dispatch(fetchUserSuccess(userData));
-      console.log("succeful d", userData);
+      // console.log("succeful d", userData);
     } catch (error) {
       dispatch(fetchUserFailure("Failed to fetch user data."));
     }

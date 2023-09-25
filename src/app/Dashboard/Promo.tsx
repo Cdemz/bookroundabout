@@ -7,7 +7,7 @@ import Link from "next/link";
 const Promo = () => {
   return (
     <div className="relative">
-      <div className="w-[100%] md:h-[70%]">
+      <div className="w-[100%] md:h-[50%]">
         <Image
           src="/group book.png"
           width={300}

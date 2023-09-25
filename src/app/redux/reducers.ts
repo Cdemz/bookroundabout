@@ -1,5 +1,6 @@
 // redux/reducers.ts
 import { combineReducers } from "redux";
+import { UserData } from "./store";
 import nextReducer from "../store/nextSlice";
 import {
   REGISTER_REQUEST,
@@ -117,8 +118,62 @@ const login = (state = initialLoginState, action: any): LoginState => {
       return state;
   }
 };
+// new
 
+// Define a separate state type for user-related data
+export interface UserState {
+  loading: boolean;
+  userData: UserData | null; // Define UserData type according to your data structure
+  error: string | null;
+}
+
+const initialUserState: UserState = {
+  loading: false,
+  userData: null,
+  error: null,
+};
+
+// Update the userReducer to use UserState instead of PasswordResetState
 export const userReducer = (
+  state = initialUserState,
+  action: any
+): UserState => {
+  switch (action.type) {
+    case FETCH_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        userData: action.payload, // Update userData with the fetched data
+      };
+    case FETCH_USER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_USER_DATA:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        userData: null, // Clear user data from the store
+      };
+    default:
+      return state;
+  }
+};
+
+// Combine this reducer with your other reducers in your rootReducer as before
+
+// stop
+export const userReducer2 = (
   state = initialState,
   action: any
 ): PasswordResetState => {

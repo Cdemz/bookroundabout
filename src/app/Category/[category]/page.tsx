@@ -1,6 +1,5 @@
 "use client";
 import store from "@/app/store/store";
-import { SessionProvider } from "next-auth/react";
 import React from "react";
 import { Provider } from "react-redux";
 import Category from "./Category";
@@ -22,10 +21,8 @@ export default function Page({ params }: Props) {
 
   return (
     <Provider store={store}>
-      <SessionProvider>
-        {/* Pass the categoryString as a prop */}
-        <Category params={{ category: categoryString }} />
-      </SessionProvider>
+      {/* Pass the categoryString as a prop */}
+      <Category params={{ category: categoryString }} />
     </Provider>
   );
 }

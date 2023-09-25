@@ -5,7 +5,6 @@ import Stickytop from "./components/Stickytop";
 import Footer from "./components/Footer";
 import AdvancedNav from "./components/AdvancedNav";
 import { Toaster } from "react-hot-toast";
-import AuthProvider from "./context/AuthProvider";
 import ReduxProvider from "./context/ReduxProvider";
 import NavBar from "./components/NavBar";
 import DesktopNavbar from "./components/DesktopNavbar";
@@ -28,21 +27,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Toaster position="bottom-center" />
-        <AuthProvider session={session}>
-          <ReduxProvider>
-            <section>
-              <Stickytop />
-            </section>
-            <section>
-              <NavBar />
-              <DesktopNavbar />
-            </section>
-            {children}
-            <section>
-              <Footer />
-            </section>
-          </ReduxProvider>
-        </AuthProvider>
+
+        <ReduxProvider>
+          <section>
+            <Stickytop />
+          </section>
+          <section>
+            <NavBar />
+            <DesktopNavbar />
+          </section>
+          {children}
+          <section>
+            <Footer />
+          </section>
+        </ReduxProvider>
       </body>
     </html>
   );
