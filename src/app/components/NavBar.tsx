@@ -39,6 +39,7 @@ const NavBar: FC = () => {
   const handleClose = () => setOpen(false);
   const [allData, setAllData] = useState([]);
   const userData = useSelector((state: RootState) => state.user?.userData);
+  const userRole = userData?.role;
   const { productData, favoriteData, userInfo, allProducts } = useSelector(
     (state: StateProps) => state.next
   );
@@ -348,6 +349,14 @@ const NavBar: FC = () => {
                   <button>My Account</button>{" "}
                   {/* This button only appears when logged in */}
                 </Link>
+
+                {userRole === "admin" && (
+                  <li className="p-2 border-b border-gray-600">
+                    <Link href="/admin" onClick={handleNav}>
+                      <button>Admin Panel</button>
+                    </Link>
+                  </li>
+                )}
                 <LogOut />
               </div>
             ) : (

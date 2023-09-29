@@ -103,7 +103,7 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
           </p>
           <div className=" flex gap-4 flex-col">
             <button className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto">
-              Delete Book
+              Disable Book
             </button>
             <button className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm mt-auto rounded-md">
               Edit Book

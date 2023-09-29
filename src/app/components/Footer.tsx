@@ -27,6 +27,7 @@ const Footer: FC = () => {
             <Link href="/">Home</Link>
             <Link href="/shop">Shop</Link>
             <Link href="/contact">Contact</Link>
+            <Link href="/terms">Terms of Use</Link>
           </ul>
           <div className=" text-white">
             <h1 className="font-bold text-lg mb-2 mt-4">FOLLOW US</h1>

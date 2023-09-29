@@ -22,6 +22,12 @@ export interface LoginState {
   message: string;
   // Add any other properties you need for login state
 }
+export interface asswordResetState {
+  loading: boolean;
+  success: boolean;
+  message: string;
+  // Add any other properties you need for login state
+}
 export interface RegistrationState {
   loading: boolean;
   success: boolean;
@@ -41,6 +47,7 @@ export interface UserData {
   zipCode: string;
   state: string;
   phone: string;
+  role: string;
   city: string;
   // Add other properties as needed
 }
@@ -52,6 +59,7 @@ export interface UserState {
   firstName: string;
   lastName: string;
   country: string;
+  role: string;
   companyName: string;
   address: string;
   zipCode: string;
@@ -70,6 +78,7 @@ export interface RootState {
   registration: RegistrationState;
   login: LoginState;
   user: UserState;
+  passwordReset: PasswordResetState;
 }
 
 const store = createStore(persistedReducer, applyMiddleware(thunk));

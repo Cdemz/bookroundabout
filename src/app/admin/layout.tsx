@@ -28,8 +28,8 @@ const Layout = ({ children }: LayoutProps) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className=" h-screen   md:h-[70vh] lg:h-screen overflow-hidden  flex  ">
-      <div className="md:w-1/5 bg-[var(--color-text)] h-full   overflow-y-auto  hidden">
+    <div className=" ">
+      {/* <div className="md:w-1/5 bg-[var(--color-text)] h-full   overflow-y-auto  hidden md:block">
         <nav className="bg-white pl-2 pr-2 py-6     mt-8  ">
           <ul className="flex flex-col gap-4">
             <li>
@@ -63,9 +63,16 @@ const Layout = ({ children }: LayoutProps) => {
             <li>
               <Link href="/profile">proflie</Link>
             </li>
+            <li>
+              <Link href="/discount">Discount</Link>
+            </li>
+            <li>
+              <Link href="/settings">Settings</Link>
+            </li>
+
           </ul>
         </nav>
-      </div>
+      </div> */}
       <main className=" overflow-y-auto">{children}</main>
       {/* Rest of your component remains the same */}
     </div>

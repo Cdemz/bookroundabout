@@ -6,6 +6,7 @@ import { RootState } from "../redux/store";
 import { useRouter } from "next/navigation";
 import Greetings from "./Greetings";
 import { FaAddressCard, FaAsterisk } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
@@ -42,12 +43,19 @@ const MyAccount = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Dispatch the action to update the user with the new data
-    dispatch<any>(updateUserAction(formData));
-    // Redirect to a different page after updating, e.g., user profile
-    // router.push("/profile");
+    // dispatch<any>(updateUserAction(formData));
+    const response = await dispatch<any>(updateUserAction(formData));
+
+    if (response && response.status >= 200 && response.status < 300) {
+      // Successful update
+      toast.success("Profile updated successfully");
+    } else {
+      // Handle error here, e.g., show an error message
+      toast.error("Failed to update profile");
+    }
   };
 
   // useEffect(() => {

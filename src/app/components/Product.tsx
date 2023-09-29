@@ -52,6 +52,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
 
   const renderOnSale = () => {
     if (product.sales === true) {
+      // if (Boolean(product?.discount)) {
       return (
         <div className="bg-red-500 py-1 px-1 font-bold text-center flex items-center justify-center lato ml-[4rem]">
           On Sale!

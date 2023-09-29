@@ -70,7 +70,7 @@ const page = () => {
                 </label>
 
                 <input
-                  type="text"
+                  type="number"
                   className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                   name="price"
                   placeholder="how much?"

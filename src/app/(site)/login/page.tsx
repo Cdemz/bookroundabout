@@ -126,20 +126,6 @@ const CustomSignIn = () => {
                 <Link href="/register">Sign Up</Link>
               </span>
             </p>
-            <p className="p line">Or With</p>
-
-            <div className="flex-row text-[var(--color-text)]">
-              <button className="btn google">
-                <FcGoogle />
-                Google
-              </button>
-            </div>
-            <p className="p">
-              New user?{" "}
-              <span className="span">
-                <Link href="/register">Register</Link>
-              </span>
-            </p>
           </form>
 
           {/* stop  */}

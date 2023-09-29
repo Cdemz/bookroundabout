@@ -1,12 +1,15 @@
 // redux/actions.ts
 import { Dispatch } from "redux";
-import { registerUser } from "../utils/api"; // Import your API function for registration
-import axios from "axios";
-import { loginUser } from "../utils/api";
-import { fetchUserData } from "../utils/api";
-import { updateUser } from "../utils/api";
-import { requestPasswordReset, confirmPasswordReset } from "../utils/api";
+import {
+  registerUser,
+  loginUser,
+  fetchUserData,
+  updateUser,
+  requestPasswordReset,
+  confirmPasswordReset,
+} from "../utils/api";
 import toast from "react-hot-toast";
+import { RootState } from "./store";
 
 // Action Types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
@@ -78,16 +81,16 @@ export const loginUserAction = (userData: any) => {
       const response = await loginUser(userData);
       // console.log("Response:", response);
 
-      if (response.token) {
+      if (response?.token) {
         dispatch(fetchUserAction() as any);
         dispatch(loginSuccess("Login successful"));
         toast.success(`Welcome, ${userData.firstName}!`);
-        console.log("Response:");
-      } else {
-        if (
-          response.statusCode === 400 &&
-          response.message === "Invalid credentials"
-        ) {
+      } else if (response?.statusCode) {
+        console.log("Response Status Code:", response.statusCode);
+        console.log("Response Message:", response.message);
+        console.log("Response:", response);
+        if (response.statusCode === 400) {
+          toast.error(" yes paso");
           // Handle invalid credentials error
           dispatch(
             loginFailure("Invalid username or password. Please try again.")
@@ -100,6 +103,8 @@ export const loginUserAction = (userData: any) => {
 
         // Display an error toast message
         toast.error(response.message);
+      } else {
+        // general error
       }
     } catch (error) {
       dispatch(loginFailure("Login failed. Please try again."));
@@ -275,10 +280,16 @@ export const requestPasswordResetAction =
 
 // Action to confirm password reset
 export const confirmPasswordResetAction =
-  (email: string, token: string, newPassword: string) =>
-  async (dispatch: Dispatch) => {
+  (newPassword: string, confirmPassword: string, token: string) =>
+  async (dispatch: Dispatch, getState: () => RootState) => {
+    // Add getState argument
     try {
       dispatch(confirmPasswordResetRequest());
+
+      // Get email from the Redux store's state (you can modify this part as needed)
+      const state = getState();
+      const email = state.user.userData?.email || "";
+
       const response = await confirmPasswordReset(email, token, newPassword);
       dispatch(confirmPasswordResetSuccess(response.message));
     } catch (error: any) {

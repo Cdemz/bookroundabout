@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Dashboard from "../Dashboard/dDashboard";
+// import protectRouteMiddleware from "../../middleware/auth";
 
 const Admin = () => {
   return (
@@ -9,5 +10,7 @@ const Admin = () => {
     </div>
   );
 };
+
+// const ProtectedAdmin = protectRouteMiddleware(Admin); // Wrap the Admin component
 
 export default Admin;

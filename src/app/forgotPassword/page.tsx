@@ -29,14 +29,13 @@ const RequestPasswordResetPage: React.FC<PageProps> = (props) => {
 
   return (
     <div className="text-[var(--color-texxt)]">
-      <h2>Request Password Reset</h2>
       <div className="">
         <Image
           src="/forgot_password__1_-removebg-preview.png"
           alt="img"
           width={300}
           height={300}
-          className=""
+          className="mx-auto md:h-[80%] md:w-[60%] lg:h-[50%]"
         />
       </div>
       <form onSubmit={handleSubmit}>
@@ -47,15 +46,15 @@ const RequestPasswordResetPage: React.FC<PageProps> = (props) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Enter your email..."
-            className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)]"
+            placeholder="Enter  your email..."
+            className="border-2 border-gray-400 w-[85%] h-10 border-r-2 text-[var(--color-text)] md:my-10"
           />
         </div>
-        <div>
+        <div className="mx-auto flex justify-center md:my-10">
           <button
             type="submit"
             disabled={isLoading}
-            className="bg-[var(--color-primary)] text-white px-1 py-1 lato "
+            className="bg-[var(--color-primary)] text-white px-4 py-2 lato mx-auto my-3 md:my-10"
           >
             {isLoading ? "Requesting..." : "Request Reset"}
           </button>

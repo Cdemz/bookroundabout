@@ -147,14 +147,6 @@ export default function Register() {
               Register
             </button>
 
-            <p className="p line">Or With</p>
-
-            <div className="flex-row text-[var(--color-text)]">
-              <button className="btn google">
-                <FcGoogle />
-                Google
-              </button>
-            </div>
             <p className="p">
               Have an account?{" "}
               <span className="span">

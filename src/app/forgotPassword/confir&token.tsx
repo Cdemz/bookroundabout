@@ -6,13 +6,16 @@ import {
   confirmPasswordResetAction,
   clearUserData, // Import this action to clear user data after the reset
 } from "../redux/actions";
-
+import { RootState } from "../redux/store";
+import { Dispatch } from "redux";
 const ConfirmPasswordResetPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [token, setToken] = useState("");
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.passwordReset.loading);
+  const isLoading = useSelector(
+    (state: RootState) => state.passwordReset.loading
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ const ConfirmPasswordResetPage = () => {
     }
 
     // Dispatch an action to confirm the password reset with the new password and token
-    dispatch(confirmPasswordResetAction(password, token));
+    // dispatch(confirmPasswordResetAction(password, token)  as any);
   };
 
   const handleCancel = () => {
