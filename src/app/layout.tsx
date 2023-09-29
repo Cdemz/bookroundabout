@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Stickytop from "./components/Stickytop";
 import Footer from "./components/Footer";
-import AdvancedNav from "./components/AdvancedNav";
 import { Toaster } from "react-hot-toast";
 import ReduxProvider from "./context/ReduxProvider";
 import NavBar from "./components/NavBar";
