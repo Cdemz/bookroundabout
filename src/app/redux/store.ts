@@ -22,7 +22,7 @@ export interface LoginState {
   message: string;
   // Add any other properties you need for login state
 }
-export interface asswordResetState {
+export interface PasswordResetState {
   loading: boolean;
   success: boolean;
   message: string;
