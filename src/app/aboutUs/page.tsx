@@ -69,7 +69,7 @@ const page = () => {
             />
           </div>
         </div>
-        <div className="absolute top-0 bg-black bg-opacity-30 text-white flex flex-col gap-4 h-full text-center p-4">
+        <div className="absolute top-0 bg-black bg-opacity-30 text-white flex flex-col gap-4 h-full text-center p-4 pb-4 ">
           <div className="mx-auto flex flex-col justify-center items-center">
             <FaSmile size={50} />
           </div>
@@ -80,8 +80,10 @@ const page = () => {
             all over the world, and especially those from Nigeria. Everyone is
             welcome, so please feel free to reach out.
           </p>
-          <div className="">
-            <button className="buttons1">Get in touch</button>
+          <div className="mb-6">
+            <Link href="/contact">
+              <button className=" buttons1 mb-6">Get in touch</button>
+            </Link>
           </div>
         </div>
       </div>

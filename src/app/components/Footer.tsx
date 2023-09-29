@@ -52,9 +52,11 @@ const Footer: FC = () => {
         </div>
         <div className="flex flex-col gap-3 mt-5 ">
           <h1 className="font-bold text-lg ">Address</h1>
-          <p className="flex items-center gap-2">
-            <MdLocationPin className=" " size={26} /> Ikeja, Balogun
-          </p>
+          <Link href="/ourStores">
+            <p className="flex items-center gap-2">
+              <MdLocationPin className=" " size={26} /> Ikeja, Balogun
+            </p>
+          </Link>
           <a
             href="tel:+234-(902)070-4026"
             className="flex items-center gap-2 cursor-pointer"
