@@ -22,11 +22,11 @@ const page = () => {
         <h1 className="font-bold text-2xl">About Us</h1>
 
         <p className="md:w-[85%]">
-          We are a prominent independent book retailer in Nigeria, boasting
-          multiple branches across Lagos. Our extensive inventory comprises a
-          wide variety of books, spanning numerous genres and categories.
-          Whatever type of book you're seeking, we provide top-notch options,
-          making us your premier choice.{" "}
+          We are a prominent independent book importers / wholesalers in
+          Nigeria, boasting multiple branches across Lagos. Our extensive
+          inventory comprises a wide variety of books, spanning numerous genres
+          and categories. Whatever type of book you're seeking, we provide
+          top-notch options, making us your premier choice.{" "}
         </p>
       </div>
       <div className="p-4 md:w-[85%]">
@@ -43,9 +43,10 @@ const page = () => {
         <p>
           Books Roundabout stands as Nigeria's most proficient book store
           featuring enomorsly cheap books, with a rich history dating back to
-          its establishment in 2015. Today, our company boasts both wholesale
-          and retail operations spread across various locations. Notably, our
-          storehouses the largest book collection in Nigeria.
+          its establishment in 2005. Today, our company boasts as importers,
+          wholesalers and the most affordable retail operational store spread
+          across various locations. Notably, our storehouses the largest book
+          collection in Nigeria.
         </p>
         <p>
           Our stores offer an inviting literary ambiance and showcase a diverse

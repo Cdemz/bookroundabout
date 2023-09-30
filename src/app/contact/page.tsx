@@ -48,7 +48,7 @@ const page = () => {
         <h1 className="font-bold text-black text-2xl">Get in Touch with Us </h1>
         <h3 className="mb-5 font-bold">We respond as swiftly as we can</h3>
         <p className="mb-5 w-[8rem]">
-          Ms1,68 FAAN Airport Marrket plaza, ikeja along bustop{" "}
+          63a Capitol road, opposite car wash bus stop agege.{" "}
         </p>
         <h2>
           For a detailed direction{" "}
