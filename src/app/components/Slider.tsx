@@ -58,7 +58,7 @@ export default () => {
                 We Believe in the Magic of Books
               </h1>
               <p className="text-2xl"> literature for all.</p>
-              <Link href="">
+              <Link href="#shopnow">
                 <button className="button"> Shop Now !</button>
               </Link>
             </div>
@@ -81,7 +81,7 @@ export default () => {
                 Empower Your Mind with Books
               </h1>
               <p className="text-2xl">Home of cheap books</p>
-              <Link href="">
+              <Link href="#shopnow">
                 <button className="button">Shop Now !</button>
               </Link>
             </div>

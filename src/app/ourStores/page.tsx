@@ -36,7 +36,9 @@ class LocationPage extends Component<LocationPageProps, LocationPageState> {
         </div>
 
         <div className="text-[var(--color-text)] flex flex-col gap-4 mb-2 md:my-4 ">
-          <h1 className="text-2xl font-bold sm:text-center">Our Stores</h1>
+          <h1 className="text-2xl font-bold text-center md:text-left">
+            Our Stores
+          </h1>
           <div className="bg-white p-6 flex flex-col gap-2 md:w-[80%]">
             <h2 className="font-bold text-lg">Ware house(lagos agege)</h2>
             <p>63a capitol road, opposite car wash bus stop agege</p>
