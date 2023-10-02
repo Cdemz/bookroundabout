@@ -40,11 +40,29 @@ export const registerUserAction = (userData: any) => {
       const response = await registerUser(userData);
 
       // Assuming your API returns a success message upon successful registration
-      if (response.success) {
+      if (response?.toke) {
         dispatch(registerSuccess(response.message));
         dispatch(fetchUserAction() as any);
+        toast.success(`Registration successful, Welcome!`);
+      } else if (response?.statusCode) {
+        // Handle other error cases returned by the server
+        // console.log("Response Status Code:", response.statusCode);
+        // console.log("Response Message:", response.message);
+        // console.log("Response:", response);
+        if (response?.status) {
+          toast.error(response.message);
+          // Handle invalid credentials error
+          dispatch(
+            registerFailure("Invalid username or password. Please try again.")
+          );
+        } else {
+          // Handle other error cases
+          dispatch(registerFailure(response.message));
+          toast.error("An error occured");
+        }
       } else {
-        dispatch(registerFailure(response.message));
+        // other error
+        toast.error("An error occured, Please try again");
       }
     } catch (error) {
       dispatch(registerFailure("Registration failed. Please try again."));
@@ -80,17 +98,20 @@ export const loginUserAction = (userData: any) => {
       // Make the API call to log in the user
       const response = await loginUser(userData);
       // console.log("Response:", response);
+      // toast.success(response.token || "an error occured");
 
       if (response?.token) {
+        // Assuming your API returns a success message upon successful login
         dispatch(fetchUserAction() as any);
         dispatch(loginSuccess("Login successful"));
         toast.success(`Welcome, ${userData.firstName}!`);
       } else if (response?.statusCode) {
-        console.log("Response Status Code:", response.statusCode);
-        console.log("Response Message:", response.message);
-        console.log("Response:", response);
-        if (response.statusCode === 400) {
-          toast.error(" yes paso");
+        // Handle other error cases returned by the server
+        // console.log("Response Status Code:", response.statusCode);
+        // console.log("Response Message:", response.message);
+        // console.log("Response:", response);
+        if (response?.statusCode === 400) {
+          toast.error(response.message);
           // Handle invalid credentials error
           dispatch(
             loginFailure("Invalid username or password. Please try again.")
@@ -98,15 +119,14 @@ export const loginUserAction = (userData: any) => {
         } else {
           // Handle other error cases
           dispatch(loginFailure(response.message));
-          toast.error("paso");
+          toast.error("An error occured");
         }
-
-        // Display an error toast message
-        toast.error(response.message);
       } else {
-        // general error
+        // other error
+        toast.error("An error occured, Please try again");
       }
     } catch (error) {
+      // console.log("leigh fucked up");
       dispatch(loginFailure("Login failed. Please try again."));
     }
   };

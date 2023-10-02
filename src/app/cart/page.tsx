@@ -7,11 +7,8 @@ import store from "../store/store";
 import Link from "next/link";
 
 const page = () => {
-  return (
-    <Provider store={store}>
-      <Cart />
-    </Provider>
-  );
+  // i removed provider
+  return <Cart />;
 };
 
 export default page;

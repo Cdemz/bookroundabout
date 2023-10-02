@@ -65,7 +65,7 @@ const ScartPayment = () => {
         </span>
       </p>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center md:flex-row">
         <Link href="/cart">
           <Button
             onClick={handleGoToCart}

@@ -7,6 +7,7 @@ import Link from "next/link";
 import CartPayment from "../components/CartPayment";
 import Image from "next/image";
 import { RootState } from "../store/store"; // Import RootState from your store
+// import ScartProduct from "../components/ScartProduct";
 
 const CartPage = () => {
   const { productData } = useSelector((state: RootState) => state.next); // Update the selector
@@ -24,6 +25,7 @@ const CartPage = () => {
             <div className="pt-2 flex flex-col gap-2 ">
               {productData.map((item: StoreProduct) => (
                 <div key={item.id}>
+                  {/* <ScartProduct item={item} /> */}
                   <CartProduct item={item} />
                 </div>
               ))}

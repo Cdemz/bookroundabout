@@ -2,7 +2,7 @@
 import axios from "axios";
 import { fetchUserAction } from "../redux/actions";
 
-const API_BASE_URL = "http://booksra.helioho.st/v1/user";
+const API_BASE_URL = "http://booksroundabout.helioho.st/v1/user";
 
 interface UserData {
   firstName: string;
@@ -22,7 +22,11 @@ export const registerUser = async (userData: UserData) => {
     fetchUserAction();
     return response.data;
   } catch (error) {
-    throw error;
+    const res = error as any;
+    if (res?.response?.data) {
+      return res.response.data;
+    }
+    return error;
   }
 };
 
@@ -37,7 +41,11 @@ export const loginUser = async (userData: UserData) => {
     fetchUserAction();
     return response.data;
   } catch (error) {
-    throw error;
+    const res = error as any;
+    if (res?.response?.data) {
+      return res.response.data;
+    }
+    return error;
   }
 };
 
