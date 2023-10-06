@@ -34,6 +34,12 @@ const page = () => {
             user or visitor of our website.
           </span>
         </p>
+        <p className="font-bold text-lg">
+          Pickup: Books bought with the choice to picked up have to be picked up
+          within 7 days or extra charges of 500 naira per day will be added.
+          please note that after two weeks we can't be held laible to ensure
+          your item is still available or in good condition.
+        </p>
 
         <hr className="h-1 w-full bg-[var(--color-bg)]" />
 
@@ -78,17 +84,23 @@ const page = () => {
         </div>
         <hr className="h-1 w-full bg-[var(--color-bg)]" />
 
-        <div className="">
+        <div className="" id="refund">
           <p className="text-[var(--color-text)] text-3xl md:text-4xl font-bold mt-6">
             Refunds & Exchange
           </p>
           <hr className=" w-full bg-[var(--color-bg)] mt-2" />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
-            vel eligendi quo autem atque ut at! Inventore fugit, aliquid nobis
-            consectetur sapiente animi cupiditate atque nihil at. Magnam,
-            architecto tempora!
-          </p>
+          <div className="flex flex-col gap-2 pt-3">
+            <p>
+              Total refund is only available for goods that payments that were
+              successful but could'nt be delivered for any reason that the
+              company is liable for.
+            </p>
+            <p>
+              Incase of damaged books(torn, soiled, missing pages.), another
+              book of your choice will be delivered to you in exchange for the
+              bad one.
+            </p>
+          </div>
         </div>
       </div>
     </div>

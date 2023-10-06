@@ -40,7 +40,7 @@ export const registerUserAction = (userData: any) => {
       const response = await registerUser(userData);
 
       // Assuming your API returns a success message upon successful registration
-      if (response?.toke) {
+      if (response?.token) {
         dispatch(registerSuccess(response.message));
         dispatch(fetchUserAction() as any);
         toast.success(`Registration successful, Welcome!`);

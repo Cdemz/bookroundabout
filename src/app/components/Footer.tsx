@@ -28,6 +28,7 @@ const Footer: FC = () => {
             <Link href="/shop">Shop</Link>
             <Link href="/contact">Contact</Link>
             <Link href="/terms">Terms of Use</Link>
+            <Link href="terms#refund">Refund & Exchange</Link>
           </ul>
           <div className=" text-white">
             <h1 className="font-bold text-lg mb-2 mt-4">FOLLOW US</h1>
@@ -47,9 +48,34 @@ const Footer: FC = () => {
               <Link href="https://wa.me/2349020704026" target="_blank">
                 <BsWhatsapp size={30} />
               </Link>
+              <Link
+                href="https://instagram.com/booksroundaboutforall?igshid=MzRlODBiNWFlZA=="
+                target="_blank"
+              >
+                <BsInstagram size={30} />
+              </Link>
             </div>
           </div>
         </div>
+        {/* work days  */}
+        <div className="flex flex-col gap-3 mt-5">
+          <h1 className="font-bold text-lg >HOURS">HOURS</h1>
+          <div className="hours">
+            <p className="font-bold">Mon,Tue,Wed,Thur,Fri</p>
+            <p>8am - 6pm</p>
+          </div>
+
+          <div>
+            <p className="font-bold">Sat</p>
+            <p>9am - 4pm</p>
+          </div>
+
+          <div className="hours">
+            <p className="font-bold">Sun</p>
+            <p>Not Open</p>
+          </div>
+        </div>
+
         <div className="flex flex-col gap-3 mt-5 ">
           <h1 className="font-bold text-lg ">Address</h1>
           <Link href="/ourStores">

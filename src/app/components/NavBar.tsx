@@ -351,11 +351,51 @@ const NavBar: FC = () => {
                 </Link>
 
                 {userRole === "admin" && (
-                  <li className="p-2 border-b border-gray-600">
-                    <Link href="/admin" onClick={handleNav}>
-                      <button>Admin Panel</button>
-                    </Link>
-                  </li>
+                  <ul>
+                    <li className="p-2 border-b border-gray-600">
+                      <Link href="/admin" onClick={handleNav}>
+                        <button>Admin Panel</button>
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        href="/Dashboard"
+                        className="text-[var(--color-text)]    hover:bg-gray-200 active:bg-white active:text-[var(--color-primary)] hover:text-[var(--color-primary)] px-4 py-2 rounded-full font-bold"
+                      >
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/sale"
+                        className="text-[var(--color-text)]    hover:bg-gray-200 active:bg-white active:text-[var(--color-primary)] hover:text-[var(--color-primary)]  py-2 rounded-full font-bold"
+                      >
+                        Create Sale
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/category">Category</Link>
+                    </li>
+                    <li>
+                      <Link href="/orders">Order</Link>
+                    </li>
+                    <li>
+                      <Link href="/users">Users</Link>
+                    </li>
+                    <li>
+                      <Link href="/products">Product</Link>
+                    </li>
+                    <li>
+                      <Link href="/profile">proflie</Link>
+                    </li>
+                    <li>
+                      <Link href="/discount">Discount</Link>
+                    </li>
+                    <li>
+                      <Link href="/settings">Settings</Link>
+                    </li>
+                  </ul>
                 )}
                 <LogOut />
               </div>
