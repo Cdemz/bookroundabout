@@ -6,6 +6,7 @@ import { AiOutlineContacts } from "react-icons/ai";
 import { BsWhatsapp } from "react-icons/bs";
 import { HiMailOpen } from "react-icons/hi";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { API_BASE_URL } from "../utils/api";
 
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault(); // Prevent the default form submission behavior
@@ -21,10 +22,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
   try {
     // Send a POST request to your API endpoint
-    const response = await axios.post(
-      "https://booksroundabout.glitch.me/v1/contact-us",
-      data
-    );
+    const response = await axios.post(`${API_BASE_URL}//contact-us`, data);
 
     // Handle the API response as needed
     if (response.status === 200) {

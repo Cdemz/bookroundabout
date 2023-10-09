@@ -2,8 +2,8 @@
 import axios from "axios";
 import { fetchUserAction } from "../redux/actions";
 
-const API_BASE_URL = "https://booksroundabout.glitch.me/v1/user";
-// const API_BASE_URL = "http://booksroundabout.helioho.st/v1/user";
+export const API_BASE_URL = "https://booksroundabout.glitch.me/v1";
+// export const API_BASE_URL = "https://booksroundabout.glitch.me/v1/user";
 
 interface UserData {
   firstName: string;
@@ -16,7 +16,10 @@ interface UserData {
 
 export const registerUser = async (userData: UserData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/register`, userData);
+    const response = await axios.post(
+      `${API_BASE_URL}/user/register`,
+      userData
+    );
     // console.log(response.data);
     const token = response?.data?.token || "";
     localStorage.setItem("token", token);
@@ -33,7 +36,7 @@ export const registerUser = async (userData: UserData) => {
 
 export const loginUser = async (userData: UserData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/login`, userData);
+    const response = await axios.post(`${API_BASE_URL}/user/login`, userData);
 
     // Save the token to local storage
     // console.log(response.data);
@@ -59,7 +62,7 @@ export const fetchUserData = async () => {
 
   try {
     const response = await axios.get(
-      `${API_BASE_URL}
+      `${API_BASE_URL}/user
     `,
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -81,7 +84,7 @@ export const updateUser = async (userData: UserData) => {
   // console.log("from update:", { token });
   try {
     const response = await axios.put(
-      `${API_BASE_URL}`, // Your API endpoint here
+      `${API_BASE_URL}/user`, // Your API endpoint here
       userData, // Send the user data you want to update
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -109,7 +112,10 @@ export const updateUser = async (userData: UserData) => {
 
 export const requestPasswordReset = async (email: string) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}`, { email });
+    const response = await axios.post(
+      `${API_BASE_URL}/user/begin-change-password`,
+      { email }
+    );
     return response.data; // You can return any relevant data from the API response
   } catch (error) {
     throw error;
@@ -123,11 +129,14 @@ export const confirmPasswordReset = async (
   newPassword: string
 ) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}`, {
-      email,
-      token,
-      newPassword,
-    });
+    const response = await axios.put(
+      `${API_BASE_URL}/user/finish-change-password`,
+      {
+        email,
+        token,
+        newPassword,
+      }
+    );
     return response.data; // You can return any relevant data from the API response
   } catch (error) {
     throw error;
