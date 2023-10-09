@@ -345,19 +345,17 @@ const NavBar: FC = () => {
             {userData ? (
               <div className="flex flex-col gap-2">
                 {/* User is logged in */}
-                <Link href="/account" onClick={handleNav}>
+                <Link
+                  href="/account"
+                  onClick={handleNav}
+                  className="p-2 border-b border-gray-600"
+                >
                   <button>My Account</button>{" "}
                   {/* This button only appears when logged in */}
                 </Link>
 
                 {userRole === "admin" && (
                   <ul>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/admin" onClick={handleNav}>
-                        <button>Admin Panel</button>
-                      </Link>
-                    </li>
-
                     <li className="p-2 border-b border-gray-600">
                       <Link href="/Dashboard">Dashboard</Link>
                     </li>

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import data from "../BooksData.json";
 import { FaFilter } from "react-icons/fa";
 import MenuItem from "../components/MenuItem";
 import { Fragment } from "react";
@@ -54,6 +53,7 @@ const AdvancedProduct = () => {
   const [activeCategory, setActiveCategory] = useState(" ");
   const [activeGenre, setActiveGenre] = useState(" ");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   // ...
@@ -64,6 +64,7 @@ const AdvancedProduct = () => {
       .then((response) => {
         // Assuming the API response contains an array of book data
         setFilteredData(response.data);
+        setData(response.data);
 
         // Initialize currentDate with the current date and time
         const currentDate = new Date();
