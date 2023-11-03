@@ -17,9 +17,7 @@ import { RootState } from "../redux/store";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import SideCart from "./sideCart";
 import LogOut from "./LogOut";
-
-// import useMediaQuery from "@mui/material/useMediaQuery";
-// import { useTheme } from "@mui/material/styles";
+import { clearUserData } from "../redux/actions";
 
 const style = {
   position: "absolute" as "absolute",
@@ -35,6 +33,13 @@ const style = {
 
 const NavBar: FC = () => {
   const [open, setOpen] = React.useState(false);
+  const handleLogout = () => {
+    clearUserData();
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    // Other logout-related actions here
+  };
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [allData, setAllData] = useState([]);

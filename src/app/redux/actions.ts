@@ -10,6 +10,7 @@ import {
 } from "../utils/api";
 import toast from "react-hot-toast";
 import { RootState } from "./store";
+import axios from "axios";
 
 // Action Types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
@@ -316,6 +317,53 @@ export const confirmPasswordResetAction =
       dispatch(confirmPasswordResetFailure(error.message));
     }
   };
+
+export const enableBook = async (bookId: string) => {
+  try {
+    const postData = {
+      enabled: true,
+    };
+    const response = await axios.post(
+      `https://booksroundabout.glitch.me/v1/book/${bookId}/toggle`,
+      {
+        postData,
+      }
+    );
+
+    // Handle the response as needed
+    console.log("Book enabled:", response.data);
+
+    // You can also update the UI or perform other actions here
+  } catch (error) {
+    console.error("Error enabling book:", error);
+
+    // Handle the error, show a toast, or perform other actions as needed
+  }
+};
+
+// Function to disable a book by ID
+export const disableBook = async (bookId: string) => {
+  try {
+    const postData = {
+      enabled: false,
+    };
+    const response = await axios.post(
+      `https://booksroundabout.glitch.me/v1/book/${bookId}/toggle`,
+      {
+        postData,
+      }
+    );
+
+    // Handle the response as needed
+    console.log("Book disabled:", response.data);
+
+    // You can also update the UI or perform other actions here
+  } catch (error) {
+    console.error("Error disabling book:", error);
+
+    // Handle the error, show a toast, or perform other actions as needed
+  }
+};
 
 // Reducer for the user state
 // const userReducer = (

@@ -159,7 +159,7 @@ export default function Register() {
         <div className="flex flex-col gap-6 p-6 justify-center items-center lato md:h-[80vh]">
           <BeatLoader color="#4d5bf8" size={40} />
           <p className="text-[var(--color-text)] font-bold text-lg ">
-            Welcome! {userData.firstName}
+            Welcome!
           </p>
           <h1 className="text-[var(--color-primary)]">
             You are already logged in. Redirecting...

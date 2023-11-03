@@ -19,6 +19,7 @@ interface ProductProps {
     sales?: boolean;
     isNew?: boolean;
     stag: string;
+    isDisabled: boolean;
     // Include the quantity property
   };
 }

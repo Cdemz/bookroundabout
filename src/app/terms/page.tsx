@@ -35,10 +35,11 @@ const page = () => {
           </span>
         </p>
         <p className="font-bold text-lg">
-          Pickup: Books bought with the choice to picked up have to be picked up
-          within 7 days or extra charges of 500 naira per day will be added.
-          please note that after two weeks we can't be held laible to ensure
-          your item is still available or in good condition.
+          Pickup: Books purchased with the option for in-store pickup must be
+          collected within 7 days; otherwise, additional charges of 500 naira
+          per day will apply. Please be aware that after two weeks, we cannot
+          guarantee the availability or condition of your item, and we will not
+          be held responsible.
         </p>
 
         <hr className="h-1 w-full bg-[var(--color-bg)]" />

@@ -251,7 +251,7 @@ const MyAccount = () => {
             <div className="flex-col flex gap-2">
               <label className="flex gap-1">Zip code</label>
               <input
-                type="text"
+                type="number"
                 name="zipCode"
                 placeholder="Enter your zip code..."
                 className="w-[85%]"
