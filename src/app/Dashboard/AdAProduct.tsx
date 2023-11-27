@@ -162,6 +162,8 @@ const AdAProduct = () => {
                 agerange: product.agerange,
                 stag: "In Stock",
                 isNew: product.isNew,
+                isDisabled: product.isDisabled, // Add this line
+                bookId: product.id, // Assuming you want to use the same ID for bookId
                 // sales: product.sales,
                 quantity: 1, // Add the quantity property here
               }}

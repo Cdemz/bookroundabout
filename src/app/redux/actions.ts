@@ -1,5 +1,5 @@
 // redux/actions.ts
-import { Dispatch } from "redux";
+import { Dispatch, AnyAction } from "redux";
 import {
   registerUser,
   loginUser,
@@ -11,7 +11,8 @@ import {
 import toast from "react-hot-toast";
 import { RootState } from "./store";
 import axios from "axios";
-
+import { API_BASE_URL } from "../utils/api";
+import { ThunkAction } from "redux-thunk";
 // Action Types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -323,12 +324,9 @@ export const enableBook = async (bookId: string) => {
     const postData = {
       enabled: true,
     };
-    const response = await axios.post(
-      `https://booksroundabout.glitch.me/v1/book/${bookId}/toggle`,
-      {
-        postData,
-      }
-    );
+    const response = await axios.post(`${API_BASE_URL}/book/${bookId}/toggle`, {
+      postData,
+    });
 
     // Handle the response as needed
     console.log("Book enabled:", response.data);
@@ -341,28 +339,31 @@ export const enableBook = async (bookId: string) => {
   }
 };
 
-// Function to disable a book by ID
-export const disableBook = async (bookId: string) => {
-  try {
-    const postData = {
-      enabled: false,
-    };
-    const response = await axios.post(
-      `https://booksroundabout.glitch.me/v1/book/${bookId}/toggle`,
-      {
-        postData,
-      }
-    );
+export const disableBook = (
+  bookId: string
+): ThunkAction<void, any, null, AnyAction> => {
+  return async (dispatch: Dispatch) => {
+    // Now the dispatch is typed
+    try {
+      const postData = {
+        enabled: false,
+      };
+      const response = await axios.post(
+        `${API_BASE_URL}/book/${bookId}/toggle`,
+        postData
+      );
 
-    // Handle the response as needed
-    console.log("Book disabled:", response.data);
-
-    // You can also update the UI or perform other actions here
-  } catch (error) {
-    console.error("Error disabling book:", error);
-
-    // Handle the error, show a toast, or perform other actions as needed
-  }
+      dispatch({
+        type: "BOOK_DISABLED",
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "BOOK_DISABLE_ERROR",
+        payload: error,
+      });
+    }
+  };
 };
 
 // Reducer for the user state

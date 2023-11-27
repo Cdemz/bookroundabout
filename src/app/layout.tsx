@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import ReduxProvider from "./context/ReduxProvider";
 import NavBar from "./components/NavBar";
 import DesktopNavbar from "./components/DesktopNavbar";
+import TopMessage from "./components/TopMessage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
 
         <ReduxProvider>
           <section>
+            <TopMessage />
             <Stickytop />
           </section>
           <section>

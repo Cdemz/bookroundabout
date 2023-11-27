@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/nextSlice";
+import { disableBook } from "../redux/actions";
+import { enableBook } from "../redux/actions";
 
 interface ProductProps {
   product: {
@@ -20,6 +22,7 @@ interface ProductProps {
     isNew?: boolean;
     stag: string;
     isDisabled: boolean;
+    bookId: number;
     // Include the quantity property
   };
 }
@@ -50,6 +53,11 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
     // Show a toast or perform other actions as needed
     toast(`${product.title} added to cart`);
   };
+
+  // const handleDisableBook = () => {
+
+  //   dispatch(disableBook(product.id.toString()));
+  // };
 
   const renderOnSale = () => {
     if (product.sales === true) {

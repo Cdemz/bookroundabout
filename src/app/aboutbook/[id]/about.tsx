@@ -63,7 +63,7 @@ export default function BookDetailPage({ params }: Props) {
 
     if (bookId !== null) {
       // Fetch book data from the API
-      fetch(`${API_BASE_URL}//book/${bookId}`)
+      fetch(`${API_BASE_URL}/book/${bookId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Book not found");
