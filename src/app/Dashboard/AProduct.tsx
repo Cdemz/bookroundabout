@@ -6,6 +6,7 @@ import { addToCart } from "../store/nextSlice";
 // import { disableBook } from "../redux/actions";
 // import { enableBook } from "../redux/actions";
 import { API_BASE_URL } from "../utils/api";
+import axios from "axios";
 
 interface ProductProps {
   product: {
@@ -45,7 +46,7 @@ interface ProductItem {
 }
 
 const AProduct: React.FC<ProductProps> = ({ product }) => {
-  const dispatch: Dispatch<any> = useDispatch();
+  const dispatch = useDispatch();
 
   const addItemsToCart = () => {
     // Dispatch the addToCart action with the product

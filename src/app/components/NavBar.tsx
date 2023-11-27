@@ -362,29 +362,49 @@ const NavBar: FC = () => {
                 {userRole === "admin" && (
                   <ul className="cursor-pointer">
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/Dashboard">Dashboard</Link>
+                      <Link
+                        href="/Dashboard"
+                        className="cursor-pointer"
+                        onClick={handleNav}
+                      >
+                        <button>Dashboard</button>
+                      </Link>
                     </li>
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/sale">Create Sale</Link>
+                      <Link href="/sale" onClick={handleNav}>
+                        Create Sale
+                      </Link>
                     </li>
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/category">Category</Link>
+                      <Link href="/category" onClick={handleNav}>
+                        Category
+                      </Link>
                     </li>
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/orders">Order</Link>
+                      <Link href="/orders" onClick={handleNav}>
+                        Order
+                      </Link>
                     </li>
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/users">Users</Link>
+                      <Link href="/users" onClick={handleNav}>
+                        Users
+                      </Link>
                     </li>
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/products">Product</Link>
+                      <Link href="/products" onClick={handleNav}>
+                        Product
+                      </Link>
                     </li>
 
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/discount">Discount</Link>
+                      <Link href="/discount" onClick={handleNav}>
+                        Discount
+                      </Link>
                     </li>
                     <li className="p-2 border-b border-gray-600">
-                      <Link href="/settings">Settings</Link>
+                      <Link href="/settings" onClick={handleNav}>
+                        Settings
+                      </Link>
                     </li>
                   </ul>
                 )}
