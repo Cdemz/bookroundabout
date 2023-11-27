@@ -59,7 +59,7 @@ const CartPayment = () => {
   }
 
   // Make Purchase Function
-  async function makePurchase(priceData) {
+  async function makePurchase(priceData: any) {
     const response = await fetch(`${API_BASE_URL}/purchase/new`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ const CartPayment = () => {
   }
 
   // Verify Purchase Function
-  async function verifyPurchase(transactionId) {
+  async function verifyPurchase(transactionId: any) {
     const response = await fetch(`${API_BASE_URL}/purchase/verify/:code`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },

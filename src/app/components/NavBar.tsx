@@ -226,7 +226,7 @@ const NavBar: FC = () => {
             : "fixed right-[-100%] "
         }
       >
-        <ul className=" p-4 text-center text-white lucky flex flex-col gap-2">
+        <ul className=" p-4 text-center text-white lucky flex flex-col gap-2 overflow-y-scroll overflow-hidden">
           <a href="/">
             <li className="p-2" onClick={handleNav}>
               Home
@@ -360,7 +360,7 @@ const NavBar: FC = () => {
                 </Link>
 
                 {userRole === "admin" && (
-                  <ul>
+                  <ul className="cursor-pointer">
                     <li className="p-2 border-b border-gray-600">
                       <Link href="/Dashboard">Dashboard</Link>
                     </li>

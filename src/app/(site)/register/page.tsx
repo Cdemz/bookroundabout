@@ -167,7 +167,7 @@ export default function Register() {
           <div className="flex flex-col items-center justify-center text-[var(--color-text)] mt-6 text-center gap-4 md:gap-6">
             <p>
               {" "}
-              If not redirected in {countdown} secondsclick the button below to
+              If not redirected in {countdown} seconds click the button below to
               go to the home page.
             </p>
             <button

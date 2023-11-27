@@ -3,8 +3,9 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/nextSlice";
-import { disableBook } from "../redux/actions";
-import { enableBook } from "../redux/actions";
+// import { disableBook } from "../redux/actions";
+// import { enableBook } from "../redux/actions";
+import { API_BASE_URL } from "../utils/api";
 
 interface ProductProps {
   product: {
@@ -44,7 +45,7 @@ interface ProductItem {
 }
 
 const AProduct: React.FC<ProductProps> = ({ product }) => {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<any> = useDispatch();
 
   const addItemsToCart = () => {
     // Dispatch the addToCart action with the product
@@ -54,10 +55,47 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
     toast(`${product.title} added to cart`);
   };
 
-  // const handleDisableBook = () => {
+  const enableBook = async (bookId: string) => {
+    try {
+      const postData = { enabled: true };
+      const response = await axios.post(
+        `${API_BASE_URL}/book/${bookId}/toggle`,
+        postData
+      );
 
-  //   dispatch(disableBook(product.id.toString()));
-  // };
+      // Handle successful enable
+      toast.success(`Book ${product.title} enabled`);
+      // Update local state or dispatch a Redux action if necessary
+    } catch (error) {
+      console.error("Error enabling book:", error);
+      toast.error("Error enabling book");
+    }
+  };
+
+  const disableBook = async (bookId: string) => {
+    try {
+      const postData = { enabled: false };
+      const response = await axios.post(
+        `${API_BASE_URL}/book/${bookId}/toggle`,
+        postData
+      );
+
+      // Handle successful disable
+      toast.success(`Book ${product.title} disabled`);
+      // Update local state or dispatch a Redux action if necessary
+    } catch (error) {
+      console.error("Error disabling book:", error);
+      toast.error("Error disabling book");
+    }
+  };
+
+  const handleEnableBook = () => {
+    enableBook(product.id.toString());
+  };
+
+  const handleDisableBook = () => {
+    disableBook(product.id.toString());
+  };
 
   const renderOnSale = () => {
     if (product.sales === true) {
@@ -110,12 +148,21 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
               })}
             </span>
           </p>
-          <div className=" flex gap-4 flex-col">
-            <button className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto">
+          <div className=" flex gap-2 flex-col">
+            <button
+              onClick={handleDisableBook}
+              className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto"
+            >
               Disable Book
             </button>
             <button className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm mt-auto rounded-md">
               Edit Book
+            </button>{" "}
+            <button
+              onClick={handleEnableBook}
+              className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto"
+            >
+              Enable Book
             </button>
           </div>
         </div>
