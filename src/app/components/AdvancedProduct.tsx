@@ -6,8 +6,9 @@ import { Fragment } from "react";
 import Product from "./Product";
 import Filter from "./Filter";
 import axios from "axios"; // Import Axios
-import { API_BASE_URL } from "../utils/api";
+// import { API_BASE_URL } from "../utils/api";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Product {
   // Define the structure of a cart item here
   id: number;

@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../store/nextSlice";
 // import { disableBook } from "../redux/actions";
 // import { enableBook } from "../redux/actions";
-import { API_BASE_URL } from "../utils/api";
+// import { API_BASE_URL } from "../utils/api";
 import axios from "axios";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface ProductProps {
   product: {
     id: number;

@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "../utils/api";
+// import { API_BASE_URL } from "../utils/api";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const TopText = () => {
   const [message, setMessage] = useState("");
