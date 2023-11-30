@@ -2,9 +2,12 @@
 import axios from "axios";
 import { fetchUserAction } from "../redux/actions";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-// export const API_BASE_URL = "https://booksroundabout.glitch.me/v1";
-// export const API_BASE_URL = "https://booksroundabout.glitch.me/v1/user";
+let API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+if (!Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL")) {
+  API_BASE_URL = "https://booksroundaboutapi.xyz/v1";
+}
+console.log(API_BASE_URL);
+export { API_BASE_URL };
 
 interface UserData {
   firstName: string;
