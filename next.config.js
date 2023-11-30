@@ -2,6 +2,7 @@ const { hostname } = require("os");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     domains: [
       "plus.unsplash.com",

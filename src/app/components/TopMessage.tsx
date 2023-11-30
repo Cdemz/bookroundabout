@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { API_BASE_URL } from "../utils/api";
+// import { API_BASE_URL } from "../utils/api";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const TopMessage = () => {
   const [apiMessage, setApiMessage] = useState("Loading...");
 

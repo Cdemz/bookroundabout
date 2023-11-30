@@ -11,9 +11,10 @@ import {
 import toast from "react-hot-toast";
 import { RootState } from "./store";
 import axios from "axios";
-import { API_BASE_URL } from "../utils/api";
+// import { API_BASE_URL } from "../utils/api";
 import { ThunkAction } from "redux-thunk";
 // Action Types
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
