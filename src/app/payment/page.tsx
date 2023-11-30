@@ -20,6 +20,7 @@ const PaymentPage: React.FC<Props> = (props) => {
         <Bigpay />
       </Provider>
     </ReduxProvider>
+    // let try to see which branch wil be AFFECTED
   );
 };
 
