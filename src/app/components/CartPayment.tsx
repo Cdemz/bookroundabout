@@ -4,9 +4,9 @@ import FormattedPrice from "./FormattedPrice";
 import { useDispatch, useSelector } from "react-redux";
 import { StateProps, StoreProduct } from "../type";
 import { useEffect, useState } from "react";
-// import { API_BASE_URL } from "../utils/api";
+import { API_BASE_URL } from "../utils/api";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const CartPayment = () => {
   const { productData, userInfo } = useSelector(
     (state: StateProps) => state.next

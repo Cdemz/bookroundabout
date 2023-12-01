@@ -3,10 +3,14 @@ import axios from "axios";
 import { fetchUserAction } from "../redux/actions";
 
 let API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-if (!Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL")) {
-  API_BASE_URL = "https://booksroundaboutapi.xyz/v1";
-}
-console.log(API_BASE_URL);
+// console.log({
+//   API_BASE_URL,
+//   procE: Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL"),
+// });
+// if (!Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL")) {
+//   API_BASE_URL = "http://booksroundaboutapi.xyz/v1";
+// }
+// console.log(API_BASE_URL);
 export { API_BASE_URL };
 
 interface UserData {
@@ -116,7 +120,7 @@ export const updateUser = async (userData: UserData) => {
 
 export const requestPasswordReset = async (email: string) => {
   try {
-    const response = await axios.post(
+    const response = await axios.put(
       `${API_BASE_URL}/user/begin-change-password`,
       { email }
     );

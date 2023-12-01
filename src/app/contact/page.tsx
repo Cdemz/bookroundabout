@@ -6,9 +6,9 @@ import { AiOutlineContacts } from "react-icons/ai";
 import { BsWhatsapp } from "react-icons/bs";
 import { HiMailOpen } from "react-icons/hi";
 import { MdOutlineMailOutline } from "react-icons/md";
-// import { API_BASE_URL } from "../utils/api";
+import { API_BASE_URL } from "../utils/api";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault(); // Prevent the default form submission behavior

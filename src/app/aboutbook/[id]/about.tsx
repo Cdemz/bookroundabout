@@ -15,8 +15,8 @@ import { BeatLoader } from "react-spinners";
 import Suggest from "./Suggest";
 import ShareIcons from "./ShareIcons";
 import axios from "axios";
-// import { API_BASE_URL } from "../../utils/api";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { API_BASE_URL } from "../../utils/api";
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export interface BookData {
   imageUrl: string;
   title: string;
