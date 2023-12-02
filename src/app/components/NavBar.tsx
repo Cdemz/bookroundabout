@@ -153,7 +153,7 @@ const NavBar: FC = () => {
             </li>
 
             <li>
-              <Link href="">Shop</Link>
+              <Link href="/aboutUs">About US</Link>
             </li>
             <li>
               <Link href="/contact">Contact</Link>
