@@ -153,7 +153,7 @@ const NavBar: FC = () => {
             </li>
 
             <li>
-              <Link href="">Shop</Link>
+              <Link href="/aboutUs">About US</Link>
             </li>
             <li>
               <Link href="/contact">Contact</Link>
@@ -222,11 +222,11 @@ const NavBar: FC = () => {
       <div
         className={
           nav
-            ? "fixed left-0 top-[6.2rem] w-[60%] rounded-2xl border-r border-r-gray-900  bg-[var(--color-primary)] ease-in-out duration-500 shadow-lg shadow-black z-20 h-full md:w-[30%]"
+            ? "fixed left-0 top-[6.2rem] w-[60%] rounded-2xl border-r border-r-gray-900  bg-[var(--color-primary)] ease-in-out duration-500 shadow-lg shadow-black z-20 h-full md:w-[30%] overflow-y-scroll overflow-hidden"
             : "fixed right-[-100%] "
         }
       >
-        <ul className=" p-4 text-center text-white lucky flex flex-col gap-2 overflow-y-scroll overflow-hidden">
+        <ul className=" p-4 text-center text-white lucky flex flex-col gap-2">
           <a href="/">
             <li className="p-2" onClick={handleNav}>
               Home
@@ -347,6 +347,17 @@ const NavBar: FC = () => {
             </Link>
           </li>
           <div>
+            <div className="">
+              {userRole === "admin" && (
+                <Link
+                  href="/Dashboard"
+                  className="cursor-pointer p-2 border-b border-gray-600"
+                  onClick={handleNav}
+                >
+                  Dashboard
+                </Link>
+              )}
+            </div>
             {userData ? (
               <div className="flex flex-col gap-2">
                 {/* User is logged in */}
@@ -358,56 +369,16 @@ const NavBar: FC = () => {
                   <button>My Account</button>{" "}
                   {/* This button only appears when logged in */}
                 </Link>
+                {/* {userRole === "admin" && (
+                  <Link
+                    href="/Dashboard"
+                    className="cursor-pointer p-2 border-b border-gray-600"
+                    onClick={handleNav}
+                  >
+                    Dashboard
+                  </Link>
+                )} */}
 
-                {userRole === "admin" && (
-                  <ul className="cursor-pointer">
-                    <li className="p-2 border-b border-gray-600">
-                      <Link
-                        href="/Dashboard"
-                        className="cursor-pointer"
-                        onClick={handleNav}
-                      >
-                        <button>Dashboard</button>
-                      </Link>
-                    </li>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/sale" onClick={handleNav}>
-                        Create Sale
-                      </Link>
-                    </li>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/category" onClick={handleNav}>
-                        Category
-                      </Link>
-                    </li>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/orders" onClick={handleNav}>
-                        Order
-                      </Link>
-                    </li>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/users" onClick={handleNav}>
-                        Users
-                      </Link>
-                    </li>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/products" onClick={handleNav}>
-                        Product
-                      </Link>
-                    </li>
-
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/discount" onClick={handleNav}>
-                        Discount
-                      </Link>
-                    </li>
-                    <li className="p-2 border-b border-gray-600">
-                      <Link href="/settings" onClick={handleNav}>
-                        Settings
-                      </Link>
-                    </li>
-                  </ul>
-                )}
                 <LogOut />
               </div>
             ) : (

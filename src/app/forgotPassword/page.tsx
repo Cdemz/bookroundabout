@@ -38,9 +38,9 @@ const RequestPasswordResetPage: React.FC<PageProps> = (props) => {
           className="mx-auto md:h-[80%] md:w-[60%] lg:h-[50%]"
         />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="px-9">
         <div>
-          <label>Email:</label>
+          <label className="text-black mr-2">Email:</label>
           <input
             type="email"
             value={email}
@@ -53,10 +53,11 @@ const RequestPasswordResetPage: React.FC<PageProps> = (props) => {
         <div className="mx-auto flex justify-center md:my-10">
           <button
             type="submit"
-            disabled={isLoading}
-            className="bg-[var(--color-primary)] text-white px-4 py-2 lato mx-auto my-3 md:my-10"
+            // disabled={isLoading}
+            className="bg-[var(--color-primary)] text-white px-4 py-2 lato mx-auto my-3 md:my-10 cursor-pointer"
           >
-            {isLoading ? "Requesting..." : "Request Reset"}
+            {/* {isLoading ? "Requesting..." : "Request Reset"} */}
+            Request
           </button>
         </div>
       </form>

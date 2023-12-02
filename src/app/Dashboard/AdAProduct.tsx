@@ -10,10 +10,10 @@ import { Provider } from "react-redux";
 import store from "../store/store";
 import Filter from "../components/Filter";
 import SearchBar from "../components/SearchBar";
-// import { API_BASE_URL } from "../utils/api";
+import { API_BASE_URL } from "../utils/api";
 import axios from "axios";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Product {
   // Define the structure of a cart item here
   id: number;

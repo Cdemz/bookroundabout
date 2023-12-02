@@ -32,6 +32,7 @@ const CartPage = () => {
               <ResetCart />
             </div>
           </div>
+
           <div className="bg-white shadow-lg h-64 md:h-[32rem] col-span-1 p-4 rounded-lg flex items-center justify-center">
             <CartPayment />
           </div>

@@ -1,5 +1,6 @@
 // redux/actions.ts
 import { Dispatch, AnyAction } from "redux";
+import { useRouter } from "next/navigation";
 import {
   registerUser,
   loginUser,
@@ -11,10 +12,10 @@ import {
 import toast from "react-hot-toast";
 import { RootState } from "./store";
 import axios from "axios";
-// import { API_BASE_URL } from "../utils/api";
+import { API_BASE_URL } from "../utils/api";
 import { ThunkAction } from "redux-thunk";
 // Action Types
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
@@ -107,7 +108,8 @@ export const loginUserAction = (userData: any) => {
         // Assuming your API returns a success message upon successful login
         dispatch(fetchUserAction() as any);
         dispatch(loginSuccess("Login successful"));
-        toast.success(`Welcome, ${userData.firstName}!`);
+        toast.success(`Welcome`);
+        return true;
       } else if (response?.statusCode) {
         // Handle other error cases returned by the server
         // console.log("Response Status Code:", response.statusCode);
@@ -292,10 +294,13 @@ export const confirmPasswordResetFailure = (error: string) => ({
 // Action to request password reset
 export const requestPasswordResetAction =
   (email: string) => async (dispatch: Dispatch) => {
+    const router = useRouter();
     try {
       dispatch(requestPasswordResetRequest());
       const response = await requestPasswordReset(email);
       dispatch(requestPasswordResetSuccess(response.message));
+      router.push("/confirmpassword");
+      toast.success(`Check your email for token`);
     } catch (error: any) {
       dispatch(requestPasswordResetFailure(error.message));
     }

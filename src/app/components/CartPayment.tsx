@@ -4,9 +4,9 @@ import FormattedPrice from "./FormattedPrice";
 import { useDispatch, useSelector } from "react-redux";
 import { StateProps, StoreProduct } from "../type";
 import { useEffect, useState } from "react";
-// import { API_BASE_URL } from "../utils/api";
+import { API_BASE_URL } from "../utils/api";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const CartPayment = () => {
   const { productData, userInfo } = useSelector(
     (state: StateProps) => state.next
@@ -49,12 +49,31 @@ const CartPayment = () => {
     }
   };
 
-  // Calculate Price Function
   async function calculatePrice() {
+    // Retrieve the token from local storage
+    const token = localStorage.getItem("token"); // Replace 'yourTokenKey' with the actual key
+
+    // Transform productData into the expected format
+    const books = productData.map((item: StoreProduct) => ({
+      bookId: item.id.toString(), // Convert bookId to a string
+      quantity: item.quantity.toString(), // Convert quantity to a string
+    }));
+
+    // Ensure we have at least one book
+    if (books.length === 0) {
+      console.error("No books in the cart to calculate price for");
+      return;
+    }
+
+    const headers = {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    };
+
     const response = await fetch(`${API_BASE_URL}/purchase/calculate`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: productData }),
+      headers: headers,
+      body: JSON.stringify({ books }), // Send the transformed books array
     });
     return await response.json();
   }
@@ -80,12 +99,13 @@ const CartPayment = () => {
   }
   return (
     <div className="flex flex-col gap-4 ">
-      <div className="flex gap-2">
+      <div className=""></div>
+      {/* <div className="flex gap-2">
         <p className="text-sm text-[var(--color-text)]">
           Your order qualifies for FREE Shipping by Choosing this option at
           checkout. See details....
         </p>
-      </div>
+      </div> */}
       <p className="flex items-center justify-between px-2 font-semibold text-[var(--color-text)]">
         Total:{" "}
         <span className="font-bold text-xl">
