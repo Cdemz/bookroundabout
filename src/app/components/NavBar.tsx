@@ -347,6 +347,17 @@ const NavBar: FC = () => {
             </Link>
           </li>
           <div>
+            <div className="">
+              {userRole === "admin" && (
+                <Link
+                  href="/Dashboard"
+                  className="cursor-pointer p-2 border-b border-gray-600"
+                  onClick={handleNav}
+                >
+                  Dashboard
+                </Link>
+              )}
+            </div>
             {userData ? (
               <div className="flex flex-col gap-2">
                 {/* User is logged in */}
@@ -359,25 +370,6 @@ const NavBar: FC = () => {
                   {/* This button only appears when logged in */}
                 </Link>
 
-                {userRole === "admin" && (
-                  <ul className="cursor-pointer flex flex-col ">
-                    <Link
-                      href="/Dashboard"
-                      className="cursor-pointer p-2 border-b border-gray-600"
-                      onClick={handleNav}
-                    >
-                      <button>Dashboard</button>
-                    </Link>
-                    {/* 
-                    <Link
-                      href="/orders"
-                      className="cursor-pointer p-2 border-b border-gray-600"
-                      onClick={handleNav}
-                    >
-                      Order
-                    </Link> */}
-                  </ul>
-                )}
                 <LogOut />
               </div>
             ) : (

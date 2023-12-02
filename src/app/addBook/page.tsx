@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { FaAsterisk } from "react-icons/fa";
 import axios from "axios";
 import { useDropzone, DropzoneOptions } from "react-dropzone";
+import { FaAsterisk } from "react-icons/fa";
 import { API_BASE_URL } from "../utils/api";
 
 interface FormData {
@@ -16,8 +16,9 @@ interface FormData {
   agerange: string;
   isNew: string;
   sales: string;
+  amountInStock: number;
   image: File | null;
-  [key: string]: string | File | null;
+  [key: string]: any;
 }
 
 const page = () => {
@@ -32,6 +33,7 @@ const page = () => {
     agerange: "",
     isNew: "",
     sales: "",
+    amountInStock: 2,
     image: null,
   });
 
@@ -53,24 +55,49 @@ const page = () => {
 
   const { getRootProps, getInputProps } = useDropzone(dropzoneOptions);
 
+  async function uploadImage(file: File): Promise<string> {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/upload-image`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      return response.data.imageUrl; // Replace with the actual key that your API returns
+    } catch (error) {
+      console.error("Error uploading image", error);
+      return "";
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const dataToSend = new FormData();
+    let imageUrl = "";
 
-    for (const key in formData) {
-      if (formData[key] !== null) {
-        dataToSend.append(key, formData[key] as string | Blob);
+    if (formData.image) {
+      imageUrl = await uploadImage(formData.image);
+      if (!imageUrl) {
+        console.error("Failed to upload image");
+        return;
       }
     }
 
-    // Retrieve the token from local storage
-    const token = localStorage.getItem("token"); // Replace 'yourTokenKey' with the actual key used for storing the token
+    const bookData = {
+      ...formData,
+      imageUrl,
+      price: parseFloat(formData.price), // Convert string to number if necessary
+      // Include additional transformations if required
+    };
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/book`, dataToSend, {
+      const response = await axios.post(`${API_BASE_URL}/book`, bookData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure token is stored and retrieved correctly
         },
       });
       console.log(response.data);
@@ -227,25 +254,14 @@ const page = () => {
               />
             </div>
 
-            {/* sales
-            <div className="flex-col flex gap-2">
-              <label className="flex gap-1">On sales?</label>
-
-              <input
-                type="text"
-                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
-                name="sales"
-                placeholder="true or false, or leave empty "
-              />
-            </div> */}
             {/* Drag and Drop for Image */}
-            {/* <div
+            <div
               {...getRootProps()}
               className="dropzone border-2 border-dashed border-gray-400 p-4"
             >
               <input {...getInputProps()} />
               <p>Drag 'n' drop book image here, or click to select file</p>
-            </div> */}
+            </div>
 
             {/* Submit Button */}
             <div className=" ml-auto">

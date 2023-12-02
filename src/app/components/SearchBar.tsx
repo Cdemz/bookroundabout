@@ -11,6 +11,7 @@ interface Book {
   category: string;
   img: string;
   price: number;
+  imageUrl: string;
   // ... other properties ...
 }
 
@@ -63,7 +64,11 @@ const SearchBar = () => {
                 <Link href={`/aboutbook/${val.id}`}>
                   <div className="template flex" key={val.id}>
                     <div className=" h-[120px] w-[100px]">
-                      <img src={val.img} alt="" className="   object-cover" />
+                      <img
+                        src={val.imageUrl}
+                        alt=""
+                        className="   object-fit h-[80px]"
+                      />
                     </div>
                     <div className="lato">
                       <h2>{val.code}</h2>
