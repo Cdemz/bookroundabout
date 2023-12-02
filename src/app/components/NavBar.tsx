@@ -369,6 +369,15 @@ const NavBar: FC = () => {
                   <button>My Account</button>{" "}
                   {/* This button only appears when logged in */}
                 </Link>
+                {/* {userRole === "admin" && (
+                  <Link
+                    href="/Dashboard"
+                    className="cursor-pointer p-2 border-b border-gray-600"
+                    onClick={handleNav}
+                  >
+                    Dashboard
+                  </Link>
+                )} */}
 
                 <LogOut />
               </div>
