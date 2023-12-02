@@ -7,6 +7,7 @@ import Product from "./Product";
 import Filter from "./Filter";
 import axios from "axios"; // Import Axios
 import { API_BASE_URL } from "../utils/api";
+import SearchBar from "./SearchBar";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Product {
@@ -119,6 +120,10 @@ const AdvancedProduct = () => {
   return (
     <div className=" overflow-hidden ">
       <main className="container mx-auto bg-white ">
+        <div className="mt-4 pt-4">
+          {" "}
+          <SearchBar />
+        </div>
         <div className="flex justify-between items-center mt-4 px-4 pt-4 overflow-hidden">
           <h1 className="font-bold text-2xl  text-black lucky ">
             Best Sellers

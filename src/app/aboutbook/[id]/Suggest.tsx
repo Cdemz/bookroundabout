@@ -71,7 +71,7 @@ const Suggest = () => {
               key={index}
               product={{
                 id: product.id,
-                img: product.img,
+                img: product.imageUrl,
                 title: product.title,
                 category: product.category,
                 code: product.code,

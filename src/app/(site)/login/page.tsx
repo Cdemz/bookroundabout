@@ -36,10 +36,11 @@ const CustomSignIn = () => {
     // Dispatch loginUserAction with formData and wait for the result
     try {
       const success = await dispatch(loginUserAction(formData)); // Ensure formData is passed here
-      if (success) {
-        router.push("/"); // Redirect on successful login
+      if (!success) {
+        setIsButtonDisabled(false);
+        // Redirect on successful login
       } else {
-        setIsButtonDisabled(false); // Re-enable the button if login fails
+        router.push("/"); // Re-enable the button if login fails
       }
     } catch (error) {
       console.error("Login failed", error);
