@@ -1,0 +1,29 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from "../utils/api";
+
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const TopMessage = () => {
+  const [apiMessage, setApiMessage] = useState("Loading...");
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/message?type=banner_message`)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log({ API_BASE_URL });
+        setApiMessage(data.message);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setApiMessage("Error loading message");
+      });
+  }, []); // Empty array ensures this runs only once on mount
+
+  return (
+    <div className="bg-[var(--color-primary-v)] w-full pl-auto pr-auto py-4 flex justify-center">
+      <h1>{apiMessage}</h1>
+    </div>
+  );
+};
+
+export default TopMessage;

@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "img": "/A Broken People’s Playlist.jpg",
+    "title": "A Broken People’s Playlist",
+    "category": "Fiction",
+    "code": "WHL21",
+    "price": 5000.0,
+    "oldprice": 7000.0,
+    "description": "A Broken People’s Playlist is a collection of short stories with underlying themes so beautifully woven that each story flows into the other seamlessly. From its poignant beginning in “Lost Stars” a story about love and its fleeting, transient nature to the gritty, raw musical prose encapsulated in “In The City”, a tale of survival set in the alleyways of the waterside. A Broken People’s Playlist is a mosaic of stories about living, loving and hurting through very familiar sounds, in very familiar ways and finding healing in the most unlikely places. \n The stories are also part homage and part-love letters to Port Harcourt (the city in which most of them are set in). The prose is distinctive as it is concise and unapologetically Nigerian. And because the collection is infused with the magic of evocative storytelling, everyone is promised a story, a character, to move or haunt them.",
+    "agerange": "Young Adult",
+    "rating": 3.5,
+    "tag": ["Paper Back", "Ebook", "Hard Back", "Yoruba", "Igbo", "Hausa"],
+    "genre": [
+      "fantasy",
+      "Action",
+      "Romance",
+      "Thriller",
+      "Crime",
+      "Suspense",
+      "Young-Adult",
+      "Comedy",
+      "Tragedy"
+    ],
+    "isNew": true,
+    "sales": true,
+    "stag": "yes"
+  },
+  {
+    "id": 2,
+    "img": "/Created to Dream.jpg",
+    "title": "Created to Dream",
+    "category": "Non-Fiction",
+    "code": "WHL22",
+    "price": 10000.0,
+    "description": "God has a dream for your life–and in this concise yet powerful volume, beloved pastor and trusted teacher Rick Warren explains the process God uses to fulfill the dream he gives you. The Bible is full of stories of people whose God-given dreams became reality–but not without first going through the six phases of faith. In Created to Dream, Pastor Rick will help you understand how God uses these phases to grow people to spiritual maturity while fulfilling the dreams he gives them. Each phase is a test of your faith. The process God uses to grow your Knowing these biblical six phases of faith will allow you to stop wondering, “Why is this happening to me?” and begin cooperating with God’s process of growing you and your faith. You’ll find yourself thinking, “So that’s why that happened!” and you’ll be prepared for all that God has dreamed up for your future. This one book can lead to big changes in your life. Read it, then share it with a friend.",
+    "rating": 1.5
+  },
+  {
+    "id": 3,
+    "img": "/Geronimo Stilton Grammar Pawbook 1.png",
+    "title": "Geronimo Stilton Grammar Pawbook 1",
+    "category": "Education",
+    "code": "WHL23",
+    "price": 1700.0,
+    "description": "The validity of dreams should never be taken for granted. We see how one encounter or mishap can trigger the imagination beyond expectation. This story encapsulates how dreams can grow wings and fly, although in this case, it sails on a boat. “When the Sky is Ready, the Stars Will Appear“ is a stellar achievement.",
+    "tag": ["Paper Back"],
+    "rating": 2.6,
+    "oldprice": 3000,
+    "isNew": true,
+    "sales": true
+  },
+  {
+    "id": 4,
+    "img": "/H3 Leadership Be Humble. Stay Hungry. Always Hustle..jpg",
+    "title": "H3 Leadership Be Humble. Stay Hungry. Always Hustle.",
+    "category": "Non-Fiction",
+    "code": "WHL24",
+    "price": 9000.0,
+    "description": "it's a good book",
+    "tag": ["Paper Back"],
+    "rating": 4.5
+  },
+  {
+    "id": 5,
+    "img": "/Lulu and the Mangoes.png",
+    "title": "Lulu and the Mangoes",
+    "category": "Children Books",
+    "code": "WHL25",
+    "price": 700.0,
+    "description": "it's a good book",
+    "tag": ["Paper Back"],
+    "rating": 4.1
+  },
+  {
+    "id": 6,
+    "img": "/Nearly all the men in lagos are mad.png",
+    "title": "Nearly all the men in lagos are mad",
+    "category": "Fiction",
+    "code": "WHL26",
+    "price": 4500.0,
+    "description": "it's a good book",
+    "tag": ["Paper Back"],
+    "rating": 3.1,
+    "isNew": true,
+    "sales": true
+  },
+  {
+    "id": 7,
+    "img": "/Nene and the Butterflies.png",
+    "title": "Nene and the Butterflies",
+    "category": "Children Books",
+    "code": "WHL27",
+    "price": 700.0,
+    "description": "it's a good book",
+    "tag": ["Paper Back"],
+    "rating": 2.7
+  },
+  {
+    "id": 8,
+    "img": "/Oliver Twist (AXORA).png",
+    "title": "Oliver Twist (AXORA)",
+    "category": "Children Books",
+    "code": "WHL28",
+    "price": 1300.0,
+    "description": "it's a good book",
+    "tag": ["Paper Back"],
+    "rating": 4.2,
+    "isNew": true
+  },
+  {
+    "id": 9,
+    "img": "/smart moves more money.png",
+    "title": "smart moves more money",
+    "category": "Non-Fiction",
+    "code": "WHL29",
+    "price": 6000.0,
+    "description": "it's a good book",
+    "tag": ["Paper Back"]
+  },
+  {
+    "id": 10,
+    "img": "/Stay with Me.gif",
+    "title": "Stay with Me",
+    "category": "Comedy",
+    "code": "WHL30",
+    "price": 5000.0,
+    "description": "Yejide is hoping for a miracle, for a child. It is all her husband wants, all her mother-in-law wants, and she has tried everything – arduous pilgrimages, medical consultations, appeals to God. But when her relatives insist upon a new wife, it is too much for Yejide to bear. It will lead to jealousy, betrayal and despair.",
+    "tag": ["Paper Back"]
+  },
+  {
+    "id": 11,
+    "img": "/The Missing Cryptoqueen.png",
+    "title": "The Missing Cryptoqueen",
+    "category": "Non-Fiction",
+    "code": "WHL31",
+    "oldprice": 10000.0,
+    "price": 9000.0,
+    "description": "The inside story of the biggest business scam of the 21st century, and the hunt for the woman who got away with it. \n The Missing Cryptoqueen tells the unbelievable story of the rise, disappearance, and fall of Dr Ruja Ignatova. It is a modern tale of intrigue, techno-hype, and herd madness that reveals how OneCoin became the biggest scam of the 21st Century.",
+    "tag": ["Paper Back"]
+  },
+
+  {
+    "id": 12,
+    "img": "/The Secret Lives of Baba Segi’s Wives.png",
+    "title": "The Secret Lives of Baba Segi’s Wives",
+    "category": "Fiction",
+    "code": "WHL32",
+    "price": 6000.0,
+    "description": "For a polygamist like Baba Segi, his collection of wives and a gaggle of children are the symbols of prosperity, success and validation of his manhood. Everything runs reasonably smoothly in the patriarchal home until wife number four intrudes on this family romance. \n  Bolanle, a graduate amongst the semi-literate wives, is hated from the start. Baba Segi’s glee at bagging a graduate doesn’t help matters. Worse, Bolanle’s arrival threatens to do more than simply ruffle feathers. She’s unwittingly set to expose a secret that her co-wives intend to protect, at all costs.",
+    "tag": ["Paper Back"]
+  },
+  {
+    "id": 13,
+    "img": "/The Subtle Art of Not Giving a Fuck.jpg",
+    "title": "The Subtle Art of Not Giving a Fuck",
+    "category": "Non-Fiction",
+    "code": "WHL33",
+    "price": 13000.0,
+    "description": "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be “positive” all the time so that we can truly become better, happier people.",
+    "tag": ["Paper Back"],
+    "sales": true
+  }
+]
