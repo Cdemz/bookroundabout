@@ -114,12 +114,14 @@ const ScartPayment = () => {
       </p>
 
       <div className="flex flex-col items-center">
-        <button
-          onClick={handleCheckout}
-          className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
-        >
-          Checkout
-        </button>
+        <Link href="/cart">
+          <button
+            // onClick={handleCheckout}
+            className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
+          >
+            Checkout
+          </button>
+        </Link>
       </div>
     </div>
   );

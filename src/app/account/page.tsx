@@ -71,8 +71,8 @@ const MyAccount = () => {
         <h1 className="text-center font-bold text-lg mb-3">My Account</h1>
         <div className="text-center">
           <Greetings />
-          <h2>Order history</h2>
-          <p className="italic">You haven't placed any order yet.</p>
+          {/* <h2>Order history</h2>
+          <p className="italic">You haven't placed any order yet.</p> */}
         </div>
         <div className="mx-auto lato">
           <h1 className="text-[var(--color-text)] text-lg font-bold my-4 flex text-center items-center gap-2 ">

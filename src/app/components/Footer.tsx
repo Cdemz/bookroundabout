@@ -90,12 +90,12 @@ const Footer: FC = () => {
             <IoIosCall className=" " size={26} /> +234-(902)070-4026
           </a>
           <a
-            href="mailto:booksroundabout@gmail.com"
+            href="mailto:info@booksroundabout.com"
             target="_blank"
             rel="noreferrer"
           >
             <p className="flex items-center gap-2 cursor-pointer">
-              <HiMailOpen className="" size={26} /> booksroundabout@gmail.com
+              <HiMailOpen className="" size={26} /> info@booksroundabout.com
             </p>
           </a>
         </div>
@@ -104,7 +104,7 @@ const Footer: FC = () => {
       <div className="  pt-8 items-center flex flex-col text-center">
         <p>
           {" "}
-          Books RoundAbout. Navigate the Literary Realm, Crafted with Finesse,
+          BooksroundAbout. Navigate the Literary Realm, Crafted with Finesse,
           Curated with Zeal. ©2023
         </p>
       </div>
