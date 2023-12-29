@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { StateProps, StoreProduct } from "../type";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../utils/api";
+import Link from "next/link";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const ScartPayment = () => {
