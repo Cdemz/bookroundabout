@@ -1,5 +1,5 @@
 // PaymentVerification.jsx
-
+"use client";
 import React, { useEffect } from "react";
 import { API_BASE_URL } from "../utils/api"; // Adjust the path as per your project structure
 import toast from "react-hot-toast";
