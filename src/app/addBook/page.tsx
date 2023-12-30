@@ -124,10 +124,158 @@ const page = () => {
             onSubmit={handleSubmit}
             className="flex flex-col gap-2 border-gray-300 border-4 p-6 w-full"
           >
-            {/* Book Title Input and other form elements... */}
-            {/* ... */}
+            {/* book title  */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Book Title
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+
+              <input
+                type="text"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]w-full"
+                name="bookTitle"
+                placeholder="eg. Billy goes to school"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            {/* category  */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Category
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+
+              <input
+                type="text"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
+                name="category"
+                onChange={handleChange}
+                placeholder="What category is it?"
+                required
+              />
+            </div>
+            {/* Description  */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Description
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+              <textarea
+                className="border-2 border-gray-400  h-20 border-r-2 "
+                name="description"
+                onChange={handleChange}
+                placeholder="e.g. a very great book"
+                required
+                // value={}
+                // onChange={}
+              />
+            </div>
+            {/* price  */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Price
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+
+              <input
+                type="number"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
+                name="price"
+                placeholder="how much?"
+                required
+              />
+            </div>
+            {/* Book Code  */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Book Code
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+
+              <input
+                type="text"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
+                name="bookCode"
+                onChange={handleChange}
+                placeholder="17000"
+                required
+              />
+            </div>
+
+            {/* Genre */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Genre
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+
+              <input
+                type="text"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
+                name="genre"
+                onChange={handleChange}
+                placeholder="eg.action"
+                required
+              />
+            </div>
+
+            {/* tag */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Tag
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+
+              <input
+                type="text"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
+                name="tag"
+                onChange={handleChange}
+                placeholder="eg, hard back, paper back, very new etc. "
+                required
+              />
+            </div>
+
+            {/*agerange */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">Age Range</label>
+
+              <input
+                type="text"
+                className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
+                name="agerange"
+                onChange={handleChange}
+                placeholder="eg,13-18 "
+              />
+            </div>
+
+            {/* Drag and Drop for Image */}
+            <div
+              {...getRootProps()}
+              className="dropzone border-2 border-dashed border-gray-400 p-4"
+            >
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop book image here, or click to select file</p>
+            </div>
+
             {/* Submit Button */}
-            <div className="ml-auto">
+            <div className=" ml-auto">
               <button
                 type="submit"
                 className="bg-[var(--color-primary)] text-white px-3 py-2 lato text-sm mt-4"

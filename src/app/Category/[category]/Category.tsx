@@ -1,37 +1,53 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Data from "../../BooksData.json";
+// import Data from "../../BooksData.json";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/nextSlice";
 import toast from "react-hot-toast";
 import Link from "next/link";
-
+import { API_BASE_URL } from "../../utils/api";
+import axios from "axios";
 export interface BookData {
-  img: string;
+  id: number;
   title: string;
-  category: string;
-  rating?: number | string[];
+  imageUrl: string;
   code: string;
-  agerange?: string;
+  description: string;
+  agerange: string;
   price: number;
-  oldprice?: number;
-  id?: number;
-  tag?: string[];
+  category: string;
+  discountPrice: number;
+  createdAt: string;
+  amountInStock: string;
+  cover: string;
+  isDisabled: boolean;
+  discount: string;
+  isNew: boolean;
+  img: string;
+  stag: any;
+  oldprice: string;
 }
 
 interface ProductProps {
   product: {
     id: number;
-    img: string;
     title: string;
-    category?: string;
-    code?: string;
-    price: number;
-    oldprice?: number;
+    imageUrl: string;
+    code: string;
     description: string;
-    agerange?: string;
-    quantity: number; // Include the quantity property
+    agerange: string;
+    price: number;
+    category: string;
+    discountPrice: number;
+    createdAt: string;
+    amountInStock: string;
+    cover: string;
+    isDisabled: boolean;
+    discount: string;
+    isNew: boolean;
+    img: string;
+    stag: any;
   };
 }
 
@@ -40,33 +56,41 @@ type Props = {
     category: string;
   };
 };
-function getBookByCategory(category: string): BookData[] {
-  // Find the books with the matching category
-  const filteredBooks = Data.filter((item) => item.category === category);
-  return filteredBooks;
-}
+// function getBookByCategory(category: string): BookData[] {
+//   const response = await axios.get(`${API_BASE_URL}/book`);
+//   const Data = response.data;
+//   // Find the books with the matching category
+//   const filteredBooks = Data.filter((item) => item.category === category);
+//   return filteredBooks;
+// }
 
 // ... Rest of your component
 
 export default function Home({ params }: Props) {
   const { category } = params;
-
-  // State to store the books of the specified category
   const [books, setBooks] = useState<BookData[]>([]);
-
-  // Effect to filter and load books based on the category
-  useEffect(() => {
-    // Use 'category' in your filtering logic, e.g., getBookByCategory(category)
-    const filteredBooks = getBookByCategory(category);
-    setBooks(filteredBooks);
-  }, [category]);
   const dispatch = useDispatch();
 
-  const addItemsToCart = (product: BookData) => {
-    // Dispatch the addToCart action with the product
-    dispatch(addToCart({ ...product, quantity: 1 }));
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/book`);
+        const allBooks = response.data; // Assuming the response has the array of all books
+        const filteredBooks = allBooks.filter(
+          (book: any) => book.category === category
+        );
+        setBooks(filteredBooks);
+      } catch (error) {
+        console.error("Error fetching books", error);
+        // Handle errors, maybe set an error state and display it
+      }
+    };
 
-    // Show a toast or perform other actions as needed
+    fetchBooks();
+  }, [category]);
+
+  const addItemsToCart = (product: BookData) => {
+    dispatch(addToCart({ ...product, quantity: 1 }));
     toast(`${product.title} added to cart`);
   };
 
