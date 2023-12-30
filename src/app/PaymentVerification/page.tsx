@@ -31,17 +31,17 @@ const PaymentVerification = () => {
           router.push("/success"); // Redirect to success page
         } else {
           toast.error("Payment verification failed.");
-          router.push("/failure"); // Redirect to failure page
+          //   router.push("/Failed"); // Redirect to failure page
         }
       } catch (error) {
         // console.error("Error verifying purchase:", error);
         toast.error("Error verifying payment.");
-        router.push("/failure"); // Redirect to failure page
+        // router.push("/Failed"); // Redirect to failure page
       }
     } else {
       //   console.error("Code parameter is missing in the URL");
       toast.error("Code parameter is missing.");
-      router.push("/failure"); // Redirect to failure page if code is missing
+      //   router.push("/Failed"); // Redirect to failure page if code is missing
     }
   };
 
