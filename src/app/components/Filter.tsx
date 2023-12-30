@@ -22,16 +22,23 @@ function Filter({
     const categoryFiltered =
       activeCategory === " "
         ? data
-        : data.filter((book) => book.category.includes(activeCategory));
+        : data.filter(
+            (book) =>
+              Array.isArray(book.category) &&
+              book.category.includes(activeCategory)
+          );
 
     // Filter by genre
     const genreFiltered =
       activeGenre === " "
         ? categoryFiltered
-        : categoryFiltered.filter((book) => book.genre.includes(activeGenre));
+        : categoryFiltered.filter(
+            (book) =>
+              Array.isArray(book.genre) && book.genre.includes(activeGenre)
+          );
 
     setFiltered(genreFiltered);
-  }, [activeCategory, activeGenre]);
+  }, [activeCategory, activeGenre, data]);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setActiveCategory(e.target.value);
@@ -54,6 +61,7 @@ function Filter({
         <option value="Education">Education</option>
         <option value="Children Books">Children Books</option>
       </select>
+      {/* Uncomment and use the genre dropdown if needed */}
       {/* <select
         value={activeGenre}
         onChange={handleGenreChange}
@@ -63,7 +71,6 @@ function Filter({
         <option value="Mystery">Mystery</option>
         <option value="Science Fiction">Science Fiction</option>
         <option value="Adventure">Adventure</option>
-         
       </select> */}
     </div>
   );

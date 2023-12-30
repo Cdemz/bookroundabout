@@ -9,6 +9,7 @@ const nextConfig = {
       "avatars.githubusercontent.com",
       "images.unsplash.com",
       "booksroundabout.s3.amazonaws.com",
+      "ibb.co",
     ],
     remotePatterns: [
       {

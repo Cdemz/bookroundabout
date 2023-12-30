@@ -31,6 +31,7 @@ const CartPayment = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
 
   const [hasFetchedLocations, setHasFetchedLocations] = useState(false);
+  const [notes, setNotes] = useState("");
 
   useEffect(() => {
     // Specify the type of 'acc' as number
@@ -40,7 +41,7 @@ const CartPayment = () => {
     );
 
     // Add price of selected delivery location
-    if (deliveryType === "Delivery" && selectedLocation) {
+    if (deliveryType === "delivery" && selectedLocation) {
       const selectedLocationData = deliveryLocations.find(
         (location) => location.id.toString() === selectedLocation
       );
@@ -65,7 +66,7 @@ const CartPayment = () => {
     if (deliveryType === "delivery" && !hasFetchedLocations) {
       fetchDeliveryLocations();
     }
-  }, [productData, deliveryType, selectedLocation]); // Removed deliveryLocations from dependencies
+  }, [productData, deliveryType, selectedLocation, deliveryLocations]); // Removed deliveryLocations from dependencies
 
   const handleCheckout = async () => {
     try {
@@ -112,6 +113,9 @@ const CartPayment = () => {
   const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedLocation(e.target.value);
   };
+  const handleNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNotes(e.target.value);
+  };
 
   async function calculatePrice() {
     // Retrieve the token from local storage
@@ -137,6 +141,7 @@ const CartPayment = () => {
     const body = JSON.stringify({
       books,
       deliveryType, // Include the selected delivery type here
+      locationId: deliveryType === "delivery" ? selectedLocation : null,
     });
 
     const response = await fetch(`${API_BASE_URL}/purchase/calculate`, {
@@ -163,8 +168,8 @@ const CartPayment = () => {
         quantity: book.quantity ? book.quantity.toString() : "1",
       })),
       deliveryType: calculationData.isDelivery ? "delivery" : "pickup",
-      locationId: calculationData.isDelivery ? selectedLocation : undefined,
-      //notes: "Your notes here",  Replace with actual notes or handle dynamically
+      locationId: deliveryType === "delivery" ? selectedLocation : undefined,
+      notes,
       callbackUrl: "https://bookroundabout.vercel.app/PaymentVerification", // Replace with your actual callback URL
     };
 
@@ -190,7 +195,7 @@ const CartPayment = () => {
     return await response.json();
   }
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4">
       {/* Delivery Type Selection */}
       <div className="text-black">
         <label htmlFor="deliveryType">Delivery Type:</label>
@@ -220,6 +225,17 @@ const CartPayment = () => {
               </option>
             ))}
           </select>
+
+          <div className="text-black">
+            <label htmlFor="notes">Notes:</label>
+            <textarea
+              id="notes"
+              value={notes}
+              onChange={handleNotesChange}
+              className="w-full border rounded-md p-2"
+              placeholder="Enter any notes here"
+            />
+          </div>
         </div>
       )}
 
@@ -250,197 +266,3 @@ const CartPayment = () => {
 };
 
 export default CartPayment;
-
-// "use client";
-// import { SiMediamarkt } from "react-icons/si";
-// import FormattedPrice from "./FormattedPrice";
-// import { useDispatch, useSelector } from "react-redux";
-// import { StateProps, StoreProduct } from "../type";
-// import { useEffect, useState } from "react";
-// import { API_BASE_URL } from "../utils/api";
-
-// interface DeliveryLocation {
-//   id: number;
-//   name: string;
-//   description: string;
-//   price: string;
-// }
-
-// const CartPayment = () => {
-//   const { productData, userInfo } = useSelector(
-//     (state: StateProps) => state.next
-//   );
-//   const [totalAmount, setTotalAmount] = useState(0);
-//   const [deliveryType, setDeliveryType] = useState("");
-//   const [deliveryLocations, setDeliveryLocations] = useState<
-//     DeliveryLocation[]
-//   >([]);
-//   const [selectedLocation, setSelectedLocation] = useState("");
-//   useEffect(() => {
-//     let amt = 0;
-//     productData.forEach((item: StoreProduct) => {
-//       amt += item.price * item.quantity;
-//     });
-//     setTotalAmount(amt);
-
-//     const fetchDeliveryLocations = async () => {
-//       try {
-//         const response = await fetch(`${API_BASE_URL}/location`);
-//         const locations = await response.json();
-//         setDeliveryLocations(locations);
-//       } catch (error) {
-//         console.error("Failed to fetch delivery locations:", error);
-//       }
-//     };
-
-//     fetchDeliveryLocations();
-//   }, [productData]);
-
-//   const handleCheckout = async () => {
-//     try {
-//       const calculationResponse = await calculatePrice();
-//       if (calculationResponse.success) {
-//         const purchaseResponse = await makePurchase(calculationResponse.data);
-//         if (purchaseResponse.success) {
-//           const verificationResponse = await verifyPurchase(
-//             purchaseResponse.transactionId
-//           );
-//           if (verificationResponse.verified) {
-//             // Handle successful verification
-//             console.log("Purchase verified successfully");
-//           } else {
-//             // Handle verification failure
-//             console.error("Verification failed");
-//           }
-//         } else {
-//           // Handle purchase failure
-//           console.error("Purchase failed");
-//         }
-//       } else {
-//         // Handle price calculation failure
-//         console.error("Price calculation failed");
-//       }
-//     } catch (error) {
-//       console.error("Checkout process failed:", error);
-//     }
-//   };
-
-//   const handleDeliveryTypeChange = (
-//     e: React.ChangeEvent<HTMLSelectElement>
-//   ) => {
-//     setDeliveryType(e.target.value);
-//   };
-
-//   const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-//     setSelectedLocation(e.target.value);
-//   };
-
-//   async function calculatePrice() {
-//     // Retrieve the token from local storage
-//     const token = localStorage.getItem("token"); // Replace 'yourTokenKey' with the actual key
-
-//     // Transform productData into the expected format
-//     const books = productData.map((item: StoreProduct) => ({
-//       bookId: item.id.toString(), // Convert bookId to a string
-//       quantity: item.quantity.toString(), // Convert quantity to a string
-//     }));
-
-//     // Ensure we have at least one book
-//     if (books.length === 0) {
-//       console.error("No books in the cart to calculate price for");
-//       return;
-//     }
-
-//     const headers = {
-//       "Content-Type": "application/json",
-//       ...(token ? { Authorization: `Bearer ${token}` } : {}),
-//     };
-
-//     const response = await fetch(`${API_BASE_URL}/purchase/calculate`, {
-//       method: "POST",
-//       headers: headers,
-//       body: JSON.stringify({ books, deliveryType }), // Send the transformed books array
-//     });
-//     return await response.json();
-//   }
-
-//   // Make Purchase Function
-//   async function makePurchase(priceData: any) {
-//     const response = await fetch(`${API_BASE_URL}/purchase/new`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ priceData, email: userInfo.email }),
-//     });
-//     return await response.json();
-//   }
-
-//   // Verify Purchase Function
-//   async function verifyPurchase(transactionId: any) {
-//     const response = await fetch(`${API_BASE_URL}/purchase/verify/:code`, {
-//       method: "GET",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ transactionId }),
-//     });
-//     return await response.json();
-//   }
-//   return (
-//     <div className="flex flex-col gap-4 ">
-//       {/* Delivery Type Selection */}
-//       <div className="text-black">
-//         <label htmlFor="deliveryType">Delivery Type:</label>
-//         <select
-//           id="deliveryType"
-//           value={deliveryType}
-//           onChange={handleDeliveryTypeChange}
-//         >
-//           <option value="Delivery">Delivery</option>
-//           <option value="Pickup">Pickup</option>
-//         </select>
-//       </div>
-
-//       {/* Delivery Location Selection - Shown only if Delivery is selected */}
-//       {deliveryType === "Delivery" && (
-//         <div className="text-black">
-//           <label htmlFor="deliveryLocation">Delivery Location:</label>
-//           <select
-//             id="deliveryLocation"
-//             value={selectedLocation}
-//             onChange={handleLocationChange}
-//           >
-//             <option value="">Select Delivery Location</option>
-//             {deliveryLocations.map((location) => (
-//               <option key={location.id} value={location.id}>
-//                 {location.name} - Price: {location.price}
-//               </option>
-//             ))}
-//           </select>
-//         </div>
-//       )}
-
-//       <div className=""></div>
-//       {/* <div className="flex gap-2">
-//         <p className="text-sm text-[var(--color-text)]">
-//           Your order qualifies for FREE Shipping by Choosing this option at
-//           checkout. See details....
-//         </p>
-//       </div> */}
-//       <p className="flex items-center justify-between px-2 font-semibold text-[var(--color-text)]">
-//         Total:{" "}
-//         <span className="font-bold text-xl">
-//           <FormattedPrice amount={totalAmount} />
-//         </span>
-//       </p>
-
-//       <div className="flex flex-col items-center">
-//         <button
-//           onClick={handleCheckout}
-//           className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
-//         >
-//           Proceed to Buy
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CartPayment;

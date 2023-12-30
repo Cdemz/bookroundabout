@@ -27,7 +27,7 @@ interface Product {
   isDisabled: boolean;
   discount: string;
   isNew: boolean;
-
+  genre: string[];
   // ...other properties
 }
 
@@ -52,8 +52,8 @@ interface Product {
   },
 ];
 const AdvancedProduct = () => {
-  const [activeCategory, setActiveCategory] = useState(" ");
-  const [activeGenre, setActiveGenre] = useState(" ");
+  const [activeCategory, setActiveCategory] = useState("");
+  const [activeGenre, setActiveGenre] = useState("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -65,7 +65,7 @@ const AdvancedProduct = () => {
       .get(`${API_BASE_URL}/book?page&limit`)
       .then((response) => {
         // Assuming the API response contains an array of book data
-        setFilteredData(response.data);
+        // setFilteredData(response.data);
         setData(response.data);
 
         // Initialize currentDate with the current date and time
@@ -103,7 +103,19 @@ const AdvancedProduct = () => {
       });
   }, []);
 
-  // ...
+  useEffect(() => {
+    const filtered = data.filter((product) => {
+      const categoryMatch = activeCategory
+        ? product.category === activeCategory
+        : true;
+      const genreMatch = activeGenre
+        ? product.genre.includes(activeGenre)
+        : true;
+      return categoryMatch && genreMatch;
+    });
+
+    setFilteredData(filtered);
+  }, [data, activeCategory, activeGenre]);
 
   const fictionLinks = [
     "Ficition",
@@ -114,9 +126,12 @@ const AdvancedProduct = () => {
     "Crime & Thriller",
     "Fantasy & Horror",
     "Poetry & Drama",
-  ].map((linkText, index) => {
-    return <MenuItem key={index} linkText={linkText} />;
-  });
+  ].map((linkText, index) => <MenuItem key={index} linkText={linkText} />);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className=" overflow-hidden ">
       <main className="container mx-auto bg-white ">
