@@ -22,7 +22,7 @@ interface FormData {
   sales: string;
   amountInStock: number;
   discountPrice: number;
-  imageUrl: string;
+  imagelink: string;
 }
 
 type Props = {
@@ -45,7 +45,7 @@ const EditBookPage = ({ params }: Props) => {
     sales: "",
     amountInStock: 0,
     discountPrice: 0,
-    imageUrl: "",
+    imagelink: "",
   });
   const router = useRouter();
   const { id } = params; // Get book ID from URL
@@ -64,11 +64,11 @@ const EditBookPage = ({ params }: Props) => {
             price: bookData.price ? parseFloat(bookData.price) : 0, // Parse as number
             bookCode: bookData.code || "",
             genre: bookData.genres.join(", ") || "",
-            tag: "",
+            tag: bookData.tag || "",
             agerange: bookData.ageRange || "",
             isNew: "",
             sales: "",
-            imageUrl: "",
+            imagelink: bookData.imageUrl || "",
             amountInStock: bookData.amountInStock
               ? parseInt(bookData.amountInStock)
               : 0, // Parse as number
@@ -154,17 +154,10 @@ const EditBookPage = ({ params }: Props) => {
 
   return (
     <div className="text-black p-6">
-      <div className="">
-        <p className=" font-bold -mb-3 text-[var(--color-bg)]">
-          {" "}
-          <span>{"> "}</span>
-          {formData.bookTitle}
-        </p>
-      </div>
       <div className="w-full grid md:grid-cols-3 gap-3 bg-gray-100 rounded-lg">
         <div className="flex items-center justify-center bg-gray-200 rounded-lg relative group overflow-hidden">
           <Image
-            src={formData.imageUrl}
+            src={formData.imagelink}
             alt="book image"
             width={500}
             height={500}
