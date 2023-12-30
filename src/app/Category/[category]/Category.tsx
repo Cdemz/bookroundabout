@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { API_BASE_URL } from "../../utils/api";
 import axios from "axios";
+import "../../cssstyles/searching.css";
+import Image from "next/image";
 export interface BookData {
   id: number;
   title: string;
@@ -69,30 +71,63 @@ type Props = {
 export default function Home({ params }: Props) {
   const { category } = params;
   const [books, setBooks] = useState<BookData[]>([]);
+  const [sortByPrice, setSortByPrice] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchBooksByCategory = async () => {
+      setIsLoading(true);
       try {
-        const response = await axios.get(`${API_BASE_URL}/book`);
-        const allBooks = response.data; // Assuming the response has the array of all books
-        const filteredBooks = allBooks.filter(
-          (book: any) => book.category === category
-        );
-        setBooks(filteredBooks);
+        let endpoint = `${API_BASE_URL}/book?category=${encodeURIComponent(
+          category
+        )}`;
+        if (sortByPrice) {
+          endpoint += `&sortByPrice=${sortByPrice}`;
+        }
+        const response = await axios.get(endpoint);
+        setBooks(response.data);
       } catch (error) {
         console.error("Error fetching books", error);
-        // Handle errors, maybe set an error state and display it
+      } finally {
+        setIsLoading(false); // Set loading to false after fetching data
       }
     };
 
-    fetchBooks();
-  }, [category]);
+    fetchBooksByCategory();
+  }, [category, sortByPrice]);
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortByPrice(e.target.value);
+  };
 
   const addItemsToCart = (product: BookData) => {
     dispatch(addToCart({ ...product, quantity: 1 }));
     toast(`${product.title} added to cart`);
   };
+
+  if (isLoading) {
+    return (
+      <div className="loading-animation px-10 py-[15rem] flex flex-col items-center justify-center h-[10rem]">
+        <div id="wifi-loader">
+          <svg className="circle-outer" viewBox="0 0 86 86">
+            <circle className="back" cx="43" cy="43" r="40"></circle>
+            <circle className="front" cx="43" cy="43" r="40"></circle>
+            <circle className="new" cx="43" cy="43" r="40"></circle>
+          </svg>
+          <svg className="circle-middle" viewBox="0 0 60 60">
+            <circle className="back" cx="30" cy="30" r="27"></circle>
+            <circle className="front" cx="30" cy="30" r="27"></circle>
+          </svg>
+          <svg className="circle-inner" viewBox="0 0 34 34">
+            <circle className="back" cx="17" cy="17" r="14"></circle>
+            <circle className="front" cx="17" cy="17" r="14"></circle>
+          </svg>
+          <div className="text font-bold" data-text="Searching"></div>
+        </div>
+      </div>
+    ); // Replace with your loading animation
+  }
 
   return (
     <main>
@@ -109,9 +144,17 @@ export default function Home({ params }: Props) {
           <h1 className="text-[var(--color-text)] font-bold lucky text-xl">
             Our Best Selling {category} Books
           </h1>
-          <p className="text-[var(--color-text)]   lucky">
-            i suppose put sort or filter for here
-          </p>
+
+          <div className="text-[var(--color-text)]   lucky my-2">
+            <label htmlFor="sortPrice" className="mr-3">
+              Sort by Price:
+            </label>
+            <select id="sortPrice" onChange={handleSortChange}>
+              <option value="">Select</option>
+              <option value="ascending">Low to High</option>
+              <option value="descending">High to Low</option>
+            </select>
+          </div>
         </div>
       </section>
 
@@ -165,7 +208,19 @@ export default function Home({ params }: Props) {
             </section>
           </>
         ) : (
-          <p className="text-black">No books found in this category</p>
+          <div className=" flex flex-col gap-4 items-center justify-center">
+            <p className="text-black lato font-bold">
+              No books found in this category
+            </p>
+            <Image
+              priority
+              src="/nothing.png"
+              alt="sliderImg"
+              width={300}
+              height={300}
+              className="object-cover h-[40%] w-[40%] my-6"
+            />
+          </div>
         )}
       </div>
     </main>

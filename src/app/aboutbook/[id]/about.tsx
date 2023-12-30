@@ -190,6 +190,15 @@ export default function BookDetailPage({ params }: Props) {
                   >
                     Add to Cart
                   </button>
+
+                  <Link href="/cart">
+                    <button
+                      className="w-full md:w-96 h-12 bg-[var(--color-primary)] text-gray-200 hover:bg-gray-200  hover:text-[var(--color-primary)] duration-300 rounded-lg mt-2 text-base font-semibold"
+                      onClick={handleAddToCart}
+                    >
+                      Buy Now
+                    </button>
+                  </Link>
                 </div>
                 <ShareIcons book={book} />
               </div>

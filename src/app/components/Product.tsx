@@ -104,13 +104,23 @@ const Product: React.FC<ProductProps> = ({ product }) => {
               })}
             </span>
           </p>
+          <div className="flex flex-col gap-2 items-center justify-center">
+            <button
+              className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto w-full"
+              onClick={addItemsToCart}
+            >
+              Add To Cart
+            </button>
 
-          <button
-            className="bg-[var(--color-primary)] text-white px-1 py-1 lato text-sm mt-auto"
-            onClick={addItemsToCart}
-          >
-            Add To Cart
-          </button>
+            <Link href="/cart">
+              <button
+                className="bg-[var(--color-primary-v)] text-white px-6 py-1 lato text-sm mt-auto text-center w-full"
+                onClick={addItemsToCart}
+              >
+                Buy Now
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
