@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import Greetings from "./Greetings";
 import { FaAddressCard, FaAsterisk } from "react-icons/fa";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { API_BASE_URL } from "../utils/api";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
@@ -38,6 +40,45 @@ const MyAccount = () => {
     email,
     town,
   } = formData;
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token"); // Get token from localStorage
+
+      if (!token) {
+        console.error("No token found");
+        router.push("/login");
+        return;
+      }
+
+      try {
+        const response = await axios.get(`${API_BASE_URL}/user`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.data) {
+          // Assuming response.data contains user data
+          setFormData({
+            firstName: response.data.firstName || "",
+            lastName: response.data.lastName || "",
+            country: response.data.country || "",
+            companyName: response.data.companyName || "",
+            address: response.data.address || "",
+            zipCode: response.data.zipCode || "",
+            state: response.data.state || "",
+            phone: response.data.phone || "",
+            email: response.data.email || "",
+            town: response.data.town || "",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user data", error);
+        // Handle error, e.g., redirect to login if unauthorized
+        router.push("/login");
+      }
+    };
+
+    fetchUserData();
+  }, [router]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

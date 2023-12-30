@@ -67,7 +67,7 @@ const itemData = [
   {
     img: "https://images.unsplash.com/photo-1658842042844-eeb5ad17b7d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=120&q=100",
     title: "Burger",
-    category: "Non-Fiction",
+    category: "NonFiction",
   },
   {
     img: "https://images.unsplash.com/photo-1635007129134-814c0b7c777e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=120&q=100",

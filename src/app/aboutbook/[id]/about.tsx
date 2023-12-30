@@ -29,6 +29,7 @@ export interface BookData {
   id?: number;
   tag?: string[];
   description: string;
+  amountInStock: number;
 }
 
 interface ProductProps {
@@ -42,6 +43,7 @@ interface ProductProps {
     oldprice?: number;
     description: string;
     agerange?: string;
+    amountInStock: number;
     quantity: number; // Include the quantity property
   };
 }
@@ -163,6 +165,10 @@ export default function BookDetailPage({ params }: Props) {
                       </span>
                     )}
                   </p>
+                  <p className="  text-black   font-semibold text-lg ">
+                    Amount In Stock: {book.amountInStock}
+                  </p>
+
                   {book.oldprice && (
                     <p className="text-sm text-gray-500 flex items-center gap-1">
                       Your saved:{" "}

@@ -195,7 +195,7 @@ const CartPayment = () => {
     return await response.json();
   }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-[80%]">
       {/* Delivery Type Selection */}
       <div className="text-black">
         <label htmlFor="deliveryType">Delivery Type:</label>
@@ -211,7 +211,7 @@ const CartPayment = () => {
 
       {/* Delivery Location Selection - Shown only if Delivery is selected */}
       {deliveryType === "delivery" && (
-        <div className="text-black">
+        <div className="text-black w-full">
           <label htmlFor="deliveryLocation">Delivery Location:</label>
           <select
             id="deliveryLocation"
