@@ -25,26 +25,30 @@ const PaymentVerification = () => {
         );
         const result = await response.json();
 
-        // Assuming you check the result to determine success or failure
-        if (result.success) {
+        // Check the 'status' field instead of 'success'
+        if (result.status === "success") {
           toast.success("Payment Verified Successfully!");
           router.push("/success"); // Redirect to success page
         } else {
           toast.error("Payment verification failed.");
-          //   router.push("/Failed"); // Redirect to failure page
+          // Uncomment this if you want to redirect on failure
+          // router.push("/failed"); // Redirect to failure page
         }
       } catch (error) {
+        // Uncomment this if you want to log the error
         // console.error("Error verifying purchase:", error);
         toast.error("Error verifying payment.");
-        // router.push("/Failed"); // Redirect to failure page
+        // Uncomment this if you want to redirect on error
+        // router.push("/failed"); // Redirect to failure page
       }
     } else {
-      //   console.error("Code parameter is missing in the URL");
+      // Uncomment this if you want to log missing code error
+      // console.error("Code parameter is missing in the URL");
       toast.error("Code parameter is missing.");
-      //   router.push("/Failed"); // Redirect to failure page if code is missing
+      // Uncomment this if you want to redirect on missing code
+      // router.push("/failed"); // Redirect to failure page if code is missing
     }
   };
-
   useEffect(() => {
     verifyPayment();
   }, []);
