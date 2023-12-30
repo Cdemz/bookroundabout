@@ -123,6 +123,7 @@ const EditBookPage = ({ params }: Props) => {
 
     const updatedFormData = {
       ...formData,
+      title: formData.bookTitle,
       price: formData.price,
       amountInStock: formData.amountInStock,
       discountPrice: formData.discountPrice,

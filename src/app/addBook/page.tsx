@@ -9,7 +9,7 @@ interface FormData {
   bookTitle: string;
   category: string;
   description: string;
-  price: string;
+  price: number;
   bookCode: string;
   genre: string;
   tag: string;
@@ -26,7 +26,7 @@ const page = () => {
     bookTitle: "",
     category: "",
     description: "",
-    price: "",
+    price: 0,
     bookCode: "",
     genre: "",
     tag: "",
@@ -37,15 +37,37 @@ const page = () => {
     image: null,
   });
 
+  const [imagePreview, setImagePreview] = useState<string>("");
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (name === "amountInStock" || name === "price") {
+      const numericValue =
+        name === "price" ? parseFloat(value) : parseInt(value, 10);
+      if (numericValue <= 99999) {
+        setFormData({ ...formData, [name]: numericValue });
+      } else {
+        console.error(`${name} must not be greater than 99999`);
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleImageDrop = (acceptedFiles: File[]) => {
     setFormData({ ...formData, image: acceptedFiles[0] });
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(acceptedFiles[0]);
+    fileReader.onload = (loadEvent) => {
+      // Check if loadEvent.target is not null
+      if (loadEvent.target) {
+        setImagePreview(loadEvent.target.result as string);
+      }
+    };
   };
 
   const dropzoneOptions: DropzoneOptions = {
@@ -57,7 +79,7 @@ const page = () => {
 
   async function uploadImage(file: File): Promise<string> {
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("file", file); // Ensure 'file' matches the field expected by your backend
 
     const token = localStorage.getItem("token");
 
@@ -71,12 +93,20 @@ const page = () => {
           },
         }
       );
-      return response.data.imageUrl;
+
+      console.log("Upload response:", response.data); // Debugging log
+
+      if (response.data && response.data.url) {
+        return response.data.url; // Access the URL based on your actual response structure
+      } else {
+        console.error("Invalid upload response structure", response.data);
+        return "";
+      }
     } catch (error) {
       const axiosError = error as AxiosError;
-      if (axiosError && axiosError.response) {
+      if (axiosError.response) {
         console.error("Server Response Error:", axiosError.response.data);
-      } else if (axiosError && axiosError.request) {
+      } else if (axiosError.request) {
         console.error("No Response:", axiosError.request);
       } else {
         console.error("Error Message:", axiosError.message);
@@ -97,10 +127,18 @@ const page = () => {
       }
     }
 
+    // Truncate bookCode if it's longer than 30 characters
+    const bookCode = formData.bookCode.slice(0, 30);
+
+    // Convert genre string to an array
+    const genres = formData.genre.split(",").map((genre) => genre.trim());
+
     const bookData = {
       ...formData,
       imageUrl,
-      price: parseFloat(formData.price),
+      title: formData.bookTitle, // Change key to title
+      code: formData.bookCode, // Rename bookCode to code
+      genre: genres, // Use the array for genre
     };
 
     try {
@@ -192,6 +230,7 @@ const page = () => {
                 className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                 name="price"
                 placeholder="how much?"
+                // value={formData.price}
                 required
               />
             </div>
@@ -209,7 +248,7 @@ const page = () => {
                 className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                 name="bookCode"
                 onChange={handleChange}
-                placeholder="17000"
+                placeholder="whl50"
                 required
               />
             </div>
@@ -264,6 +303,24 @@ const page = () => {
                 placeholder="eg,13-18 "
               />
             </div>
+            {/* 
+            // Amount In Stock Input */}
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">
+                Amount In Stock
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
+              <input
+                type="number"
+                className="border-2 border-gray-400 h-10 border-r-2 text-[var(--color-text)]"
+                name="amountInStock"
+                onChange={handleChange}
+                placeholder="Enter amount in stock"
+                required
+              />
+            </div>
 
             {/* Drag and Drop for Image */}
             <div
@@ -272,6 +329,15 @@ const page = () => {
             >
               <input {...getInputProps()} />
               <p>Drag 'n' drop book image here, or click to select file</p>
+
+              {/* Image Preview */}
+              {imagePreview && (
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  style={{ maxWidth: "200px", maxHeight: "200px" }}
+                />
+              )}
             </div>
 
             {/* Submit Button */}
