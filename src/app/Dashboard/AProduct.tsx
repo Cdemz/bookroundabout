@@ -7,6 +7,7 @@ import { addToCart } from "../store/nextSlice";
 // import { enableBook } from "../redux/actions";
 import { API_BASE_URL } from "../utils/api";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface ProductProps {
@@ -48,6 +49,7 @@ interface ProductItem {
 
 const AProduct: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const addItemsToCart = () => {
     // Dispatch the addToCart action with the product
@@ -97,6 +99,11 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
 
   const handleDisableBook = () => {
     disableBook(product.id.toString());
+  };
+
+  const handleEditBook = () => {
+    // Navigate to the edit page with the book's ID
+    router.push(`/editBook/${product.id}`);
   };
 
   const renderOnSale = () => {
@@ -157,7 +164,10 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
             >
               Disable Book
             </button>
-            <button className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm mt-auto rounded-md">
+            <button
+              onClick={handleEditBook}
+              className="bg-[var(--color-primary-v)] text-white px-1 py-1 lato text-sm mt-auto rounded-md"
+            >
               Edit Book
             </button>{" "}
             <button
