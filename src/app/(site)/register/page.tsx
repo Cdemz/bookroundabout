@@ -81,7 +81,7 @@ export default function Register() {
             <div className="inputForm">
               <input
                 id="name"
-                name="firstName"
+                name="first Name"
                 type="text"
                 required
                 value={firstName}
@@ -97,7 +97,7 @@ export default function Register() {
             <div className="inputForm">
               <input
                 id="name"
-                name="lastName"
+                name="last Name"
                 type="text"
                 required
                 value={lastName}

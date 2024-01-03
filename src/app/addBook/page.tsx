@@ -26,7 +26,7 @@ const page = () => {
     bookTitle: "",
     category: "",
     description: "",
-    price: 0,
+    price: 3,
     bookCode: "",
     genre: "",
     tag: "",
@@ -136,6 +136,7 @@ const page = () => {
     const bookData = {
       ...formData,
       imageUrl,
+      price: formData.price,
       title: formData.bookTitle, // Change key to title
       code: formData.bookCode, // Rename bookCode to code
       genre: genres, // Use the array for genre
@@ -230,7 +231,7 @@ const page = () => {
                 className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                 name="price"
                 placeholder="how much?"
-                // value={formData.price}
+                value={formData.price}
                 required
               />
             </div>

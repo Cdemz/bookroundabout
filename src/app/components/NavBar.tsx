@@ -16,7 +16,7 @@ import { StateProps, StoreProduct } from "../type";
 import { RootState } from "../redux/store";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import SideCart from "./sideCart";
-import LogOut from "./LogOut";
+import LogoutButton from "./LogOut";
 import { clearUserData } from "../redux/actions";
 
 const style = {
@@ -379,7 +379,7 @@ const NavBar: FC = () => {
                   </Link>
                 )} */}
 
-                <LogOut />
+                <LogoutButton />
               </div>
             ) : (
               <div>

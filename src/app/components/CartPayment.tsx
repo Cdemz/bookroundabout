@@ -69,9 +69,21 @@ const CartPayment = () => {
   }, [productData, deliveryType, selectedLocation, deliveryLocations]); // Removed deliveryLocations from dependencies
 
   const handleCheckout = async () => {
+    if (deliveryType === "delivery" && !selectedLocation) {
+      toast.error("Please select a delivery location.");
+      return;
+    }
+
     try {
       const calculationResponse = await calculatePrice();
 
+      if (calculationResponse.status === 400) {
+        const errorMessage =
+          calculationResponse.message ||
+          "An error occurred during price calculation.";
+        toast.error(errorMessage);
+        return;
+      }
       if (
         calculationResponse &&
         calculationResponse.data &&
@@ -211,12 +223,20 @@ const CartPayment = () => {
 
       {/* Delivery Location Selection - Shown only if Delivery is selected */}
       {deliveryType === "delivery" && (
-        <div className="text-black w-full">
+        <div
+          className={`text-black w-full ${
+            deliveryType === "delivery" && !selectedLocation
+              ? "border-red-500"
+              : ""
+          }`}
+        >
           <label htmlFor="deliveryLocation">Delivery Location:</label>
           <select
             id="deliveryLocation"
             value={selectedLocation}
             onChange={handleLocationChange}
+            className="w-[40%]"
+            required
           >
             <option value="">Select Delivery Location</option>
             {deliveryLocations.map((location) => (
@@ -225,19 +245,22 @@ const CartPayment = () => {
               </option>
             ))}
           </select>
-
-          <div className="text-black">
-            <label htmlFor="notes">Notes:</label>
-            <textarea
-              id="notes"
-              value={notes}
-              onChange={handleNotesChange}
-              className="w-full border rounded-md p-2"
-              placeholder="Enter any notes here"
-            />
-          </div>
+          {deliveryType === "delivery" && !selectedLocation && (
+            <p className="text-red-500">* Delivery location is required</p>
+          )}
         </div>
       )}
+
+      <div className="text-black">
+        <label htmlFor="notes">Notes:</label>
+        <textarea
+          id="notes"
+          value={notes}
+          onChange={handleNotesChange}
+          className="w-full border rounded-md p-2"
+          placeholder="Attach a note to your pick up or delivery"
+        />
+      </div>
 
       <div className=""></div>
       {/* <div className="flex gap-2">
@@ -256,6 +279,7 @@ const CartPayment = () => {
       <div className="flex flex-col items-center">
         <button
           onClick={handleCheckout}
+          disabled={deliveryType === "delivery" && !selectedLocation}
           className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
         >
           Proceed to Buy
