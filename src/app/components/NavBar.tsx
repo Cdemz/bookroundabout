@@ -52,6 +52,10 @@ const NavBar: FC = () => {
   // const theme = useTheme();
   // const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
+  const slugify = (text: string) => {
+    return text.toLowerCase().replace(/\s&\s/g, "-").replace(/\s+/g, "-");
+  };
+
   const style = {
     backgroundColor: "white",
     // width: isMdScreen ? "25%" : "50%",
@@ -70,7 +74,8 @@ const NavBar: FC = () => {
     "Fantasy & Horror",
     "Poetry & Drama",
   ].map((linkText, index) => {
-    return <MenuItem key={index} linkText={linkText} />;
+    const slugifiedLinkText = slugify(linkText);
+    return <MenuItem key={index} linkText={slugifiedLinkText} />;
   });
 
   const nfictionLinks = [
@@ -83,7 +88,8 @@ const NavBar: FC = () => {
     "Fantasy & Horror",
     "Music Books",
   ].map((linkText, index) => {
-    return <MenuItem key={index} linkText={linkText} />;
+    const slugifiedLinkText = slugify(linkText);
+    return <MenuItem key={index} linkText={slugifiedLinkText} />;
   });
 
   const childLinks = [
@@ -92,7 +98,8 @@ const NavBar: FC = () => {
     "Age 5-8",
     "Age 9-12",
   ].map((linkText, index) => {
-    return <MenuItem key={index} linkText={linkText} />;
+    const slugifiedLinkText = slugify(linkText);
+    return <MenuItem key={index} linkText={slugifiedLinkText} />;
   });
 
   const childrenLinks = [
@@ -104,7 +111,8 @@ const NavBar: FC = () => {
     "Paper Covers",
     "Hard Covers",
   ].map((linkText, index) => {
-    return <MenuItem key={index} linkText={linkText} />;
+    const slugifiedLinkText = slugify(linkText);
+    return <MenuItem key={index} linkText={slugifiedLinkText} />;
   });
 
   const [nav, setNav] = useState(false);
