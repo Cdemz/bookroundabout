@@ -75,7 +75,13 @@ const NavBar: FC = () => {
     "Poetry & Drama",
   ].map((linkText, index) => {
     const slugifiedLinkText = slugify(linkText);
-    return <MenuItem key={index} linkText={slugifiedLinkText} />;
+    return (
+      <MenuItem
+        key={index}
+        linkText={slugifiedLinkText}
+        // sad={`/Category/${linkText}`}
+      />
+    );
   });
 
   const nfictionLinks = [
@@ -89,7 +95,13 @@ const NavBar: FC = () => {
     "Music Books",
   ].map((linkText, index) => {
     const slugifiedLinkText = slugify(linkText);
-    return <MenuItem key={index} linkText={slugifiedLinkText} />;
+    return (
+      <MenuItem
+        key={index}
+        linkText={slugifiedLinkText}
+        // sad={`/Category/${linkText}`}
+      />
+    );
   });
 
   const childLinks = [
@@ -99,7 +111,13 @@ const NavBar: FC = () => {
     "Age 9-12",
   ].map((linkText, index) => {
     const slugifiedLinkText = slugify(linkText);
-    return <MenuItem key={index} linkText={slugifiedLinkText} />;
+    return (
+      <MenuItem
+        key={index}
+        linkText={slugifiedLinkText}
+        // sad={`/Category/${linkText}`}
+      />
+    );
   });
 
   const childrenLinks = [
@@ -112,7 +130,13 @@ const NavBar: FC = () => {
     "Hard Covers",
   ].map((linkText, index) => {
     const slugifiedLinkText = slugify(linkText);
-    return <MenuItem key={index} linkText={slugifiedLinkText} />;
+    return (
+      <MenuItem
+        key={index}
+        linkText={slugifiedLinkText}
+        // sad={`/Category=childrenbook&genre=${linkText} `}
+      />
+    );
   });
 
   const [nav, setNav] = useState(false);

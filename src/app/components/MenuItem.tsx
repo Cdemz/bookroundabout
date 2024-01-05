@@ -4,13 +4,15 @@ import Link from "next/link";
 
 type MenuItemProps = {
   linkText: string;
+  // sad: string;
 };
 
 const MenuItem = ({ linkText }: MenuItemProps) => {
   return (
     <Menu.Item>
       <Link
-        href={`/Category/${linkText}`} // Use backticks for template literal
+        href={`/Category/${linkText}`}
+        // href={sad}
         passHref // Add passHref to ensure the link works as expected
       >
         <p
