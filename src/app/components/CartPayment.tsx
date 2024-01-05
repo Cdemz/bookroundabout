@@ -323,6 +323,7 @@ const CartPayment = () => {
         />
         <button
           type="submit"
+          disabled={deliveryType === "delivery" && !selectedLocation}
           className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
         >
           Register and Proceed to Buy
