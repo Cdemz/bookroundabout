@@ -167,11 +167,13 @@ export default function Home({ params }: Props) {
                 {books.map((item) => (
                   <div key={item.imageUrl} className=" ">
                     <div className="flex flex-col gap-4 h-[100%]  ">
-                      <img
-                        className="w-[150px] h-[170px] object-cover "
-                        src={item.imageUrl}
-                        alt=""
-                      />
+                      <Link href={`/aboutbook/${item.id}`}>
+                        <img
+                          className="w-[150px] h-[170px] object-cover "
+                          src={item.imageUrl}
+                          alt=""
+                        />
+                      </Link>
                       <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1">
                         <p className="text-gray-400">{item.category}</p>
 
@@ -180,6 +182,7 @@ export default function Home({ params }: Props) {
                           {item.title}
                         </h1>
                         <p>{item.code}</p>
+                        {/* <p>Amount in stock:{item.amountInStock}</p> */}
 
                         <p className="lato">
                           <span className="line-through italic">
