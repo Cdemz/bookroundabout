@@ -35,7 +35,7 @@ const Success = () => {
         <p>Click return home to go back homepage</p>
         <p>An Email will be sent to {email}</p>
         <Link href="/">
-          <p className="bg-yellow-500 py-4 px-5 mt-4 hover:bg-red-800 cursor-pointer font-bold text-xl rounded-2xl w-[15rem] mx-auto">
+          <p className="bg-yellow-500 py-4 px-5 mt-4 hover:bg-yellow-600s cursor-pointer font-bold text-xl rounded-2xl w-[15rem] mx-auto">
             RETURN HOME {">"}
           </p>
         </Link>

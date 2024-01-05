@@ -12,6 +12,7 @@ export interface ProductProps {
   sales?: boolean;
   isNew?: boolean;
   stag: string;
+  amountInStock: number;
 }
 export interface StoreProduct {
   cart: {
@@ -32,6 +33,7 @@ export interface StoreProduct {
   stag: string;
   code: string;
   quantity: number;
+  amountInStock: number;
 }
 
 export interface StateProps {

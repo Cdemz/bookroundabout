@@ -77,7 +77,7 @@ const CartPayment = () => {
     try {
       const calculationResponse = await calculatePrice();
 
-      if (calculationResponse.status === 400) {
+      if (calculationResponse.statusCode === 400) {
         const errorMessage =
           calculationResponse.message ||
           "An error occurred during price calculation.";

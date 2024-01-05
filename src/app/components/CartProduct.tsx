@@ -12,6 +12,7 @@ import { StoreProduct } from "../type";
 import { RiAddCircleLine } from "react-icons/ri";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { BsFillTrash3Fill } from "react-icons/bs";
+import Link from "next/link";
 
 interface Item {
   category: string;
@@ -23,6 +24,7 @@ interface Item {
   title: string;
   id: number;
   quantity: number;
+  amountInStock: number;
 }
 
 interface CartProductProps {
@@ -35,14 +37,16 @@ const CartProduct = ({ item }: CartProductProps) => {
   return (
     <section>
       <div className="bg-white rounded-lg flex items-center gap-2 md:gap-4 py-4 ">
-        <Image
-          className="object-cover"
-          width={150}
-          height={150}
-          src={item.img}
-          alt="productImage"
-          priority={true}
-        />
+        <Link href={`/aboutbook/${item.id}`}>
+          <Image
+            className="object-cover"
+            width={150}
+            height={150}
+            src={item.img}
+            alt="productImage"
+            priority={true}
+          />
+        </Link>
         <div className=" flex  md:w-[80vw] flex-col  px-2 gap-4  ">
           <div className="flex flex-col gap-1 lato  ">
             <p className="text-lg font-bold text-[var(--color-text)]  ">
@@ -55,6 +59,9 @@ const CartProduct = ({ item }: CartProductProps) => {
               <span className="font-semibold text-amazon_blue">
                 <FormattedPrice amount={item.price} />
               </span>
+            </p>
+            <p className="text-sm text-gray-600">
+              Amount in stock:{item.amountInStock}
             </p>
             <div className="flex items-center gap-2 md:gap-6">
               <div className="flex items-center mt-1 justify-between border border-gray-300 px-4 py-1 rounded-full w-28 shadow-lg shadow-gray-300">
