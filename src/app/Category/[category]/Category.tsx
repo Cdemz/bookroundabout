@@ -165,11 +165,11 @@ export default function Home({ params }: Props) {
             <section>
               <div className="mx-auto px-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 py-4">
                 {books.map((item) => (
-                  <div key={item.img} className=" ">
+                  <div key={item.imageUrl} className=" ">
                     <div className="flex flex-col gap-4 h-[100%]  ">
                       <img
                         className="w-[150px] h-[170px] object-cover "
-                        src={item.img}
+                        src={item.imageUrl}
                         alt=""
                       />
                       <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1">
