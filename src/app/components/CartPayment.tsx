@@ -6,6 +6,8 @@ import { StateProps, StoreProduct } from "../type";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../utils/api";
 import toast from "react-hot-toast";
+import Account from "./Account";
+import Link from "next/link";
 
 interface DeliveryLocation {
   id: number;
@@ -32,6 +34,17 @@ const CartPayment = () => {
 
   const [hasFetchedLocations, setHasFetchedLocations] = useState(false);
   const [notes, setNotes] = useState("");
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [state, setState] = useState("");
+  const [town, setTown] = useState("");
+  const [country, setCountry] = useState("");
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     // Specify the type of 'acc' as number
@@ -206,6 +219,127 @@ const CartPayment = () => {
     });
     return await response.json();
   }
+
+  const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/user/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          address,
+          state,
+          town,
+          country,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        // Proceed with checkout after successful registration
+        handleCheckout();
+      } else {
+        // Handle errors, show messages
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      // Show error message
+    }
+  };
+
+  const renderCheckoutButton = () => (
+    <div className="flex flex-col items-center">
+      <Account />
+      <button
+        onClick={handleCheckout}
+        disabled={deliveryType === "delivery" && !selectedLocation}
+        className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
+      >
+        Proceed to Buy
+      </button>
+    </div>
+  );
+
+  const renderRegistrationForm = () => (
+    <div className="registration-form text-black">
+      <h2 className="text-center">Create User</h2>
+      <form onSubmit={handleRegistration} className="flex flex-col gap-4">
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First Name"
+          required
+        />
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          placeholder=" Last Name"
+          required
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Phone Number"
+          required
+        />
+        <input
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+          placeholder="Your state"
+          required
+        />
+        <input
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          placeholder="Country"
+          required
+        />
+        <input
+          value={town}
+          onChange={(e) => setTown(e.target.value)}
+          placeholder="Your Town"
+          required
+        />
+        <textarea
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder="Address"
+          required
+        />
+        <button
+          type="submit"
+          className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
+        >
+          Register and Proceed to Buy
+        </button>
+      </form>
+
+      <div className="mt-4 lato mx-auto flex items-center justify-center">
+        {/* User is not logged in */}
+        <p className="p">
+          Have an account?{" "}
+          <span className="text-blue-500 font-bold">
+            <Link href="/login">Login</Link>
+          </span>
+        </p>
+      </div>
+    </div>
+  );
   return (
     <div className="flex flex-col gap-4 w-[80%]">
       {/* Delivery Type Selection */}
@@ -276,14 +410,9 @@ const CartPayment = () => {
         </span>
       </p>
 
-      <div className="flex flex-col items-center">
-        <button
-          onClick={handleCheckout}
-          disabled={deliveryType === "delivery" && !selectedLocation}
-          className="w-full h-10 text-sm font-semibold bg-[var(--color-primary)] text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
-        >
-          Proceed to Buy
-        </button>
+      <div className="cart-payment">
+        {!token ? renderRegistrationForm() : renderCheckoutButton()}
+        {/* ... (rest of the existing CartPayment component content) */}
       </div>
     </div>
   );
