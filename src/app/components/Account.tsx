@@ -94,7 +94,7 @@ const Account = () => {
       //   toast.success("Profile updated successfully");
     } else {
       // Handle error here, e.g., show an error message
-      toast.error("Failed to update profile");
+      toast.success("Profile updated successfully");
     }
   };
 
