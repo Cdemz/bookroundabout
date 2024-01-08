@@ -64,7 +64,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="bg-[#fff] pt-6 pb-4 flex flex-col gap-2" id="shopnow">
-      <Link href={`/aboutbook/${product.id}`}>
+      <Link href={`/AboutBooks?name=${product.id}`}>
         <div className="relative">
           <img
             className="w-[150px] h-[170px] object-cover mx-auto"

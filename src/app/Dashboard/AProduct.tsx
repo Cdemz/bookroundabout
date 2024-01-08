@@ -103,7 +103,7 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
 
   const handleEditBook = () => {
     // Navigate to the edit page with the book's ID
-    router.push(`/editBook/${product.id}`);
+    router.push(`/editBook?name=${product.id}`);
   };
 
   const renderOnSale = () => {

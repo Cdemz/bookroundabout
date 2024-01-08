@@ -11,7 +11,7 @@ const MenuItem = ({ linkText }: MenuItemProps) => {
   return (
     <Menu.Item>
       <Link
-        href={`/Category/${linkText}`}
+        href={`/Category?name=${linkText}`}
         // href={sad}
         passHref // Add passHref to ensure the link works as expected
       >

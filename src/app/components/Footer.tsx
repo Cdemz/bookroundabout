@@ -25,7 +25,7 @@ const Footer: FC = () => {
           <h1 className="font-bold text-lg mb-2">QUICK LINKS</h1>
           <ul className="flex gap-1 flex-col">
             <Link href="/">Home</Link>
-            <Link href="/shop">Shop</Link>
+            <Link href="/">Shop</Link>
             <Link href="/contact">Contact</Link>
             <Link href="/terms">Terms of Use</Link>
             <Link href="terms#refund">Refund & Exchange</Link>

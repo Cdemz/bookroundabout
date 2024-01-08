@@ -38,7 +38,7 @@ export default function QuiltedImageList({ params }: Props) {
           rows={item.rows || 1}
         >
           <div className="relative">
-            <Link href={`/Category/${encodeCategory(item.category)}`}>
+            <Link href={`/Category?name=${encodeCategory(item.category)}`}>
               <div className="w-full h-full bg-opacity-40 bg-black absolute z-10 flex items-center justify-center">
                 <p className="font-bold text-xl">{item.category}</p>
               </div>

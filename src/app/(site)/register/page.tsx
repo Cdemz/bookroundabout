@@ -76,33 +76,33 @@ export default function Register() {
           </h1>
           <form className="form" method="POST" onSubmit={handleSubmit}>
             <div className="flex-column">
-              <label htmlFor="name">firstName</label>
+              <label htmlFor="firstName">First Name</label>
             </div>
             <div className="inputForm">
               <input
-                id="name"
-                name="first Name"
+                id="firstName"
+                name="firstName" // Corrected name attribute
                 type="text"
                 required
                 value={firstName}
                 onChange={handleChange}
-                className="input"
+                className="input text-[var(--color-text)]"
                 placeholder="Enter your first name"
               />
             </div>
 
             <div className="flex-column">
-              <label htmlFor="name">lastName</label>
+              <label htmlFor="lastName">Last Name</label>
             </div>
             <div className="inputForm">
               <input
-                id="name"
-                name="last Name"
+                id="lastName"
+                name="lastName" // Corrected name attribute
                 type="text"
                 required
                 value={lastName}
                 onChange={handleChange}
-                className="input"
+                className="input text-[var(--color-text)]"
                 placeholder="Enter your last name"
               />
             </div>

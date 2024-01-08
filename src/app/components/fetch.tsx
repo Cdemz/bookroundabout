@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_BASE_URL } from "../utils/api";
-import { BookData } from "../Category/[category]/Category";
+import { BookData } from "../Kategory/[category]/Category";
 
 // Define the function in a separate file or at a higher level where it can be imported
 export async function fetchBooksByCategory(

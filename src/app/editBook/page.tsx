@@ -2,12 +2,13 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import { FaAsterisk } from "react-icons/fa";
-import { API_BASE_URL } from "../../utils/api";
-import { useRouter } from "next/navigation";
+import { API_BASE_URL } from "../utils/api";
+// import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import FormattedPrice from "@/app/components/FormattedPrice";
 import Link from "next/link";
 import Image from "next/image";
+import useQueryParams from "@/app/Category/useRoute";
 
 interface FormData {
   bookTitle: string;
@@ -47,8 +48,8 @@ const EditBookPage = ({ params }: Props) => {
     discountPrice: 0,
     imagelink: "",
   });
-  const router = useRouter();
-  const { id } = params; // Get book ID from URL
+  const queryParams = useQueryParams();
+  const { id } = queryParams;
 
   useEffect(() => {
     if (id) {
