@@ -49,13 +49,13 @@ const EditBookPage = ({ params }: Props) => {
     imagelink: "",
   });
   const queryParams = useQueryParams();
-  const { id } = queryParams;
+  const bookId = queryParams.name;
 
   useEffect(() => {
-    if (id) {
+    if (bookId) {
       const fetchBookData = async () => {
         try {
-          const response = await axios.get(`${API_BASE_URL}/book/${id}`);
+          const response = await axios.get(`${API_BASE_URL}/book/${bookId}`);
           const bookData = response.data;
 
           setFormData({
@@ -85,7 +85,7 @@ const EditBookPage = ({ params }: Props) => {
 
       fetchBookData();
     }
-  }, [id]);
+  }, [bookId]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -134,7 +134,7 @@ const EditBookPage = ({ params }: Props) => {
 
     try {
       const response = await axios.put(
-        `${API_BASE_URL}/book/${id}`,
+        `${API_BASE_URL}/book/${bookId}`,
         updatedFormData,
         {
           headers: {

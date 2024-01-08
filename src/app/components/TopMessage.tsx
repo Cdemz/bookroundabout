@@ -2,15 +2,22 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from "../utils/api";
 
-// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const TopMessage = () => {
   const [apiMessage, setApiMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/message?type=banner_message`)
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem("token");
+
+    // Set up the request headers
+    const headers = new Headers();
+    if (token) {
+      headers.append("Authorization", `Bearer ${token}`);
+    }
+
+    fetch(`${API_BASE_URL}/message?type=banner_message`, { headers })
       .then((response) => response.json())
       .then((data) => {
-        // console.log({ API_BASE_URL });
         setApiMessage(data.message);
       })
       .catch((error) => {
