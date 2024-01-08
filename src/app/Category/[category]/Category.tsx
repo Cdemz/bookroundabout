@@ -10,6 +10,7 @@ import { API_BASE_URL } from "../../utils/api";
 import axios from "axios";
 import "../../cssstyles/searching.css";
 import Image from "next/image";
+import { getAllBookCategories } from "@/app/components/getAll";
 export interface BookData {
   id: number;
   title: string;
