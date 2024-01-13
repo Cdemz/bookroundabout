@@ -60,9 +60,9 @@ const CartProduct = ({ item }: CartProductProps) => {
                 <FormattedPrice amount={item.price} />
               </span>
             </p>
-            <p className="text-sm text-gray-600">
+            {/* <p className="text-sm text-gray-600">
               Amount in stock:{item.amountInStock}
-            </p>
+            </p> */}
             <div className="flex items-center gap-2 md:gap-6">
               <div className="flex items-center mt-1 justify-between border border-gray-300 px-4 py-1 rounded-full w-28 shadow-lg shadow-gray-300">
                 <button

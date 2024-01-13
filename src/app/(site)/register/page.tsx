@@ -71,7 +71,7 @@ export default function Register() {
     <div className="">
       {!userData ? (
         <div className="md:px-16">
-          <h1 className="text-[var(--color-text)] font-bold my-4 ml-4">
+          <h1 className="text-[var(--color-text)] font-bold my-4 ml-4 mx-auto">
             Create an account
           </h1>
           <form className="form" method="POST" onSubmit={handleSubmit}>

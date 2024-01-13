@@ -254,7 +254,7 @@ const NavBar: FC = () => {
       <div
         className={
           nav
-            ? "fixed left-0 top-[6.2rem] w-[60%] rounded-2xl border-r border-r-gray-900  bg-[var(--color-primary)] ease-in-out duration-500 shadow-lg shadow-black z-20 h-full md:w-[30%] overflow-y-scroll overflow-hidden"
+            ? "fixed left-0 top-[8.5rem] w-[60%] rounded-2xl border-r border-r-gray-900  bg-[var(--color-primary)] ease-in-out duration-500 shadow-lg shadow-black z-20 h-full md:w-[30%] overflow-y-scroll overflow-hidden"
             : "fixed right-[-100%] "
         }
       >

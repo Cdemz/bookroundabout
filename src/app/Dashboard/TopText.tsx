@@ -14,11 +14,29 @@ const TopText = () => {
   };
 
   const sendMessage = async () => {
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found");
+      toast.error("Authorization required");
+      return;
+    }
+
     try {
-      const response = await axios.post(`${API_BASE_URL}/message`, {
-        message: message,
-        type: "banner_message",
-      });
+      const response = await axios.post(
+        `${API_BASE_URL}/message`,
+        {
+          message: message,
+          type: "banner_message",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the request header
+          },
+        }
+      );
+
       console.log(response.data);
       toast.success("Message sent successfully!");
       // Handle the response, e.g., show a success message

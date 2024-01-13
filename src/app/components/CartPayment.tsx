@@ -190,6 +190,7 @@ const CartPayment = () => {
     const payload = {
       books: calculationData.books.map((book: Book) => ({
         bookId: book.id.toString(),
+        // quantity: book.quantity.toString(),
         quantity: book.quantity ? book.quantity.toString() : "1",
       })),
       deliveryType: calculationData.isDelivery ? "delivery" : "pickup",

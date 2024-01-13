@@ -60,11 +60,23 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
   };
 
   const enableBook = async (bookId: string) => {
+    const token = localStorage.getItem("token");
+
+    // Check if the token exists
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
     try {
       const postData = { enabled: true };
       const response = await axios.post(
         `${API_BASE_URL}/book/${bookId}/toggle`,
-        postData
+        postData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the request header
+          },
+        }
       );
 
       // Handle successful enable
@@ -77,11 +89,23 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
   };
 
   const disableBook = async (bookId: string) => {
+    const token = localStorage.getItem("token");
+
+    // Check if the token exists
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
     try {
       const postData = { enabled: false };
       const response = await axios.post(
         `${API_BASE_URL}/book/${bookId}/toggle`,
-        postData
+        postData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the request header
+          },
+        }
       );
 
       // Handle successful disable

@@ -4,7 +4,7 @@ const { hostname } = require("os");
 const nextConfig = {
   output: "export",
   // output: "standalone",
-  // trailingSlash: true,
+  trailingSlash: true,
   images: {
     // domains: [
     //   "plus.unsplash.com",

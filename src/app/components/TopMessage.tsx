@@ -6,17 +6,23 @@ const TopMessage = () => {
   const [apiMessage, setApiMessage] = useState("Loading...");
 
   useEffect(() => {
-    // Retrieve the token from localStorage
     const token = localStorage.getItem("token");
 
-    // Set up the request headers
-    const headers = new Headers();
-    if (token) {
-      headers.append("Authorization", `Bearer ${token}`);
-    }
+    const requestOptions = {
+      method: "GET", // or 'POST' if required by your API
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+    };
 
-    fetch(`${API_BASE_URL}/message?type=banner_message`, { headers })
-      .then((response) => response.json())
+    fetch(`${API_BASE_URL}/message?type=banner_message`, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         setApiMessage(data.message);
       })
@@ -24,7 +30,8 @@ const TopMessage = () => {
         console.error("Error fetching data: ", error);
         setApiMessage("Error loading message");
       });
-  }, []); // Empty array ensures this runs only once on mount
+  }, []);
+  // Empty array ensures this runs only once on mount
 
   return (
     <div className="bg-[var(--color-primary-v)] w-full pl-auto pr-auto py-4 flex justify-center">

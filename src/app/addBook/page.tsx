@@ -4,6 +4,7 @@ import axios, { AxiosError } from "axios";
 import { useDropzone, DropzoneOptions } from "react-dropzone";
 import { FaAsterisk } from "react-icons/fa";
 import { API_BASE_URL } from "../utils/api";
+import toast from "react-hot-toast";
 
 interface FormData {
   bookTitle: string;
@@ -26,7 +27,7 @@ const page = () => {
     bookTitle: "",
     category: "",
     description: "",
-    price: 3,
+    price: 100,
     bookCode: "",
     genre: "",
     tag: "",
@@ -45,12 +46,20 @@ const page = () => {
     const { name, value } = e.target;
 
     if (name === "amountInStock" || name === "price") {
-      const numericValue =
-        name === "price" ? parseFloat(value) : parseInt(value, 10);
-      if (numericValue <= 99999) {
+      let numericValue = 0;
+      if (name === "price") {
+        numericValue = parseFloat(value);
+      } else {
+        numericValue = parseInt(value, 10);
+      }
+
+      console.log({ name, numericValue, value });
+      if (!isNaN(numericValue) && numericValue <= 9_999_999) {
         setFormData({ ...formData, [name]: numericValue });
       } else {
-        console.error(`${name} must not be greater than 99999`);
+        console.error(
+          `${name} must be a valid number and not greater than 9,999,999`
+        );
       }
     } else {
       setFormData({ ...formData, [name]: value });
@@ -97,6 +106,7 @@ const page = () => {
       console.log("Upload response:", response.data); // Debugging log
 
       if (response.data && response.data.url) {
+        toast.success("Image upload success, Uploading book");
         return response.data.url; // Access the URL based on your actual response structure
       } else {
         console.error("Invalid upload response structure", response.data);
@@ -122,7 +132,8 @@ const page = () => {
     if (formData.image) {
       imageUrl = await uploadImage(formData.image);
       if (!imageUrl) {
-        console.error("Failed to upload image");
+        toast.error("Failed to upload image");
+        // console.error("Failed to upload image");
         return;
       }
     }
@@ -231,7 +242,8 @@ const page = () => {
                 className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
                 name="price"
                 placeholder="how much?"
-                value={formData.price}
+                onChange={handleChange}
+                // value={formData.price}
                 required
               />
             </div>
@@ -259,7 +271,7 @@ const page = () => {
               <label className="flex gap-1">
                 Genre
                 <span className="text-sm text-red-500">
-                  <FaAsterisk />
+                  {/* <FaAsterisk /> */}
                 </span>{" "}
               </label>
 
@@ -269,7 +281,7 @@ const page = () => {
                 name="genre"
                 onChange={handleChange}
                 placeholder="eg.action"
-                required
+                // required
               />
             </div>
 
@@ -278,7 +290,7 @@ const page = () => {
               <label className="flex gap-1">
                 Tag
                 <span className="text-sm text-red-500">
-                  <FaAsterisk />
+                  {/* <FaAsterisk /> */}
                 </span>{" "}
               </label>
 
@@ -288,7 +300,7 @@ const page = () => {
                 name="tag"
                 onChange={handleChange}
                 placeholder="eg, hard back, paper back, very new etc. "
-                required
+                // required
               />
             </div>
 

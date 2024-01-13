@@ -89,7 +89,9 @@ const CustomSignIn = () => {
   return (
     <div className="">
       <div>
-        <h1 className="text-[var(--color-text)] font-bold my-4">MY ACCOUNT</h1>
+        <h1 className="text-[var(--color-text)] font-bold my-4 mx-auto">
+          MY ACCOUNT
+        </h1>
         {/* Start  */}
 
         <form className="form" method="POST" onSubmit={handleSubmit}>
@@ -107,7 +109,6 @@ const CustomSignIn = () => {
               required
             />
           </div>
-
           <div className="flex-column">
             <label>Password</label>
           </div>
@@ -122,16 +123,6 @@ const CustomSignIn = () => {
               required
             />
           </div>
-
-          <div className="flex-row mt-2">
-            <div>
-              <Link href="/forgotPassword">
-                <button>
-                  <span className="span">Forgot password?</span>
-                </button>
-              </Link>
-            </div>
-          </div>
           <button className="button-submit bg-black" type="submit">
             Sign In
           </button>
@@ -141,7 +132,16 @@ const CustomSignIn = () => {
             <span className="span">
               <Link href="/register">Sign Up</Link>
             </span>
-          </p>
+          </p>{" "}
+          <div className="flex-row mt-2 mx-auto">
+            <div>
+              <Link href="/forgotPassword">
+                <button>
+                  <span className="span">Forgot password?</span>
+                </button>
+              </Link>
+            </div>
+          </div>
         </form>
 
         {/* stop  */}

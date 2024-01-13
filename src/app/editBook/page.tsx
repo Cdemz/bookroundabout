@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { FaAsterisk } from "react-icons/fa";
 import { API_BASE_URL } from "../utils/api";
 // import { useRouter } from "next/navigation";
@@ -24,6 +24,7 @@ interface FormData {
   amountInStock: number;
   discountPrice: number;
   imagelink: string;
+  image: File | null;
 }
 
 type Props = {
@@ -47,9 +48,49 @@ const EditBookPage = ({ params }: Props) => {
     amountInStock: 0,
     discountPrice: 0,
     imagelink: "",
+    image: null,
   });
   const queryParams = useQueryParams();
   const bookId = queryParams.name;
+  const [isImageChanged, setIsImageChanged] = useState<boolean>(false);
+
+  const uploadImage = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/upload-image`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Upload response:", response.data); // Debugging log
+
+      if (response.data && response.data.url) {
+        toast.success("Image upload success, Uploading book");
+        return response.data.url; // Access the URL based on your actual response structure
+      } else {
+        console.error("Invalid upload response structure", response.data);
+        return "";
+      }
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
+        console.error("Server Response Error:", axiosError.response.data);
+      } else if (axiosError.request) {
+        console.error("No Response:", axiosError.request);
+      } else {
+        console.error("Error Message:", axiosError.message);
+      }
+      return "";
+    }
+  };
 
   useEffect(() => {
     if (bookId) {
@@ -70,6 +111,7 @@ const EditBookPage = ({ params }: Props) => {
             isNew: "",
             sales: "",
             imagelink: bookData.imageUrl || "",
+            image: null,
             amountInStock: bookData.amountInStock
               ? parseInt(bookData.amountInStock)
               : 0, // Parse as number
@@ -104,6 +146,13 @@ const EditBookPage = ({ params }: Props) => {
     }
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFormData({ ...formData, image: e.target.files[0] });
+      setIsImageChanged(true); // Indicate that a new image has been selected
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -112,12 +161,20 @@ const EditBookPage = ({ params }: Props) => {
       return;
     }
 
-    // Convert `price` and `amountInStock` to numbers and ensure they are within limits
-    // const price =
-    //   parseFloat(formData.price) > 9999999
-    //     ? 9999999
-    //     : parseFloat(formData.price);
-    // const amountInStock = parseInt(formData.amountInStock) > 99999 ? 99999 : parseInt(formData.amountInStock);
+    let imageUrl = formData.imagelink; // Use existing image link by default
+
+    if (isImageChanged && formData.image) {
+      const uploadedImageUrl = await uploadImage(formData.image);
+      if (uploadedImageUrl) {
+        imageUrl = uploadedImageUrl; // Update imageUrl if new image is uploaded
+      } else {
+        toast.error("Failed to upload image");
+        return;
+      }
+    }
+
+    // Log the formData to check the price value
+    console.log("Submitting data:", formData);
 
     // Convert `genre` from string to array
     const genres = formData.genre.split(",").map((genre) => genre.trim());
@@ -125,12 +182,16 @@ const EditBookPage = ({ params }: Props) => {
     const updatedFormData = {
       ...formData,
       title: formData.bookTitle,
-      price: formData.price,
+      price: formData.price, // Ensure no conversion or rounding here
       amountInStock: formData.amountInStock,
       discountPrice: formData.discountPrice,
-      // Ensure genre is formatted as required by the API
-      genre: formData.genre.split(",").map((item) => item.trim()),
+      genre: genres,
+      imageUrl,
     };
+
+    // if (imageUrl) {
+    //   bookData.imageUrl = imageUrl;
+    // }
 
     try {
       const response = await axios.put(
@@ -143,6 +204,7 @@ const EditBookPage = ({ params }: Props) => {
           },
         }
       );
+
       if (response.status === 200) {
         toast.success("Book updated successfully");
       } else {
@@ -245,7 +307,7 @@ const EditBookPage = ({ params }: Props) => {
               <label className="flex gap-1">
                 Description
                 <span className="text-sm text-red-500">
-                  <FaAsterisk />
+                  {/* <FaAsterisk /> */}
                 </span>{" "}
               </label>
               <textarea
@@ -253,7 +315,7 @@ const EditBookPage = ({ params }: Props) => {
                 name="description"
                 onChange={handleChange}
                 placeholder="e.g. a very great book"
-                required
+                // required
                 value={formData.description}
                 // value={}
                 // onChange={}
@@ -303,7 +365,7 @@ const EditBookPage = ({ params }: Props) => {
               <label className="flex gap-1">
                 Genre
                 <span className="text-sm text-red-500">
-                  <FaAsterisk />
+                  {/* <FaAsterisk /> */}
                 </span>{" "}
               </label>
 
@@ -314,7 +376,7 @@ const EditBookPage = ({ params }: Props) => {
                 onChange={handleChange}
                 value={formData.genre}
                 placeholder="eg.action"
-                required
+                // required
               />
             </div>
 
@@ -323,7 +385,7 @@ const EditBookPage = ({ params }: Props) => {
               <label className="flex gap-1">
                 Tag
                 <span className="text-sm text-red-500">
-                  <FaAsterisk />
+                  {/* <FaAsterisk /> */}
                 </span>{" "}
               </label>
 
@@ -334,7 +396,7 @@ const EditBookPage = ({ params }: Props) => {
                 onChange={handleChange}
                 value={formData.tag}
                 placeholder="eg, hard back, paper back, very new etc. "
-                required
+                // required
               />
             </div>
 
@@ -368,7 +430,12 @@ const EditBookPage = ({ params }: Props) => {
 
             {/*amountInStock */}
             <div className="flex-col flex gap-2">
-              <label className="flex gap-1">AmountInStock</label>
+              <label className="flex gap-1">
+                AmountInStock
+                <span className="text-sm text-red-500">
+                  <FaAsterisk />
+                </span>{" "}
+              </label>
 
               <input
                 type="text"
@@ -377,11 +444,28 @@ const EditBookPage = ({ params }: Props) => {
                 onChange={handleChange}
                 placeholder="eg,13-18 "
                 value={formData.amountInStock}
+                required
               />
             </div>
 
             {/* Drag and Drop for Image */}
-
+            <div className="flex-col flex gap-2">
+              <label className="flex gap-1">Book Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              {/* Optionally display the current image or a preview of the new one */}
+              {formData.imagelink && !isImageChanged && (
+                <img
+                  src={formData.imagelink}
+                  alt="Current Book Image"
+                  style={{ maxWidth: "200px", maxHeight: "200px" }}
+                />
+              )}
+              {/* ... (rest of the form) */}
+            </div>
             {/* Submit Button */}
             <div className=" ml-auto">
               <button

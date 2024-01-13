@@ -161,6 +161,7 @@ const AdAProduct = () => {
                 oldprice: product.discountPrice,
                 description: product.description,
                 agerange: product.agerange,
+                // amountInStock: product.amountInStock,
                 stag: "In Stock",
                 isNew: product.isNew,
                 isDisabled: product.isDisabled, // Add this line
