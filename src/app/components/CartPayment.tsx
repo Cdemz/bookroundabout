@@ -196,7 +196,7 @@ const CartPayment = () => {
       deliveryType: calculationData.isDelivery ? "delivery" : "pickup",
       locationId: deliveryType === "delivery" ? selectedLocation : undefined,
       notes,
-      callbackUrl: "https://bookroundabout.vercel.app/PaymentVerification", // Replace with your actual callback URL
+      callbackUrl: "https://booksroundabout.com/PaymentVerification", // Replace with your actual callback URL
     };
 
     const response = await fetch(`${API_BASE_URL}/purchase/new`, {

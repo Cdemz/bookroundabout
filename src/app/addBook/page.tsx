@@ -5,6 +5,7 @@ import { useDropzone, DropzoneOptions } from "react-dropzone";
 import { FaAsterisk } from "react-icons/fa";
 import { API_BASE_URL } from "../utils/api";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   bookTitle: string;
@@ -23,6 +24,7 @@ interface FormData {
 }
 
 const page = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     bookTitle: "",
     category: "",
@@ -121,8 +123,10 @@ const page = () => {
 
       if (response.data && response.data.url) {
         toast.success("Image upload success, Uploading book");
+        router.push("/Dashboard");
         return response.data.url; // Access the URL based on your actual response structure
       } else {
+        toast.error("Invalid upload response structure");
         console.error("Invalid upload response structure", response.data);
         return "";
       }
