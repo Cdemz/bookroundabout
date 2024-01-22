@@ -12,6 +12,7 @@ import Filter from "../components/Filter";
 import SearchBar from "../components/SearchBar";
 import { API_BASE_URL } from "../utils/api";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Product {
@@ -43,8 +44,19 @@ const AdAProduct = () => {
   const [data, setData] = useState<Product[]>([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      toast.error("Please Login");
+      setLoading(false);
+      return;
+    }
     axios
-      .get(`${API_BASE_URL}/book?page&limit`)
+      .get(`${API_BASE_URL}/book?page&limit`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token in the request headers
+        },
+      })
       .then((response) => {
         // Assuming the API response contains an array of book data
         setFilteredData(response.data);

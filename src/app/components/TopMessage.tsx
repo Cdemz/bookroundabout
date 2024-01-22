@@ -34,7 +34,7 @@ const TopMessage = () => {
   // Empty array ensures this runs only once on mount
 
   return (
-    <div className="bg-[var(--color-primary-v)] w-full pl-auto pr-auto py-4 flex justify-center">
+    <div className="bg-[var(--color-primary-v)] w-full px-auto py-4 flex justify-center text-center">
       <h1>{apiMessage}</h1>
     </div>
   );

@@ -80,7 +80,21 @@ const page = () => {
   };
 
   const dropzoneOptions: DropzoneOptions = {
-    accept: { "image/*": [".png", ".gif", ".jpeg", ".jpg"] },
+    accept: {
+      "image/*": [
+        ".png",
+        ".gif",
+        ".jpeg",
+        ".jpg",
+        ".bmp",
+        ".tif",
+        ".tiff",
+        ".webp",
+        ".heif",
+        ".heic",
+        ".svg",
+      ],
+    },
     onDrop: handleImageDrop,
   };
 
