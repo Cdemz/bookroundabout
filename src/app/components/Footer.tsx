@@ -105,7 +105,7 @@ const Footer: FC = () => {
         <p>
           {" "}
           BooksroundAbout. Navigate the Literary Realm, Crafted with Finesse,
-          Curated with Zeal. ©2023
+          Curated with Zeal. ©2024
         </p>
       </div>
     </div>
