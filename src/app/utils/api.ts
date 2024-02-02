@@ -7,12 +7,12 @@ let API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 //   API_BASE_URL,
 //   procE: Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL"),
 // });
-// if (!Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL")) {
-//   API_BASE_URL = "https://booksroundabout.glitch.me/v1";
-// }
 if (!Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL")) {
-  API_BASE_URL = "https://booksroundaboutapi.xyz/v1";
+  API_BASE_URL = "https://booksroundabout.glitch.me/v1";
 }
+// if (!Object.keys(process.env).includes("NEXT_PUBLIC_API_BASE_URL")) {
+//   API_BASE_URL = "https://booksroundaboutapi.xyz/v1";
+// }
 // console.log(API_BASE_URL); //
 
 // console.log({

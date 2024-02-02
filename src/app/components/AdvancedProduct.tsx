@@ -59,12 +59,15 @@ const AdvancedProduct = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [totalBooks, setTotalBooks] = useState(100); // State to store the total number of books
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         let endpoint = `${API_BASE_URL}/book`;
-        let params = [];
+        let params = [`page=${page}`, `limit=${limit}`];
         if (selectedCategory) params.push(`category=${selectedCategory}`);
         if (selectedGenre) params.push(`genre=${selectedGenre}`);
         if (params.length) endpoint += `?${params.join("&")}`;
@@ -79,7 +82,9 @@ const AdvancedProduct = () => {
     };
 
     fetchProducts();
-  }, [selectedCategory, selectedGenre]);
+  }, [selectedCategory, selectedGenre, page, limit]);
+
+  const totalPages = Math.ceil(totalBooks / limit);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
@@ -89,8 +94,59 @@ const AdvancedProduct = () => {
     setSelectedGenre(e.target.value);
   };
 
+  const handlePageClick = (pageNumber: number) => {
+    setPage(pageNumber);
+  };
+
+  const visiblePageCount = 4; // Number of page numbers to display at a time
+
+  const renderPageNumbers = () => {
+    let startPage = Math.max(page - visiblePageCount / 2, 1);
+    let endPage = Math.min(startPage + visiblePageCount - 1, totalPages);
+
+    // Adjust the start page if we're at the end of the page range
+    if (endPage === totalPages) {
+      startPage = Math.max(endPage - visiblePageCount + 1, 1);
+    }
+
+    const pages = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <button
+          key={i}
+          onClick={() => handlePageClick(i)}
+          className={`px-4 py-2 mx-1  transition-colors duration-200 transform rounded-md hover:bg-blue-500 hover:text-white ${
+            i === page ? "bg-blue-600 text-white" : "bg-white text-black"
+          }`}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pages;
+  };
+
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-animation px-10 py-[15rem] flex flex-col items-center justify-center h-[10rem]">
+        <div id="wifi-loader">
+          <svg className="circle-outer" viewBox="0 0 86 86">
+            <circle className="back" cx="43" cy="43" r="40"></circle>
+            <circle className="front" cx="43" cy="43" r="40"></circle>
+            <circle className="new" cx="43" cy="43" r="40"></circle>
+          </svg>
+          <svg className="circle-middle" viewBox="0 0 60 60">
+            <circle className="back" cx="30" cy="30" r="27"></circle>
+            <circle className="front" cx="30" cy="30" r="27"></circle>
+          </svg>
+          <svg className="circle-inner" viewBox="0 0 34 34">
+            <circle className="back" cx="17" cy="17" r="14"></circle>
+            <circle className="front" cx="17" cy="17" r="14"></circle>
+          </svg>
+          <div className="text font-bold" data-text="Loading"></div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -115,8 +171,8 @@ const AdvancedProduct = () => {
             >
               <option value="">Select Category</option>
               <option value="fiction">Fiction</option>
-              <option value="non-fiction">Non-Fiction</option>
-              <option value="education">Education</option>
+              <option value="nonfiction">Non-Fiction</option>
+              <option value="Motivational">Motivational</option>
             </select>
 
             <select
@@ -126,12 +182,18 @@ const AdvancedProduct = () => {
             >
               <option value="">Select Genre</option>
               <option value="drama">Drama</option>
-              <option value="comedy">Comedy</option>
+              <option value="adventure">Adventure</option>
               <option value="romance">Romance</option>
+              <option value="action">Action</option>
+              <option value="biography">Biography</option>
+              <option value="autobiography">Autobiography</option>
+              <option value="Motivational">Motivational</option>
+              <option value="historical">Historical</option>
             </select>
           </div>
           {/* end */}
         </div>
+
         <div className="mx-auto  px-2  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 pb-4 pt-2 overflow-hidden">
           {loading ? (
             <div className="loading-animation px-10 py-[15rem] flex flex-col items-center justify-center h-[10rem]">
@@ -188,6 +250,9 @@ const AdvancedProduct = () => {
               />
             </div>
           )}
+        </div>
+        <div className="pagination text-black  mx-auto py-4 flex  items-center justify-center text-center">
+          {renderPageNumbers()}
         </div>
       </main>
     </div>

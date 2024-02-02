@@ -50,7 +50,7 @@ function Filter({
       >
         <option value=" ">All Categories</option>
         <option value="Fiction">Fiction</option>
-        <option value="Non-Fiction">Non-Fiction</option>
+        <option value="NonFiction">Non-Fiction</option>
         <option value="Education">Education</option>
         <option value="Children Books">Children Books</option>
       </select>
