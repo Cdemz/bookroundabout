@@ -149,6 +149,12 @@ const AProduct: React.FC<ProductProps> = ({ product }) => {
           src={product.img}
           alt=""
         />
+        {/* Overlay when the book is disabled */}
+        {product.isDisabled && (
+          <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex items-center justify-center">
+            <span className="text-white font-bold">Book Disabled</span>
+          </div>
+        )}
 
         <div className="absolute top-0 right-4">
           {renderOnSale()}

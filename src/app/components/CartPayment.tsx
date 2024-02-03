@@ -113,6 +113,13 @@ const CartPayment = () => {
           calculationResponse.data,
           userEmail
         );
+        if (
+          purchaseResponse.statusCode === 400 &&
+          purchaseResponse.message === "Purchases are currently disabled"
+        ) {
+          toast.error("Purchases are currently disabled");
+          return null; // Exit the function early if purchases are disabled
+        }
         if (purchaseResponse && purchaseResponse.status === "pending") {
           // Redirect user to the purchase URL
           window.location.href = purchaseResponse.purchaseUrl;
@@ -196,7 +203,7 @@ const CartPayment = () => {
       deliveryType: calculationData.isDelivery ? "delivery" : "pickup",
       locationId: deliveryType === "delivery" ? selectedLocation : undefined,
       notes,
-      callbackUrl: "https://booksroundabout.com/PaymentVerification", // Replace with your actual callback URL
+      callbackUrl: "https://booksroundabout.com/PaymentVerification",
     };
 
     const response = await fetch(`${API_BASE_URL}/purchase/new`, {
