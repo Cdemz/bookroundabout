@@ -25,9 +25,9 @@ const TopText = () => {
 
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/message`,
+        `${API_BASE_URL}/data`,
         {
-          message: message,
+          data: message,
           type: "banner_message",
         },
         {
@@ -59,7 +59,7 @@ const TopText = () => {
       <button
         onClick={sendMessage}
         type="submit"
-        className="bg-[var(--color-primary)] py-2 px-6 rounded-full font-bold text-white mx-4 mt-4"
+        className="bg-[var(--color-primary)] py-2 px-6 rounded-full text-white mx-4 mt-4"
       >
         Send Message
       </button>

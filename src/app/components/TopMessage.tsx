@@ -16,7 +16,7 @@ const TopMessage = () => {
       },
     };
 
-    fetch(`${API_BASE_URL}/message?type=banner_message`, requestOptions)
+    fetch(`${API_BASE_URL}/data?type=banner_message`, requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -24,7 +24,7 @@ const TopMessage = () => {
         return response.json();
       })
       .then((data) => {
-        setApiMessage(data.message);
+        setApiMessage(data.data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
