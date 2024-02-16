@@ -34,7 +34,7 @@ const Suggest = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/book?page&limit`);
+        const response = await axios.get(`${API_BASE_URL}/book`);
         const data = response.data;
         setProducts(shuffleArray(data)); // Shuffle and set the data after fetching
       } catch (error) {

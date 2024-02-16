@@ -163,7 +163,7 @@ const AdvancedProduct = () => {
 
           <hr className="w-[60%]e text-black " />
           {/* start */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 justify-center items-center mx-auto mt-2">
             <select
               onChange={handleCategoryChange}
               value={selectedCategory}

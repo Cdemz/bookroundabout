@@ -42,7 +42,7 @@ export default () => {
       >
         <SwiperSlide>
           <div className="relative">
-            <div className="h-[20%] md:h-[40vh]">
+            <div className="h-[20%] md:h-[30vh] lg:h-[40vh]">
               <Image
                 priority
                 src="/mainstore.jpg"
