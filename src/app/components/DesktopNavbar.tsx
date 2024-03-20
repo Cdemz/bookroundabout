@@ -4,7 +4,7 @@ import { SlArrowUp } from "react-icons/sl";
 
 const DesktopNavbar = () => {
   return (
-    <div className="fixed flex w-full bottom-10 z-40 text-center items-center justify-center">
+    <div className="fixed flex w-24 bottom-10 z-40 text-center items-center justify-center right-0">
       <div className="bg-green-500 flex items-center text-white rounded-full ml-auto mr-4  px-3 py-5 h-14">
         <Link href="https://wa.me/2349020704026" target="_blank">
           <BsWhatsapp size={30} />

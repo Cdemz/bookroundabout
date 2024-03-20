@@ -15,7 +15,7 @@ interface FormData {
   category: string;
   description: string;
   price: number;
-  bookCode: string;
+  code: string;
   genre: string;
   tag: string;
   agerange: string;
@@ -39,7 +39,7 @@ const EditBookPage = ({ params }: Props) => {
     category: "",
     description: "",
     price: 12,
-    bookCode: "",
+    code: "",
     genre: "",
     tag: "",
     agerange: "",
@@ -104,7 +104,7 @@ const EditBookPage = ({ params }: Props) => {
             category: bookData.category || "",
             description: bookData.description || "",
             price: bookData.price ? parseFloat(bookData.price) : 0, // Parse as number
-            bookCode: bookData.code || "",
+            code: bookData.code || "",
             genre: bookData.genres.join(", ") || "",
             tag: bookData.tag || "",
             agerange: bookData.ageRange || "",
@@ -352,10 +352,10 @@ const EditBookPage = ({ params }: Props) => {
               <input
                 type="text"
                 className="border-2 border-gray-400  h-10 border-r-2 text-[var(--color-text)]"
-                name="bookCode"
+                name="code"
                 onChange={handleChange}
                 placeholder="17000"
-                value={formData.bookCode}
+                value={formData.code}
                 required
               />
             </div>

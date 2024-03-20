@@ -119,11 +119,17 @@ const page = () => {
         }
       );
 
-      console.log("Upload response:", response.data); // Debugging log
+      // console.log("Upload response:", response.data); // Debugging log
+
+      if (response.status === 401) {
+        toast.error("Authorization failed");
+        return "";
+      }
+  
 
       if (response.data && response.data.url) {
         toast.success("Image upload success, Uploading book");
-        router.push("/Dashboard");
+        // router.push("/Dashboard");
         return response.data.url; // Access the URL based on your actual response structure
       } else {
         toast.error("Invalid upload response structure");
@@ -151,9 +157,11 @@ const page = () => {
       imageUrl = await uploadImage(formData.image);
       if (!imageUrl) {
         toast.error("Failed to upload image");
+        toast.error("User not authorized");
         // console.error("Failed to upload image");
         return;
       }
+     
     }
 
     // Truncate bookCode if it's longer than 30 characters
@@ -178,10 +186,28 @@ const page = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response.data);
+      // Check if the response is successful (status codes 200-299 are considered successful)
+      if (response.status >= 200 && response.status < 300) {
+        toast.success("Book successfully uploaded");
+        router.push("/Dashboard"); // Navigate to the dashboard after successful upload
+      } else {
+        // Handle unexpected status codes as errors
+        toast.error("An unexpected error occurred");
+      }
     } catch (error) {
+      const axiosError = error as AxiosError;
+      // Handle known error status range 400-490
+      if (axiosError.response && axiosError.response.status >= 400 && axiosError.response.status < 490) {
+        const errorMessage = (axiosError.response.data as { message?: string }).message || "An error occurred";
+        toast.error(errorMessage);
+        toast.error("The book was not uploaded");;
+      } else {
+        // Handle other errors not in the 400-490 range
+        toast.error("An error occurred while submitting the form");
+      }
       console.error("Error submitting form", error);
     }
+    
   };
 
   return (
