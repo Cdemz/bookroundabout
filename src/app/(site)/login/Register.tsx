@@ -7,7 +7,9 @@ import { BsLockFill } from "react-icons/bs";
 const Register = () => {
   return (
     <div>
-      <h1 className="text-[var(--color-text)] font-bold my-4">MY ACCOUNT</h1>
+      <h1 className="text-[var(--color-text)] font-bold my-4 mx-4">
+        MY ACCOUNT
+      </h1>
       <form className="form">
         <div className="flex-column">
           <label>Email</label>

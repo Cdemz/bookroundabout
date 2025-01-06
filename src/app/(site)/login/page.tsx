@@ -89,7 +89,7 @@ const CustomSignIn = () => {
   return (
     <div className="">
       <div>
-        <h1 className="text-[var(--color-text)] font-bold my-4 mx-auto">
+        <h1 className="text-[var(--color-text)] font-bold my-4 mx-auto ml-4">
           MY ACCOUNT
         </h1>
         {/* Start  */}

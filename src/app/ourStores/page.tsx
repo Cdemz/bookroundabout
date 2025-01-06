@@ -44,10 +44,10 @@ class LocationPage extends Component<LocationPageProps, LocationPageState> {
             <p>63a capitol road, opposite car wash bus stop agege</p>
             <div className="flex  gap-2 phones">
               <p className="flex justify-center items-center gap-2">
-                <BsTelephoneFill /> <span>09020704026</span>
+                <BsTelephoneFill /> <span>2347046544405</span>
               </p>
               <p className="flex justify-center items-center  gap-2">
-                <BsTelephoneFill /> <span>07068795736</span>
+                <BsTelephoneFill /> <span>07068795732</span>
               </p>
             </div>
 

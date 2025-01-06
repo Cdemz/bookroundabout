@@ -28,14 +28,15 @@ const TopMessage = () => {
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
-        setApiMessage("Error loading message");
+        setApiMessage("Welcome Aneket Team");
       });
   }, []);
   // Empty array ensures this runs only once on mount
 
   return (
     <div className="bg-[var(--color-primary-v)] w-full px-auto py-4 flex justify-center text-center">
-      <h1>{apiMessage}</h1>
+      {/* <h1>{apiMessage}</h1> */}
+      <h1>Welcome Aneket Team</h1>
     </div>
   );
 };

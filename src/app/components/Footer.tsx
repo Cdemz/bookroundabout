@@ -45,7 +45,7 @@ const Footer: FC = () => {
               >
                 <FaTiktok size={30} />
               </Link>
-              <Link href="https://wa.me/2349020704026" target="_blank">
+              <Link href="https://wa.me/2347046544405" target="_blank">
                 <BsWhatsapp size={30} />
               </Link>
               <Link
@@ -87,7 +87,7 @@ const Footer: FC = () => {
             href="tel:+234-(902)070-4026"
             className="flex items-center gap-2 cursor-pointer"
           >
-            <IoIosCall className=" " size={26} /> +234-(902)070-4026
+            <IoIosCall className=" " size={26} /> +234-(704)654-4405
           </a>
           <a
             href="mailto:info@booksroundabout.com"
