@@ -34,6 +34,8 @@ export interface BookData {
   tag?: string[];
   description: string;
   amountInStock: number;
+  createdAt?: string; // Optional field
+  updatedAt?: string; // Optional field
 }
 
 interface ProductProps {
@@ -95,16 +97,22 @@ export default function BookDetailPage({ params }: Props) {
     const bookId = typeof name === "string" ? parseInt(name, 10) : null;
 
     if (bookId !== null) {
-      // Simulate fetching book data from a JSON file
       const book = booksData.find((b) => b.id === bookId);
 
       if (book) {
-        setBook(book); // Set the book data from the JSON file
+        // Add default value for missing fields
+        const formattedBook: BookData = {
+          ...book,
+          amountInStock: book.amountInStock ?? 0, // Default to 0 if undefined
+          createdAt: book.createdAt ?? new Date().toISOString(), // Default timestamp
+        };
+
+        setBook(formattedBook);
       } else {
         console.error("Book not found");
       }
 
-      setIsLoading(false); // Loading is complete
+      setIsLoading(false);
     } else {
       setIsLoading(false);
     }

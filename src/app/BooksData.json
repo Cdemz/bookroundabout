@@ -24,7 +24,10 @@
     ],
     "isNew": true,
     "sales": true,
-    "stag": "yes"
+    "stag": "yes",
+    "cover": "string ",
+    "isDisabled": true,
+    "discount": "10"
   },
   {
     "id": 2,
@@ -34,7 +37,10 @@
     "code": "WHL22",
     "price": 10000.0,
     "description": "God has a dream for your life–and in this concise yet powerful volume, beloved pastor and trusted teacher Rick Warren explains the process God uses to fulfill the dream he gives you. The Bible is full of stories of people whose God-given dreams became reality–but not without first going through the six phases of faith. In Created to Dream, Pastor Rick will help you understand how God uses these phases to grow people to spiritual maturity while fulfilling the dreams he gives them. Each phase is a test of your faith. The process God uses to grow your Knowing these biblical six phases of faith will allow you to stop wondering, “Why is this happening to me?” and begin cooperating with God’s process of growing you and your faith. You’ll find yourself thinking, “So that’s why that happened!” and you’ll be prepared for all that God has dreamed up for your future. This one book can lead to big changes in your life. Read it, then share it with a friend.",
-    "rating": 1.5
+    "rating": 1,
+    "cover": "string ",
+    "isDisabled": true,
+    "discount": "10"
   },
   {
     "id": 3,

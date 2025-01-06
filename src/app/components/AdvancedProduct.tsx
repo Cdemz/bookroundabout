@@ -13,24 +13,21 @@ import Image from "next/image";
 import mockData from "../BooksData.json";
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Product {
-  // Define the structure of a cart item here
   id: number;
   title: string;
   imageUrl: string;
   code: string;
   description: string;
-  agerange: string;
+  agerange?: string;
   price: number;
   category: string;
-  discountPrice: number;
-  createdAt: string;
-  amountInStock: string;
+  amountInStock?: number;
+  discountPrice?: number;
   cover: string;
   isDisabled: boolean;
   discount: string;
-  isNew: boolean;
+  isNew?: boolean;
   genre: string[];
-  // ...other properties
 }
 
 [
@@ -87,7 +84,6 @@ const AdvancedProduct = () => {
   useEffect(() => {
     const fetchProducts = () => {
       try {
-        // Filter and paginate the mock data based on your parameters
         let filteredData = mockData;
 
         if (selectedCategory) {
@@ -102,12 +98,21 @@ const AdvancedProduct = () => {
           );
         }
 
-        // Apply pagination
         const startIndex = (page - 1) * limit;
         const endIndex = startIndex + limit;
         const paginatedData = filteredData.slice(startIndex, endIndex);
 
-        setProducts(paginatedData);
+        // Ensure each product has required properties
+        const formattedData = paginatedData.map((product) => ({
+          ...product,
+          cover: product.cover || "",
+          agerange: product.agerange || "",
+          isDisabled: product.isDisabled ?? false,
+          discount: product.discount || "0",
+          isNew: product.isNew ?? false, // Default value for `isNew`
+        })) as Product[];
+
+        setProducts(formattedData); // Set the updated data
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
