@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from "../utils/api";
 
 const TopMessage = () => {
-  const [apiMessage, setApiMessage] = useState("Loading...");
+  const [apiMessage, setApiMessage] = useState("Welcome Aneket Team");
 
   useEffect(() => {
     const token = localStorage.getItem("token");

@@ -73,7 +73,7 @@ const SearchBar = () => {
     <>
       <form
         onSubmit={handleSearch}
-        className="searchInput_Container bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto h-8 text-black"
+        className="searchInput_Container bg-[var(--color-primary-b)] flex  rounded-full justify-between items-center mt-2 max-w-[70vw] mx-auto  text-black"
       >
         <input
           type="text"

@@ -16,6 +16,8 @@ import axios from "axios";
 import { API_BASE_URL } from "../utils/api";
 import ShareIcons from "../aboutbook/[id]/ShareIcons";
 import Suggest from "../aboutbook/[id]/Suggest";
+import booksData from "../aboutbook/[id]/../../BooksData.json";
+
 import useQueryParams from "../Category/useRoute";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -62,27 +64,47 @@ export default function BookDetailPage({ params }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState<BookData | null>(null); // Use state to handle book data
 
+  // useEffect(() => {
+
+  //   const bookId = typeof name === "string" ? parseInt(name, 10) : null;
+
+  //   if (bookId !== null) {
+  //     // Fetch book data from the API
+  //     fetch(`${API_BASE_URL}/book/${bookId}`)
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw new Error("Book not found");
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         // Set the book data from the API response
+  //         setBook(data);
+  //         setIsLoading(false);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         setIsLoading(false);
+  //       });
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+  // }, [name]);
+
   useEffect(() => {
     const bookId = typeof name === "string" ? parseInt(name, 10) : null;
 
     if (bookId !== null) {
-      // Fetch book data from the API
-      fetch(`${API_BASE_URL}/book/${bookId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Book not found");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Set the book data from the API response
-          setBook(data);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsLoading(false);
-        });
+      // Simulate fetching book data from a JSON file
+      const book = booksData.find((b) => b.id === bookId);
+
+      if (book) {
+        setBook(book); // Set the book data from the JSON file
+      } else {
+        console.error("Book not found");
+      }
+
+      setIsLoading(false); // Loading is complete
     } else {
       setIsLoading(false);
     }

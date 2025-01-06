@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "img": "/A Broken People’s Playlist.jpg",
+    "imageUrl": "/A Broken People’s Playlist.jpg",
     "title": "A Broken People’s Playlist",
     "category": "Fiction",
     "code": "WHL21",
@@ -28,7 +28,7 @@
   },
   {
     "id": 2,
-    "img": "/Created to Dream.jpg",
+    "imageUrl": "/Created to Dream.jpg",
     "title": "Created to Dream",
     "category": "Non-Fiction",
     "code": "WHL22",
@@ -38,7 +38,7 @@
   },
   {
     "id": 3,
-    "img": "/Geronimo Stilton Grammar Pawbook 1.png",
+    "imageUrl": "/Geronimo Stilton Grammar Pawbook 1.png",
     "title": "Geronimo Stilton Grammar Pawbook 1",
     "category": "Education",
     "code": "WHL23",
@@ -52,7 +52,7 @@
   },
   {
     "id": 4,
-    "img": "/H3 Leadership Be Humble. Stay Hungry. Always Hustle..jpg",
+    "imageUrl": "/H3 Leadership Be Humble. Stay Hungry. Always Hustle..jpg",
     "title": "H3 Leadership Be Humble. Stay Hungry. Always Hustle.",
     "category": "Non-Fiction",
     "code": "WHL24",
@@ -63,7 +63,7 @@
   },
   {
     "id": 5,
-    "img": "/Lulu and the Mangoes.png",
+    "imageUrl": "/Lulu and the Mangoes.png",
     "title": "Lulu and the Mangoes",
     "category": "Children Books",
     "code": "WHL25",
@@ -74,7 +74,7 @@
   },
   {
     "id": 6,
-    "img": "/Nearly all the men in lagos are mad.png",
+    "imageUrl": "/Nearly all the men in lagos are mad.png",
     "title": "Nearly all the men in lagos are mad",
     "category": "Fiction",
     "code": "WHL26",
@@ -87,7 +87,7 @@
   },
   {
     "id": 7,
-    "img": "/Nene and the Butterflies.png",
+    "imageUrl": "/Nene and the Butterflies.png",
     "title": "Nene and the Butterflies",
     "category": "Children Books",
     "code": "WHL27",
@@ -98,7 +98,7 @@
   },
   {
     "id": 8,
-    "img": "/Oliver Twist (AXORA).png",
+    "imageUrl": "/Oliver Twist (AXORA).png",
     "title": "Oliver Twist (AXORA)",
     "category": "Children Books",
     "code": "WHL28",
@@ -110,7 +110,7 @@
   },
   {
     "id": 9,
-    "img": "/smart moves more money.png",
+    "imageUrl": "/smart moves more money.png",
     "title": "smart moves more money",
     "category": "Non-Fiction",
     "code": "WHL29",
@@ -120,7 +120,7 @@
   },
   {
     "id": 10,
-    "img": "/Stay with Me.gif",
+    "imageUrl": "/Stay with Me.gif",
     "title": "Stay with Me",
     "category": "Comedy",
     "code": "WHL30",
@@ -130,7 +130,7 @@
   },
   {
     "id": 11,
-    "img": "/The Missing Cryptoqueen.png",
+    "imageUrl": "/The Missing Cryptoqueen.png",
     "title": "The Missing Cryptoqueen",
     "category": "Non-Fiction",
     "code": "WHL31",
@@ -142,7 +142,7 @@
 
   {
     "id": 12,
-    "img": "/The Secret Lives of Baba Segi’s Wives.png",
+    "imageUrl": "/The Secret Lives of Baba Segi’s Wives.png",
     "title": "The Secret Lives of Baba Segi’s Wives",
     "category": "Fiction",
     "code": "WHL32",
@@ -152,13 +152,15 @@
   },
   {
     "id": 13,
-    "img": "/The Subtle Art of Not Giving a Fuck.jpg",
+    "imageUrl": "/The Subtle Art of Not Giving a Fuck.jpg",
     "title": "The Subtle Art of Not Giving a Fuck",
     "category": "Non-Fiction",
     "code": "WHL33",
     "price": 13000.0,
     "description": "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be “positive” all the time so that we can truly become better, happier people.",
     "tag": ["Paper Back"],
-    "sales": true
+    "sales": true,
+    "createdAt": "2025-01-01T00:00:00Z",
+    "amountInStock": 10
   }
 ]

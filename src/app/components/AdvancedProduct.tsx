@@ -10,7 +10,7 @@ import { API_BASE_URL } from "../utils/api";
 import SearchBar from "./SearchBar";
 import "../cssstyles/searching.css";
 import Image from "next/image";
-
+import mockData from "../BooksData.json";
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Product {
   // Define the structure of a cart item here
@@ -63,17 +63,51 @@ const AdvancedProduct = () => {
   const [limit, setLimit] = useState(10);
   const [totalBooks, setTotalBooks] = useState(100); // State to store the total number of books
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        let endpoint = `${API_BASE_URL}/book`;
-        let params = [`page=${page}`, `limit=${limit}`];
-        if (selectedCategory) params.push(`category=${selectedCategory}`);
-        if (selectedGenre) params.push(`genre=${selectedGenre}`);
-        if (params.length) endpoint += `?${params.join("&")}`;
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       let endpoint = `${API_BASE_URL}/book`;
+  //       let params = [`page=${page}`, `limit=${limit}`];
+  //       if (selectedCategory) params.push(`category=${selectedCategory}`);
+  //       if (selectedGenre) params.push(`genre=${selectedGenre}`);
+  //       if (params.length) endpoint += `?${params.join("&")}`;
 
-        const response = await axios.get(endpoint);
-        setProducts(response.data);
+  //       const response = await axios.get(endpoint);
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, [selectedCategory, selectedGenre, page, limit]);
+
+  useEffect(() => {
+    const fetchProducts = () => {
+      try {
+        // Filter and paginate the mock data based on your parameters
+        let filteredData = mockData;
+
+        if (selectedCategory) {
+          filteredData = filteredData.filter(
+            (product) => product.category === selectedCategory
+          );
+        }
+
+        if (selectedGenre) {
+          filteredData = filteredData.filter((product) =>
+            product.genre?.includes(selectedGenre)
+          );
+        }
+
+        // Apply pagination
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+        const paginatedData = filteredData.slice(startIndex, endIndex);
+
+        setProducts(paginatedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -236,7 +270,7 @@ const AdvancedProduct = () => {
               />
             ))
           ) : (
-            <div className=" w-full ml-[2rem] md:ml-[10rem] flex flex-col gap-4 items-center justify-center mx-auto">
+            <div className=" w-screen ml-[2rem] md:ml-[10rem] flex flex-col gap-4 items-center justify-center border-2 border-dashed border-red-300 ">
               <p className="text-black lato font-bold">
                 No books found in this category or genre
               </p>
@@ -246,7 +280,7 @@ const AdvancedProduct = () => {
                 alt="sliderImg"
                 width={300}
                 height={300}
-                className="object-cover h-[40%] w-[40%] my-6"
+                className="object-cover h-[40%] w-[40%] my-6 mx"
               />
             </div>
           )}
