@@ -55,7 +55,8 @@ function getBookById(id: number): BookData | null {
   const book = Data.find((item) => item.id === id);
 
   // Return the book if found, or null if not found
-  return book || null;
+  // return book || null;
+  return null;
 }
 
 export default function BookDetailPage({ params }: Props) {
