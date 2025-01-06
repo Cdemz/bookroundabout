@@ -13,7 +13,7 @@ import { Menu, Transition } from "@headlessui/react";
 import MenuItem from "./MenuItem";
 
 export interface BookData {
-  img: string;
+  img?: string;
   title: string;
   category: string;
   rating?: number | string[];
@@ -122,14 +122,14 @@ const BestSeller = () => {
           {randomData.map((item) => (
             <div key={item.img} className=" ">
               <div className=" flex flex-col gap-4 h-[100%]">
-                <Image
+                {/* <Image
                   {...srcset(item.img, 12)}
                   width={300}
                   height={300}
                   alt={item.title}
                   loading="lazy"
                   className="w-[120px] h-[170px] object-cover  "
-                />
+                /> */}
                 <div className="text-black w-[140px] overflow-hidden p-2 flex flex-col justify-between flex-1">
                   <p className="text-gray-400">{item.category}</p>
 
